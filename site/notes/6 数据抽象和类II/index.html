@@ -1,0 +1,1178 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../5%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/">
+      
+      
+        <link rel="next" href="../7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>6 数据抽象和类II - 程序设计II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="程序设计II" class="md-header__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            程序设计II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6 数据抽象和类II
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="程序设计II" class="md-nav__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    程序设计II
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对象的内存布局
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拷贝构造函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深入const
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="深入const">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#const_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const 引用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="const 引用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. const 引用延长临时对象的生命周期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. const 引用的“只读”特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 隐式类型转换与临时对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 函数参数传递的规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#const_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const成员
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="const成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#const_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const数据成员
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#const_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const成员函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix错题笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对象的内存布局
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拷贝构造函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深入const
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="深入const">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#const_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const 引用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="const 引用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. const 引用延长临时对象的生命周期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-const" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. const 引用的“只读”特性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 隐式类型转换与临时对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 函数参数传递的规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#const_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const成员
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="const成员">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#const_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const数据成员
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#const_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const成员函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>6 数据抽象和类II</h1>
+
+<h2 id="_1">对象的内存布局</h2>
+<p>普通数据成员储存在栈区或者堆区。普通成员函数存储在程序的代码区，而不是对象实例中，所有对象共享同一份函数代码。如果每个对象都存储一遍成员函数，占用内存会增加。</p>
+<p><strong>静态联编</strong>：一种在<strong>编译阶段</strong>就确定函数调用与具体函数实现之间关联的机制，可以提升效率。当程序调用一个对象的方法时，编译器会根据该对象的<strong>声明类型</strong>（即变量定义时的类型），而不是它在运行时的实际类型，来决定调用哪个函数。类的普通成员函数（非虚函数）默认都采用静态联编。</p>
+<h2 id="_2">拷贝构造函数</h2>
+<p>用一个已经存在的对象来初始化一个正在创建的新对象。</p>
+<pre><code class="language-cpp">类名(const 类名&amp; other)
+</code></pre>
+<ul>
+<li><strong>为什么要用引用？</strong> 如果不用引用而是传值（不加&amp;），那么在传递参数时又会调用拷贝构造函数，导致无限递归。</li>
+<li><strong>为什么要加 const？</strong> 为了保证在拷贝过程中，源对象的数据不会被意外修改。</li>
+</ul>
+<p><strong>触发时机</strong>：
+1.  <strong>对象初始化</strong>：用一个已有对象初始化新对象。
+    <code>cpp
+    MyClass obj1;
+    MyClass obj2 = obj1; 或 MyClass obj2(obj1);</code>
+2.  <strong>函数传参（按值传递）</strong>：当对象作为参数传递给函数时，会生成一个副本。
+3.  <strong>函数返回值（按值返回）</strong>：当函数返回一个对象时，通常会生成一个临时副本。</p>
+<p>注：现代编译器中，当函数返回一个命名了的局部变量时，编译器会尝试将这个局部变量直接构造在调用者的返回值内存位置上，从而避免后续的拷贝或移动。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+
+class Test {
+public:
+    Test() { std::cout &lt;&lt; &quot;构造函数被调用\n&quot;; }
+    ~Test() { std::cout &lt;&lt; &quot;析构函数被调用\n&quot;; }
+};
+
+Test createObject() {
+    Test local_obj; // 命名局部对象
+    return local_obj; // 编译器会尝试应用 NRVO
+}
+
+int main() {
+    Test obj = createObject();
+    std::cout &lt;&lt; &quot;--- main函数即将结束 ---\n&quot;;
+    return 0;
+}
+</code></pre>
+<p>在这个程序中，只调用一次构造函数和一次析构函数，不调用拷贝构造函数。</p>
+<pre><code class="language-cpp">Test obj;
+obj = createObject();
+</code></pre>
+<p>如果这样写，obj 已经存在，只能接受“赋值”，无法享受 NRVO 的就地构造福利。但仍然不调用拷贝构造函数，因为这里会调用赋值运算符 = 。</p>
+<p><strong>含指针成员的类通常应重写以下内容：</strong>
+- 构造函数（及拷贝构造函数）中分配内存,深复制策略
+- = 操作重写，完成对象深复制策略
+- 析构函数中释放内存</p>
+<p><strong>浅拷贝</strong>：
+*   <strong>默认行为</strong>：如果你不写拷贝构造函数，编译器会送你一个默认的。它只会<strong>按字节</strong>复制内存中的数据。
+*   <strong>问题</strong>：如果类中有指针成员（指向堆区内存），浅拷贝只会复制指针的地址。这意味着两个对象会指向<strong>同一块内存</strong>。当这两个对象析构时，同一块内存会被释放两次（Double Free），导致程序崩溃。</p>
+<p><strong>深拷贝</strong>：
+*   <strong>自定义行为</strong>：你需要自己编写拷贝构造函数。
+*   <strong>做法</strong>：不仅复制指针的地址，还要<strong>重新分配一块内存</strong>，并将原内存中的数据复制过去。这样两个对象就完全独立，互不干扰。</p>
+<p><strong>=运算符重载</strong>：</p>
+<pre><code class="language-cpp">A a;
+a = b;
+</code></pre>
+<p>不会调用拷贝构造，这是赋值。如果类中有指针成员，即使自定义拷贝函数也会发生错误，需要重载 = 运算符。</p>
+<pre><code class="language-cpp">类名&amp; operator=(const 类名&amp; other) {
+    if (this == &amp;other)  // 1. 自赋值检查
+        return *this;
+
+    // 2. 释放当前对象原有资源
+    delete[] 指针成员;
+
+    // 3. 深拷贝分配新内存并复制数据
+    指针成员 = new char[strlen(other.指针成员) + 1];
+    strcpy(指针成员, other.指针成员);
+
+    return *this;  // 4. 返回自身引用
+}
+</code></pre>
+<h2 id="const">深入const</h2>
+<h3 id="const_1">const 引用</h3>
+<ol>
+<li><strong>const 引用可以绑定右值，普通引用不行</strong></li>
+<li><strong>const 引用是只读的，不能修改</strong></li>
+<li><strong>const 引用遇到类型不匹配时，会生成临时变量绑定</strong></li>
+</ol>
+<h4 id="1-const">1. <code>const</code> 引用延长临时对象的生命周期</h4>
+<p>在 C++ 中，你不能将一个<strong>非常量引用</strong>绑定到一个<strong>右值</strong>上，<code>int&amp;</code> 不能绑字面量 <code>15</code>，因为右值是临时的，不能被修改。当你写 <code>const int &amp;c = 15;</code> 时，编译器会做两件事：
+1.  创建一个临时的匿名变量（例如 <code>temp</code>）来存储 <code>15</code>。
+2.  让引用 <code>c</code> 指向这个临时变量。</p>
+<p><code>const</code> 引用会<strong>延长</strong>这个临时变量的生命周期，使其在当前作用域一直有效。</p>
+<h4 id="2-const">2. <code>const</code> 引用的“只读”特性</h4>
+<p><code>const</code> 引用的本质是“只读视图”。
+* <code>const int &amp;a = b;</code> 让 <code>a</code> 成为 <code>b</code> 的别名。
+*   你不能通过 <code>a</code> 去修改 <code>b</code>（<code>a = 12</code> 会报错），因为 <code>a</code> 是 <code>const</code> 的。
+*   但是直接修改 <code>b</code>，<code>a</code> 的值也会跟着变。</p>
+<p><code>const</code> 保护的是<strong>引用本身</strong>，而不是原始数据（原始数据可以通过其他非 const 的途径被修改）。</p>
+<h4 id="3">3. 隐式类型转换与临时对象</h4>
+<p>当引用的类型与初始化值的类型不匹配时（<code>const int &amp;</code> 初始化为 <code>double</code>），编译器会介入。<strong>类型不匹配 → 生成临时变量</strong></p>
+<pre><code class="language-cpp">double b = 3.14;
+const int &amp;a = b; 
+b = 11;
+</code></pre>
+<ul>
+<li><code>double</code> → <code>int</code> 要转换</li>
+<li>编译器生成<strong>临时 int</strong></li>
+<li><code>a</code> 绑的是<strong>临时变量</strong>，不是 <code>b</code></li>
+<li>所以 <code>b</code> 改成 11，<code>a</code> 还是 3</li>
+</ul>
+<h4 id="4">4. 函数参数传递的规则</h4>
+<p><code>const</code> 引用作为参数既能接收<strong>左值</strong>（具名变量），也能接收<strong>右值</strong>（字面量、临时对象）。</p>
+<pre><code class="language-cpp">int const_ref_in_para(const string&amp; s) { ... }
+int const_ref_in_para(const int&amp; s) { ... }
+</code></pre>
+<ul>
+<li><strong>例子</strong>：<ul>
+<li><code>const_ref_in_para("I love c++");</code>：字符串字面量是右值，编译器会构造一个临时 <code>string</code> 对象传给它。</li>
+<li><code>const_ref_in_para(3.14);</code>：<code>double</code> 转 <code>int</code> 产生了临时对象。</li>
+</ul>
+</li>
+<li><strong>优势</strong>：通用性强，且避免了拷贝大对象的开销。</li>
+</ul>
+<p>非 <code>const</code> 引用作为参数只能接收<strong>非 const 的左值</strong>。</p>
+<pre><code class="language-cpp">int no_const_ref_in_para(string&amp; s) { ... }
+int no_const_ref_in_para(int&amp; s) { ... }
+</code></pre>
+<p><code>no_const_ref_in_para("I love c++");</code>和<code>no_const_ref_in_para(3.14);</code> 会报错。因为类型转换产生的也是临时对象（右值）。</p>
+<h3 id="const_2">const成员</h3>
+<h4 id="const_3">const数据成员</h4>
+<p>用<code>const</code>修饰的类成员变量，不能在构造函数体内赋值，只能通过<strong>成员初始化列表</strong>完成初始化。</p>
+<h4 id="const_4">const成员函数</h4>
+<p><strong>不能修改非静态成员变量</strong>
+- 函数内不能调用非const成员函数（因为非const函数可能修改对象）</p>
+<pre><code class="language-cpp">void print() const;
+</code></pre>
+<p><strong>this指针的本质变化</strong>
+- 普通成员函数的<code>this</code>：<code>A* const</code>（可修改指向的对象）
+- const成员函数的<code>this</code>：<code>const A* const</code>（不可修改指向的对象，只读）</p>
+<p><strong>const对象只能调用const成员函数</strong>
+- 用<code>const</code>修饰的对象，<strong>只能调用const成员函数</strong>，不能调用非const成员函数（因为非const函数可能修改对象，违反const语义）</p>
+<pre><code class="language-cpp">const A obj;  // const对象
+obj.print();  // 合法：print是const成员函数
+// obj.set(10);  // 编译报错：set是非const成员函数
+</code></pre>
+<p><strong>const成员函数仅可修改<code>mutable</code>修饰的成员变量</strong></p>
+<pre><code class="language-cpp">class A {
+private:
+    mutable int cache = 0;  // mutable成员
+public:
+    void update() const {
+        cache++;  // 合法：mutable成员可在const函数中修改
+    }
+};
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

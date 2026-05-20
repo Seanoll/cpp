@@ -1,0 +1,18 @@
+site_name: 程序设计II
+nav: 
+  - 首页: index.md
+  - 笔记: 
+    - 1 from C to C++: notes/1 from C to C++.md
+    - 2 from C to C++: notes/2 from C to C++.md
+    - 3 数据抽象和类I: notes/3 数据抽象和类I.md
+    - 4 数据抽象和类I: notes/4 数据抽象和类I.md
+    - 5 数据抽象和类II: notes/5 数据抽象和类II.md
+    - 6 数据抽象和类II: notes/6 数据抽象和类II.md
+    - 7 运算符重载: notes/7 运算符重载.md
+    - 8 运算符重载: notes/8 运算符重载.md
+    - 9 继承和派生: notes/9 继承和派生.md
+    - 10 继承和派生: notes/10 继承和派生.md
+    - 11 继承和派生: notes/11 继承和派生.md
+    - Matrix错题笔记: notes/Matrix错题笔记.md
+theme:
+  name: material

@@ -1,0 +1,2036 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../11%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Matrix错题笔记 - 程序设计II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#25ii-1-" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="程序设计II" class="md-header__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            程序设计II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Matrix错题笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="程序设计II" class="md-nav__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    程序设计II
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix错题笔记
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix错题笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周1-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周1-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向对象 vs 面向过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定点数表示法 浮点 vs 定点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命名冲突 变量隐蔽
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周2-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周2-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        布尔类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-4-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周4-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周4-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构造析构函数个数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-7-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周7-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周7-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q12_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-8-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周8-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周8-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重载&lt;&lt;运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        检查自赋值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-9-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周9-理论题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-12-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周12-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周12-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pragma-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        #pragma once
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周1-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周1-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向对象 vs 面向过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定点数表示法 浮点 vs 定点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命名冲突 变量隐蔽
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周2-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周2-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        布尔类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-4-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周4-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周4-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构造析构函数个数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        坑爹题3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-7-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周7-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周7-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q12_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-8-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周8-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周8-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重载&lt;&lt;运算符
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        检查自赋值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-9-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周9-理论题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-12-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周12-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周12-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pragma-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        #pragma once
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Matrix错题笔记</h1>
+
+<h2 id="25ii-1-">25程设Ⅱ-周1-理论题</h2>
+<h3 id="vs">面向对象 vs 面向过程</h3>
+<ol>
+<li>
+<p>核心对比</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">面向过程 (POP)</th>
+<th style="text-align: left;">面向对象 (OOP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>思维</strong></td>
+<td style="text-align: left;"><strong>怎么做</strong> (步骤/流程)</td>
+<td style="text-align: left;"><strong>谁来做</strong> (对象/交互)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>单元</strong></td>
+<td style="text-align: left;">函数 (Function)</td>
+<td style="text-align: left;">类/对象 (Class/Object)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>数据</strong></td>
+<td style="text-align: left;">与函数分离，被动传递</td>
+<td style="text-align: left;">与行为封装，主动处理</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>特点</strong></td>
+<td style="text-align: left;">线性、高效、简单</td>
+<td style="text-align: left;">模块化、安全、易扩展</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>支柱</strong></td>
+<td style="text-align: left;">无</td>
+<td style="text-align: left;">封装、继承、多态、抽象</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>场景</strong></td>
+<td style="text-align: left;">嵌入式、脚本、底层驱动</td>
+<td style="text-align: left;">大型系统、GUI、游戏、企业应用</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>语言分类</p>
+</li>
+<li>
+<p><strong>主要面向过程</strong>：<code>C</code>, <code>Assembly</code>, <code>Fortran</code>, <code>Go</code> (偏过程)</p>
+</li>
+<li><strong>主要面向对象</strong>：<code>Java</code>, <code>C#</code>, <code>Smalltalk</code>, <code>Ruby</code></li>
+<li>
+<p><strong>多范式 (混合)</strong>：<code>C++</code>, <code>Python</code>, <code>JavaScript</code>, <code>Swift</code>, <code>Kotlin</code></p>
+</li>
+<li>
+<p>代码直觉</p>
+</li>
+<li>
+<p><strong>POP</strong>: <code>data</code> -&gt; <code>function(data)</code> -&gt; <code>result</code> (流水线)</p>
+</li>
+<li><strong>OOP</strong>: <code>object.method()</code> (团队协作)</li>
+</ol>
+<h3 id="vs_1">定点数表示法 浮点 vs 定点</h3>
+<ol>
+<li>
+<p>核心概念对比</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">特性</th>
+<th style="text-align: left;"><strong>浮点表示法 (Floating-Point)</strong></th>
+<th style="text-align: left;"><strong>定点表示法 (Fixed-Point)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>定义</strong></td>
+<td style="text-align: left;">小数点位置<strong>浮动</strong>，由指数决定</td>
+<td style="text-align: left;">小数点位置<strong>固定</strong>，通常在末尾</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>本质</strong></td>
+<td style="text-align: left;">科学计数法 ($M \times 2^E$)</td>
+<td style="text-align: left;">整数缩放 (Integer $\times$ Scale)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C++ 操纵符</strong></td>
+<td style="text-align: left;"><code>defaultfloat</code> (默认), <code>scientific</code></td>
+<td style="text-align: left;"><code>fixed</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>C++ 输出行为 (<code>setprecision(n)</code>)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">模式</th>
+<th style="text-align: left;">代码示例</th>
+<th style="text-align: left;"><code>n</code> 的含义</th>
+<th style="text-align: left;">示例输出 (值=12.34567)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>默认 (浮点)</strong></td>
+<td style="text-align: left;"><code>cout &lt;&lt; setprecision(6) &lt;&lt; val;</code></td>
+<td style="text-align: left;"><strong>总有效数字</strong> (整数+小数)</td>
+<td style="text-align: left;"><code>12.3457</code> (共6位)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>科学 (浮点)</strong></td>
+<td style="text-align: left;"><code>cout &lt;&lt; scientific &lt;&lt; setprecision(6) &lt;&lt; val;</code></td>
+<td style="text-align: left;"><strong>小数点后位数</strong></td>
+<td style="text-align: left;"><code>1.234567e+01</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>定点</strong></td>
+<td style="text-align: left;"><code>cout &lt;&lt; fixed &lt;&lt; setprecision(6) &lt;&lt; val;</code></td>
+<td style="text-align: left;"><strong>小数点后位数</strong></td>
+<td style="text-align: left;"><code>12.345670</code> (补零凑齐)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>关键规则</p>
+</li>
+<li>
+<p><strong>自动切换</strong>：默认模式下，数值过大/过小会自动转为科学计数法 (<code>e+</code>)。</p>
+</li>
+<li><strong>强制定点</strong>：使用 <code>fixed</code> 可禁止科学计数法，强制显示所有小数位。</li>
+<li><strong>默认位数</strong>：在 C++ 默认状态下（未使用 setprecision 修改），fixed 模式下的默认精度是 6 位小数。</li>
+</ol>
+<h3 id="q19">Q19</h3>
+<p>下述语句的输出是：</p>
+<pre><code class="language-cpp">cout &lt;&lt; 1 + &quot;20.26&quot; &lt;&lt; endl &lt;&lt; 1 + 20.26;
+</code></pre>
+<ul>
+<li>陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。  </li>
+<li>"20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。<br />
+cout 输出该指针指向的字符串："0.26"。</li>
+</ul>
+<pre><code class="language-text">0.26
+21.26
+</code></pre>
+<h3 id="_1">命名冲突 变量隐蔽</h3>
+<p>下面代码在输入2以后，输出为？</p>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std; 
+int main(){
+    int cout;
+    cin&gt;&gt;cout;
+        std::cout&lt;&lt;(cout&lt;&lt;cout);
+}
+</code></pre>
+<ul>
+<li>规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。</li>
+<li>如果你直接写 cout &lt;&lt; ... 会报错，因为整数没有 &lt;&lt; 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。</li>
+<li>输出为8</li>
+</ul>
+<h2 id="25ii-2-">25程设Ⅱ-周2-理论题</h2>
+<h3 id="_2">布尔类型</h3>
+<ul>
+<li><strong>bool 类型的大小不一定为 1 字节</strong>，在 C++ 标准中，bool类型的大小（sizeof(bool)）并没有明确规定必须是 1 个字节。虽然大多数现代编译器和平台上通常实现为 1 字节，但这并不是 C++ 语言标准强制要求的。其大小是实现定义的，可能因编译器、平台和优化设置而异。</li>
+<li>bool是 C++ 的基本数据类型，是语言的关键字之一，属于核心语言的一部分，<strong>不需要包含任何头文件即可使用</strong>。</li>
+</ul>
+<h3 id="q8">Q8</h3>
+<p>string::length()返回类型为 size_t，而不是 int。</p>
+<h3 id="q5">Q5</h3>
+<p>find的所有重载：
+1. find (const string&amp; str, size_t pos = 0)
+2. find (const char<em> s, size_t pos = 0)
+3. find (const char</em> s, size_t pos, size_t n)
+4. find (char c, size_t pos = 0)</p>
+<h2 id="25ii-4-">25程设Ⅱ-周4-理论题</h2>
+<h3 id="_3">构造析构函数个数</h3>
+<p>一个类可以拥有任意数量的构造函数，只要它们满足函数重载（Function Overloading）的规则。<br />
+一个类只能有一个析构函数。</p>
+<h3 id="_4">坑爹题</h3>
+<p>下列C++代码的输出是什么？</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+class TEST {
+    int a, b, c; 
+}
+int main() {
+    TEST test;
+    cout &lt;&lt; &quot;In main()\n&quot;;
+    return 0;
+}
+</code></pre>
+<p>答案：编译错误</p>
+<h3 id="2">坑爹题2</h3>
+<p>下列C++代码的输出是什么？</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+class A{
+private:
+    int a, b, c; 
+public:
+    A(int a, int b, int c) {
+        this-&gt;a = a;
+        this-&gt;b = b;
+        this-&gt;c = c;
+        cout &lt;&lt; &quot;A&quot; &lt;&lt; endl;
+    }
+    ~A() {
+        cout &lt;&lt; &quot;~A&quot; &lt;&lt; endl;
+    }
+};
+int main() {
+    A test;
+    return 0;
+}
+</code></pre>
+<p>答案：编译错误</p>
+<h3 id="3">坑爹题3</h3>
+<p>下列C++代码的输出是什么？</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+class A{
+    int a, b, c; 
+    A() {
+        cout &lt;&lt; &quot;A1&quot; &lt;&lt; endl;
+    }
+    A(int a, int b, int c) {
+        this-&gt;a = a;
+        this-&gt;b = b;
+        this-&gt;c = c;
+        cout &lt;&lt; &quot;A2&quot; &lt;&lt; endl;
+    }
+    ~A() {
+        cout &lt;&lt; &quot;~A&quot; &lt;&lt; endl;
+    }
+};
+int main() {
+    A test;
+    return 0;
+}
+</code></pre>
+<p>答案：编译错误</p>
+<h3 id="q6">Q6</h3>
+<p>在main函数结束时，对象会被销毁。析构的顺序与构造顺序相反。先构造的对象后销毁。</p>
+<h3 id="q12">Q12</h3>
+<ul>
+<li>析构函数的主要用途就是进行清理工作，最常见的情况就是释放对象在构造函数或生命周期内通过 <code>new</code> 等操作符动态分配的内存，以防止内存泄漏。它也可以用于关闭文件、断开网络连接等资源释放操作。</li>
+<li>析构函数可以定义为 <code>private</code>。这通常用于实现单例模式或者禁止对象在栈上分配（强制使用智能指针或在堆上通过特定工厂方法创建），以防止对象被随意销毁。不过，如果析构函数是私有的，那么该类的对象就不能在全局作用域或普通局部作用域中正常销毁，需要友元类或静态成员函数来协助销毁。</li>
+</ul>
+<h2 id="25ii-7-">25程设Ⅱ-周7-理论题</h2>
+<h3 id="q12_1">Q12</h3>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+class A {
+public:
+    A(int x) {}
+};
+
+int main() {
+    A* p = new A[3];
+    delete[] p;
+    return 0;
+}
+</code></pre>
+<ul>
+<li>在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。</li>
+<li>但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。</li>
+<li>因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。</li>
+</ul>
+<h2 id="25ii-8-">25程设Ⅱ-周8-理论题</h2>
+<h3 id="_5">重载<code>&lt;&lt;</code>运算符</h3>
+<p>在 C++ 中，我们希望自定义对象能像内置类型一样被输出，例如 <code>cout &lt;&lt; obj</code>。</p>
+<ul>
+<li><strong>左操作数是 <code>cout</code></strong>：<code>&lt;&lt;</code> 运算符的左侧是 <code>std::ostream</code> 对象（如 <code>cout</code>），右侧才是你的自定义对象。</li>
+<li><strong>必须是全局函数</strong>：因为左侧不是你的类对象，所以你<strong>不能</strong>将 <code>&lt;&lt;</code> 重载为成员函数（成员函数重载要求左侧必须是该类对象，那样会变成 <code>obj &lt;&lt; cout</code>，不符合习惯）。</li>
+<li><strong>需要访问私有成员</strong>：既然必须在类外定义全局函数，如果该函数需要直接访问你类中的私有数据（如 <code>m_age</code>, <code>m_name</code>）来进行打印，它就没有权限。</li>
+<li><strong>解决方案</strong>：将该全局函数声明为类的<strong>友元（friend）</strong>，赋予它访问私有成员的“特权”。</li>
+</ul>
+<p>所以重载<code>&lt;&lt;</code>用于输出自定义对象时，必须使用友元函数（或非成员函数）来重载运算符</p>
+<h3 id="_6">检查自赋值</h3>
+<p>正确写法✅️</p>
+<pre><code class="language-cpp">if(this != &amp;other)
+</code></pre>
+<p>不要写❌️</p>
+<pre><code class="language-cpp">if(*this != other)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比较方式</th>
+<th style="text-align: left;">比较内容</th>
+<th style="text-align: left;">性能</th>
+<th style="text-align: left;">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>if (this != &amp;other)</code></td>
+<td style="text-align: left;">对象的内存地址（身份）</td>
+<td style="text-align: left;">极快</td>
+<td style="text-align: left;">检查是否为同一个对象，防止资源管理错误。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>if (*this != other)</code></td>
+<td style="text-align: left;">对象的成员变量值（内容）</td>
+<td style="text-align: left;">较慢</td>
+<td style="text-align: left;">检查两个对象的逻辑值是否相等。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q7">Q7</h3>
+<p>在重载 operator+时，若将第二个参数声明为 const Integer&amp; Int，这样做的主要目的是：</p>
+<p>A.
+允许传入右值（如 a + 3）</p>
+<p>B.
+防止函数内部意外修改 Int对象，并避免不必要的拷贝</p>
+<p>正确答案是 <strong>B. 防止函数内部意外修改 Int对象，并避免不必要的拷贝</strong></p>
+<p>在 C++ 中重载运算符（特别是算术运算符如 <code>+</code>）时，将参数声明为 <code>const Integer&amp;</code> 是一种标准的最佳实践，主要有两个核心目的：</p>
+<ol>
+<li><strong><code>const</code> 的作用（安全性）：</strong> 加法操作 <code>a + b</code> 在逻辑上不应该改变操作数 <code>a</code> 或 <code>b</code> 的值。使用 <code>const</code> 修饰可以在编译阶段约束函数内部的行为，防止程序员在实现加法逻辑时意外修改了 <code>Int</code> 对象的值。如果尝试修改，编译器会直接报错。</li>
+<li><strong><code>&amp;</code> 引用的作用（效率）：</strong> 如果按值传递（即只写 <code>Integer Int</code>），在调用函数时会触发拷贝构造函数，产生一个临时的对象副本，这在对象较大或包含动态内存时会产生不必要的性能开销。使用引用 <code>&amp;</code> 直接传递对象本身，避免了这次拷贝。</li>
+</ol>
+<p>A 项：const T&amp; 确实可以绑定右值，但这只是该语法的一个附带特性，并非主要目的。</p>
+<h3 id="q18">Q18</h3>
+<p>用户自定义的赋值运算符通常会将赋值运算符（<code>operator=</code>）的返回值设计为当前类的引用（<code>T&amp;</code>）并返回 <code>*this</code>，这样设计的原因是
+1. 支持链式赋值<code>a = b = c;</code> 根据右结合性，等价于 <code>a = (b = c);</code>。
+2. 返回引用可以避免生成临时对象，从而提升性能。</p>
+<h2 id="25ii-9-">25程设Ⅱ-周9-理论题</h2>
+<ul>
+<li>不仅全局函数可以做友元，别的类的成员函数也能声明为本类的友元。</li>
+</ul>
+<pre><code class="language-cpp">class A {
+public:
+    void accessB(B&amp; b); 
+};
+
+class B {
+public:
+    // 将 A 类的 accessB 成员函数声明为友元
+    friend void A::accessB(B&amp; b); 
+};
+</code></pre>
+<ul>
+<li>任何类型都可以作为运算符重载的返回类型，建议返回类型与内建运算符提供的返回类型相匹配。但<code>operator-&gt;</code>比较特殊，C++规定它必须返回指针 或 自带<code>operator-&gt;</code>的类对象。</li>
+<li>重载 operator-&gt; 时，不能带参数。因为编译器对 <code>-&gt;</code> 有<strong>固定语法解析规则</strong>：</li>
+<li>如果obj是指针，直接解引用并访问member</li>
+<li>如果obj是类对象且重载了operator-&gt;，则执行obj.operator-&gt;()，然后递归应用该规则
+    <code>cpp
+    obj-&gt;member;</code>
+    会被自动翻译成：
+    <code>cpp
+    obj.operator-&gt;()-&gt;member;</code></li>
+<li>友元函数可以在类内部实现也可以在类外部实现</li>
+</ul>
+<h2 id="25ii-12-">25程设Ⅱ-周12-理论题</h2>
+<h3 id="q5_1">Q5</h3>
+<ul>
+<li>构造函数里可以调用普通成员函数，也能调用虚函数，但是不会触发派生类重写的虚函数，只会执行「当前正在构造的这个类」的版本。</li>
+<li>静态成员函数不能是虚函数。静态函数不属于对象、没有<code>this</code>指针，无法通过对象虚表完成动态绑定。</li>
+</ul>
+<h3 id="q8_1">Q8</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">特性</th>
+<th style="text-align: left;">编译时多态 (静态)</th>
+<th style="text-align: left;">运行时多态 (动态)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">实现方式</td>
+<td style="text-align: left;">函数重载、模板函数</td>
+<td style="text-align: left;">虚函数、重写(override)</td>
+</tr>
+<tr>
+<td style="text-align: left;">绑定时机</td>
+<td style="text-align: left;">编译期（早期绑定）</td>
+<td style="text-align: left;">运行期（晚期绑定）</td>
+</tr>
+<tr>
+<td style="text-align: left;">核心机制</td>
+<td style="text-align: left;">编译器根据参数/类型直接匹配</td>
+<td style="text-align: left;">依靠虚函数表(vtable)和虚指针(vptr)动态查找</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q10">Q10</h3>
+<ul>
+<li>函数覆盖/重写(override)必须函数签名完全一致，函数重载不允许签名一致。编译器不需要区分覆盖和被覆盖的函数。</li>
+</ul>
+<h3 id="q15">Q15</h3>
+<p>在 C++11 中，引入了 final 关键字，用于防止类被继承或防止虚函数被重写。它主要有两个用途：修饰类和修饰虚函数。</p>
+<p><strong>修饰类</strong>：当 final 关键字用于类时，表示该类不能被其他类继承。这可以保护基类的设计，防止继承带来的复杂性和潜在错误。</p>
+<p><strong>修饰虚函数</strong>：当 final 关键字用于虚函数时，表示该虚函数在派生类中不能被重写。这对于一些基类中实现了关键逻辑的函数非常有用，可以确保这些函数在派生类中不会被意外地修改。</p>
+<h3 id="q16">Q16</h3>
+<ul>
+<li>引用传递不会发生对象切片。例如</li>
+</ul>
+<pre><code class="language-cpp">class Base {
+public:
+    virtual void print() { std::cout &lt;&lt; &quot;Base\n&quot;; }
+};
+class Derived : public Base {
+public:
+    void print() { std::cout &lt;&lt; &quot;Derived\n&quot;; }
+};
+void call(Base&amp; b) {
+    b.print();
+}
+int main() {
+    Derived d;
+    call(d);
+}
+</code></pre>
+<p>输出<code>Derived</code></p>
+<h3 id="q17">Q17</h3>
+<ul>
+<li>
+<p>C++中实现运行时多态必须满足哪两个条件？</p>
+</li>
+<li>
+<p>基类函数声明为 <strong>virtual 虚函数</strong></p>
+</li>
+<li>调用时使用<strong>基类指针 / 基类引用</strong>访问</li>
+</ul>
+<pre><code class="language-cpp">Derived d;
+Base *p = &amp;d; // 指针只是指向原子类对象，没有新建对象、没有拷贝
+p-&gt;print();
+
+Base &amp;r = d;  // 引用别名，依旧绑定原本的子类实体
+r.print();
+</code></pre>
+<h3 id="_7">模板</h3>
+<pre><code class="language-cpp">template&lt;typename T&gt;  // T 代表任意类型
+T add(T a,T b){
+    return a+b;
+}
+// 调用：自动匹配 int / double
+add(1,2);
+add(1.1,2.2);
+</code></pre>
+<p>属于编译时多态</p>
+<h3 id="pragma-once">#pragma once</h3>
+<pre><code>warning: #pragma once in main file
+</code></pre>
+<p>翻译：
+<strong>你在主文件（.cpp 源文件）里写了 #pragma once，编译器觉得没必要，但不会影响程序正常运行</strong></p>
+<ul>
+<li><code>#pragma once</code> 是给<strong>头文件 .h / .hpp</strong> 用的</li>
+<li>作用：<strong>防止头文件被重复包含</strong></li>
+<li>但 <strong>.cpp 是源文件，不会被人 #include</strong></li>
+</ul>
+<h3 id="_8">其他</h3>
+<ul>
+<li>派生类构造记得调用基类构造函数</li>
+<li>拷贝构造记得用别人的公有函数调私有值</li>
+<li>别忘了可以用using改变访问权限</li>
+<li>getinstance返回引用的时候如果是nullptr返回new instance，返回指针返回instance（应该无所谓）</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
