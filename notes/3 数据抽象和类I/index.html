@@ -1011,62 +1011,60 @@
 <p>同一个 ADT（如“栈”），可以用不同的数据结构（如“数组”或“链表”）来实现。选择哪种数据结构，取决于你对性能（时间/空间复杂度）的具体需求。</p>
 <h2 id="_2">类的声明</h2>
 <h3 id="_3">语法</h3>
-<pre><code class="language-cpp">类关键词  类标识符 {
-    访问说明符:（可选）
-        数据成员声明序列;
-        函数成员声明序列;
-};
-</code></pre>
-<ul>
-<li>类关键词：class或struct或union之一</li>
-<li>访问说明符：</li>
-<li>public 公有，表示后续成员是对象使用者可访问</li>
-<li>private 私有，表示后续成员仅对象内部可访问</li>
-<li>protected 受保护，本类内部和派生类（子类）内部可以访问</li>
-<li>不写的时候默认是private</li>
-<li>类成员：</li>
-<li>数据成员，按声明顺序存储，对齐规则同C。一般设计中，数据成员需要隐藏保护。需要通过函数成员访问。</li>
-<li>函数成员，公有成员可以被外部使用者访问；私有成员仅内部访问；const 函数成员不能修改数据成员。</li>
-</ul>
-<pre><code class="language-cpp">class DATE {
-    public:
-        void Set( int, int, int );
-        int getMonth() const;
-        int getDay() const;
-        int getYear() const;
-        void Print() const; //这就是const函数，不能修改数据成员
-        void Increment();
-        void Decrement();
-    private:
-        int month;
-        int day;
-        int year;
-};
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><span class="n">类关键词</span><span class="w">  </span><span class="n">类标识符</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nl">访问说明符</span><span class="p">:</span><span class="err">（</span><span class="n">可选</span><span class="err">）</span>
+<span class="w">        </span><span class="n">数据成员声明序列</span><span class="p">;</span>
+<span class="w">        </span><span class="n">函数成员声明序列</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+- 类关键词：class或struct或union之一
+- 访问说明符：
+  - public 公有，表示后续成员是对象使用者可访问
+  - private 私有，表示后续成员仅对象内部可访问
+  - protected 受保护，本类内部和派生类（子类）内部可以访问
+  - 不写的时候默认是private
+- 类成员：
+  - 数据成员，按声明顺序存储，对齐规则同C。一般设计中，数据成员需要隐藏保护。需要通过函数成员访问。
+  - 函数成员，公有成员可以被外部使用者访问；私有成员仅内部访问；const 函数成员不能修改数据成员。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DATE</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="n">Set</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">);</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="nf">getMonth</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="nf">getDay</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="nf">getYear</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">Print</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"> </span><span class="c1">//这就是const函数，不能修改数据成员</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">Increment</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">Decrement</span><span class="p">();</span>
+<span class="w">    </span><span class="k">private</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">month</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">year</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></p>
 <blockquote>
 <p>const成员函数：表示该函数不会修改对象的任何成员变量（除了被声明为 mutable的变量）。const是函数签名的一部分。带 const和不带 const被视为两个不同的函数。头文件（.h）中的函数声明带有 const修饰符，在源文件（.cpp）中的函数定义也必须有 const。</p>
 </blockquote>
-<pre><code class="language-cpp">int getLength() const;   //在.h文件中
-int Rectangle::getLength() const {  // 在.cpp文件中
-    return length;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">getLength</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w">   </span><span class="c1">//在.h文件中</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">Rectangle::getLength</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 在.cpp文件中</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <blockquote>
-<p>在C++中，如果类的成员函数的参数名与类的成员变量名相同，需要使用 this指针​ 或 成员初始化列表​ 来区分和正确赋值。</p>
+<p>在C++中，如果类的成员函数的参数名与类的成员变量名相同，需要使用 this指针​ 或 成员初始化列表​ 来区分和正确赋值。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 成员变量</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 构造函数：参数名与成员变量名相同，都是 value</span>
+<span class="w">    </span><span class="n">MyClass</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用 this-&gt; 指明左侧是成员变量</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">setValue</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 赋值给成员变量</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></p>
 </blockquote>
-<pre><code class="language-cpp">class MyClass {
-private:
-    int value; // 成员变量
-public:
-    // 构造函数：参数名与成员变量名相同，都是 value
-    MyClass(int value) {
-        this-&gt;value = value; // 用 this-&gt; 指明左侧是成员变量
-    }
-    void setValue(int value) {
-        this-&gt;value = value; // 赋值给成员变量
-    }
-};
-</code></pre>
 <h3 id="structclass">struct和class关键字</h3>
 <p>C 语言：
 - 在纯粹的C89/C99标准C语言中，struct只能包含成员变量（数据），不能直接包含成员函数（操作）的定义。导致数据与操作的函数分离。

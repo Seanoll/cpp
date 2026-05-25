@@ -1681,32 +1681,28 @@
 <li><strong>默认位数</strong>：在 C++ 默认状态下（未使用 setprecision 修改），fixed 模式下的默认精度是 6 位小数。</li>
 </ol>
 <h3 id="q19">Q19</h3>
-<p>下述语句的输出是：</p>
-<pre><code class="language-cpp">cout &lt;&lt; 1 + &quot;20.26&quot; &lt;&lt; endl &lt;&lt; 1 + 20.26;
-</code></pre>
-<ul>
-<li>陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。  </li>
-<li>"20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。<br />
-cout 输出该指针指向的字符串："0.26"。</li>
-</ul>
-<pre><code class="language-text">0.26
+<p>下述语句的输出是：
+<div class="highlight"><pre><span></span><code><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;20.26&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20.26</span><span class="p">;</span>
+</code></pre></div>
+- 陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。<br />
+- "20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。<br />
+cout 输出该指针指向的字符串："0.26"。
+<div class="highlight"><pre><span></span><code>0.26
 21.26
-</code></pre>
+</code></pre></div></p>
 <h3 id="_1">命名冲突 变量隐蔽</h3>
-<p>下面代码在输入2以后，输出为？</p>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std; 
-int main(){
-    int cout;
-    cin&gt;&gt;cout;
-        std::cout&lt;&lt;(cout&lt;&lt;cout);
-}
-</code></pre>
-<ul>
-<li>规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。</li>
-<li>如果你直接写 cout &lt;&lt; ... 会报错，因为整数没有 &lt;&lt; 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。</li>
-<li>输出为8</li>
-</ul>
+<p>下面代码在输入2以后，输出为？
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"> </span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">cout</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">cout</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">cout</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+- 规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。
+- 如果你直接写 cout &lt;&lt; ... 会报错，因为整数没有 &lt;&lt; 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。
+- 输出为8</p>
 <h2 id="25ii-2-">25程设Ⅱ-周2-理论题</h2>
 <h3 id="_2">布尔类型</h3>
 <ul>
@@ -1726,68 +1722,68 @@ int main(){
 <p>一个类可以拥有任意数量的构造函数，只要它们满足函数重载（Function Overloading）的规则。<br />
 一个类只能有一个析构函数。</p>
 <h3 id="_4">坑爹题</h3>
-<p>下列C++代码的输出是什么？</p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
-class TEST {
-    int a, b, c; 
-}
-int main() {
-    TEST test;
-    cout &lt;&lt; &quot;In main()\n&quot;;
-    return 0;
-}
-</code></pre>
-<p>答案：编译错误</p>
+<p>下列C++代码的输出是什么？
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TEST</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TEST</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;In main()</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+答案：编译错误</p>
 <h3 id="2">坑爹题2</h3>
-<p>下列C++代码的输出是什么？</p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
-class A{
-private:
-    int a, b, c; 
-public:
-    A(int a, int b, int c) {
-        this-&gt;a = a;
-        this-&gt;b = b;
-        this-&gt;c = c;
-        cout &lt;&lt; &quot;A&quot; &lt;&lt; endl;
-    }
-    ~A() {
-        cout &lt;&lt; &quot;~A&quot; &lt;&lt; endl;
-    }
-};
-int main() {
-    A test;
-    return 0;
-}
-</code></pre>
-<p>答案：编译错误</p>
+<p>下列C++代码的输出是什么？
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">A</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;~A&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+答案：编译错误</p>
 <h3 id="3">坑爹题3</h3>
-<p>下列C++代码的输出是什么？</p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
-class A{
-    int a, b, c; 
-    A() {
-        cout &lt;&lt; &quot;A1&quot; &lt;&lt; endl;
-    }
-    A(int a, int b, int c) {
-        this-&gt;a = a;
-        this-&gt;b = b;
-        this-&gt;c = c;
-        cout &lt;&lt; &quot;A2&quot; &lt;&lt; endl;
-    }
-    ~A() {
-        cout &lt;&lt; &quot;~A&quot; &lt;&lt; endl;
-    }
-};
-int main() {
-    A test;
-    return 0;
-}
-</code></pre>
-<p>答案：编译错误</p>
+<p>下列C++代码的输出是什么？
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="n">A</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;A2&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="o">~</span><span class="n">A</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;~A&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="n">test</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+答案：编译错误</p>
 <h3 id="q6">Q6</h3>
 <p>在main函数结束时，对象会被销毁。析构的顺序与构造顺序相反。先构造的对象后销毁。</p>
 <h3 id="q12">Q12</h3>
@@ -1797,25 +1793,23 @@ int main() {
 </ul>
 <h2 id="25ii-7-">25程设Ⅱ-周7-理论题</h2>
 <h3 id="q12_1">Q12</h3>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
-class A {
-public:
-    A(int x) {}
-};
+<span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">};</span>
 
-int main() {
-    A* p = new A[3];
-    delete[] p;
-    return 0;
-}
-</code></pre>
-<ul>
-<li>在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。</li>
-<li>但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。</li>
-<li>因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。</li>
-</ul>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">A</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">    </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+- 在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。
+- 但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。
+- 因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。</p>
 <h2 id="25ii-8-">25程设Ⅱ-周8-理论题</h2>
 <h3 id="_5">重载<code>&lt;&lt;</code>运算符</h3>
 <p>在 C++ 中，我们希望自定义对象能像内置类型一样被输出，例如 <code>cout &lt;&lt; obj</code>。</p>
@@ -1827,36 +1821,16 @@ int main() {
 </ul>
 <p>所以重载<code>&lt;&lt;</code>用于输出自定义对象时，必须使用友元函数（或非成员函数）来重载运算符</p>
 <h3 id="_6">检查自赋值</h3>
-<p>正确写法✅️</p>
-<pre><code class="language-cpp">if(this != &amp;other)
-</code></pre>
-<p>不要写❌️</p>
-<pre><code class="language-cpp">if(*this != other)
-</code></pre>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">比较方式</th>
-<th style="text-align: left;">比较内容</th>
-<th style="text-align: left;">性能</th>
-<th style="text-align: left;">目的</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><code>if (this != &amp;other)</code></td>
-<td style="text-align: left;">对象的内存地址（身份）</td>
-<td style="text-align: left;">极快</td>
-<td style="text-align: left;">检查是否为同一个对象，防止资源管理错误。</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>if (*this != other)</code></td>
-<td style="text-align: left;">对象的成员变量值（内容）</td>
-<td style="text-align: left;">较慢</td>
-<td style="text-align: left;">检查两个对象的逻辑值是否相等。</td>
-</tr>
-</tbody>
-</table>
+<p>正确写法✅️
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+</code></pre></div>
+不要写❌️
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+</code></pre></div>
+| 比较方式 | 比较内容 | 性能 | 目的 |
+| :--- | :--- | :--- | :--- |
+| <code>if (this != &amp;other)</code> | 对象的内存地址（身份） | 极快 | 检查是否为同一个对象，防止资源管理错误。 |
+| <code>if (*this != other)</code> | 对象的成员变量值（内容） | 较慢 | 检查两个对象的逻辑值是否相等。 |</p>
 <h3 id="q7">Q7</h3>
 <p>在重载 operator+时，若将第二个参数声明为 const Integer&amp; Int，这样做的主要目的是：</p>
 <p>A.
@@ -1876,29 +1850,27 @@ int main() {
 2. 返回引用可以避免生成临时对象，从而提升性能。</p>
 <h2 id="25ii-9-">25程设Ⅱ-周9-理论题</h2>
 <ul>
-<li>不仅全局函数可以做友元，别的类的成员函数也能声明为本类的友元。</li>
-</ul>
-<pre><code class="language-cpp">class A {
-public:
-    void accessB(B&amp; b); 
-};
+<li>不仅全局函数可以做友元，别的类的成员函数也能声明为本类的友元。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">accessB</span><span class="p">(</span><span class="n">B</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
+<span class="p">};</span>
 
-class B {
-public:
-    // 将 A 类的 accessB 成员函数声明为友元
-    friend void A::accessB(B&amp; b); 
-};
-</code></pre>
-<ul>
+<span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 将 A 类的 accessB 成员函数声明为友元</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="n">accessB</span><span class="p">(</span><span class="n">B</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
+<span class="p">};</span>
+</code></pre></div></li>
 <li>任何类型都可以作为运算符重载的返回类型，建议返回类型与内建运算符提供的返回类型相匹配。但<code>operator-&gt;</code>比较特殊，C++规定它必须返回指针 或 自带<code>operator-&gt;</code>的类对象。</li>
 <li>重载 operator-&gt; 时，不能带参数。因为编译器对 <code>-&gt;</code> 有<strong>固定语法解析规则</strong>：</li>
 <li>如果obj是指针，直接解引用并访问member</li>
 <li>如果obj是类对象且重载了operator-&gt;，则执行obj.operator-&gt;()，然后递归应用该规则
-    <code>cpp
-    obj-&gt;member;</code>
+    <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
+</code></pre></div>
     会被自动翻译成：
-    <code>cpp
-    obj.operator-&gt;()-&gt;member;</code></li>
+    <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="p">.</span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
+</code></pre></div></li>
 <li>友元函数可以在类内部实现也可以在类外部实现</li>
 </ul>
 <h2 id="25ii-12-">25程设Ⅱ-周12-理论题</h2>
@@ -1944,25 +1916,25 @@ public:
 <p><strong>修饰虚函数</strong>：当 final 关键字用于虚函数时，表示该虚函数在派生类中不能被重写。这对于一些基类中实现了关键逻辑的函数非常有用，可以确保这些函数在派生类中不会被意外地修改。</p>
 <h3 id="q16">Q16</h3>
 <ul>
-<li>引用传递不会发生对象切片。例如</li>
+<li>引用传递不会发生对象切片。例如
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Base</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Derived</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">print</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Derived</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="n">Base</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Derived</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="w">    </span><span class="n">call</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+输出<code>Derived</code></li>
 </ul>
-<pre><code class="language-cpp">class Base {
-public:
-    virtual void print() { std::cout &lt;&lt; &quot;Base\n&quot;; }
-};
-class Derived : public Base {
-public:
-    void print() { std::cout &lt;&lt; &quot;Derived\n&quot;; }
-};
-void call(Base&amp; b) {
-    b.print();
-}
-int main() {
-    Derived d;
-    call(d);
-}
-</code></pre>
-<p>输出<code>Derived</code></p>
 <h3 id="q17">Q17</h3>
 <ul>
 <li>
@@ -1973,27 +1945,27 @@ int main() {
 </li>
 <li>调用时使用<strong>基类指针 / 基类引用</strong>访问</li>
 </ul>
-<pre><code class="language-cpp">Derived d;
-Base *p = &amp;d; // 指针只是指向原子类对象，没有新建对象、没有拷贝
-p-&gt;print();
+<div class="highlight"><pre><span></span><code><span class="n">Derived</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="n">Base</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指针只是指向原子类对象，没有新建对象、没有拷贝</span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
 
-Base &amp;r = d;  // 引用别名，依旧绑定原本的子类实体
-r.print();
-</code></pre>
+<span class="n">Base</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">  </span><span class="c1">// 引用别名，依旧绑定原本的子类实体</span>
+<span class="n">r</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+</code></pre></div>
 <h3 id="_7">模板</h3>
-<pre><code class="language-cpp">template&lt;typename T&gt;  // T 代表任意类型
-T add(T a,T b){
-    return a+b;
-}
-// 调用：自动匹配 int / double
-add(1,2);
-add(1.1,2.2);
-</code></pre>
-<p>属于编译时多态</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w">  </span><span class="c1">// T 代表任意类型</span>
+<span class="n">T</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="n">T</span><span class="w"> </span><span class="n">b</span><span class="p">){</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 调用：自动匹配 int / double</span>
+<span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">add</span><span class="p">(</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">2.2</span><span class="p">);</span>
+</code></pre></div>
+属于编译时多态</p>
 <h3 id="pragma-once">#pragma once</h3>
-<pre><code>warning: #pragma once in main file
-</code></pre>
-<p>翻译：
+<p><div class="highlight"><pre><span></span><code>warning: #pragma once in main file
+</code></pre></div>
+翻译：
 <strong>你在主文件（.cpp 源文件）里写了 #pragma once，编译器觉得没必要，但不会影响程序正常运行</strong></p>
 <ul>
 <li><code>#pragma once</code> 是给<strong>头文件 .h / .hpp</strong> 用的</li>

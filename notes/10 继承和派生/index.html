@@ -821,14 +821,16 @@
 </ul>
 <h2 id="_2">改变访问控制</h2>
 <ul>
-<li>基类中的public或protected成员，因使用protected或
+<li>
+<p>基类中的public或protected成员，因使用protected或
 private继承访问控制而导致在派生类中的访问方式发生改变，
-可以使用“访问声明”恢复为原来的访问控制方式</li>
-</ul>
-<pre><code class="language-cpp">using 基类名::成员名;
-</code></pre>
-<ul>
-<li>通常 using 声明不改变访问权限（比如在命名空间或派生类中引入基类函数时，保持原权限）。但在类作用域内对基类成员使用 using 时，它会根据 using 出现的位置重新设定访问级别。using 声明写在哪个权限区，该成员就变成什么权限。 </li>
+可以使用“访问声明”恢复为原来的访问控制方式
+<div class="highlight"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">基类名</span><span class="o">::</span><span class="n">成员名</span><span class="p">;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>通常 using 声明不改变访问权限（比如在命名空间或派生类中引入基类函数时，保持原权限）。但在类作用域内对基类成员使用 using 时，它会根据 using 出现的位置重新设定访问级别。using 声明写在哪个权限区，该成员就变成什么权限。 </p>
+</li>
 <li>屏蔽基类成员：</li>
 <li>用 private /protected 继承 整体屏蔽，这是真正彻底屏蔽，外部完全不能访问</li>
 <li>在private/protected权限区利用 using 降级，仍然可以通过<code>基类::</code>访问。</li>

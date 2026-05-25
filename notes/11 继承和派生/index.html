@@ -1203,32 +1203,38 @@
 <h2 id="_1">类型兼容性</h2>
 <ul>
 <li>赋值运算的类型兼容性：</li>
-<li>你可以直接将一个派生类的对象赋值给一个基类的对象。</li>
-</ul>
-<p><code>cpp
-  Derived d;
-  Base b = d;   // 允许，切片赋值
-  b = d;</code></p>
-<ul>
-<li>这种赋值会发生“截断”，即基类对象 b 只能接收派生类对象 d 中继承自基类的那部分成员，派生类自己新增的成员会被丢弃。</li>
+<li>
+<p>你可以直接将一个派生类的对象赋值给一个基类的对象。</p>
+<div class="highlight"><pre><span></span><code><span class="n">Derived</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="n">Base</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">   </span><span class="c1">// 允许，切片赋值</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>这种赋值会发生“截断”，即基类对象 b 只能接收派生类对象 d 中继承自基类的那部分成员，派生类自己新增的成员会被丢弃。</p>
+</li>
 <li>指针/引用的兼容（向上转型，Upcasting）：</li>
-<li>你可以让一个基类指针，指向一个派生类对象。</li>
-</ul>
-<p><code>cpp
-  Derived d;
-  Base* pb = &amp;d;      // ✅ 派生类指针 → 基类指针
-  Base&amp; rb = d;       // ✅ 派生类引用 → 基类引用</code></p>
-<ul>
-<li>派生类对象的内存布局是"基类子对象 + 派生类特有成员"。所以指向派生类对象的指针，其起始地址恰好就是基类子对象的起始地址。</li>
+<li>
+<p>你可以让一个基类指针，指向一个派生类对象。</p>
+<div class="highlight"><pre><span></span><code><span class="n">Derived</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="p">;</span><span class="w">      </span><span class="c1">// ✅ 派生类指针 → 基类指针</span>
+<span class="n">Base</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w">       </span><span class="c1">// ✅ 派生类引用 → 基类引用</span>
+</code></pre></div>
+</li>
+<li>
+<p>派生类对象的内存布局是"基类子对象 + 派生类特有成员"。所以指向派生类对象的指针，其起始地址恰好就是基类子对象的起始地址。</p>
+</li>
 <li>函数参数的兼容：</li>
-<li>你可以将一个派生类对象作为参数，传递给一个需要基类参数的函数。</li>
+<li>
+<p>你可以将一个派生类对象作为参数，传递给一个需要基类参数的函数。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">(</span><span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">bar</span><span class="p">(</span><span class="n">Base</span><span class="o">&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">);</span>
+
+<span class="n">foo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span><span class="w">            </span><span class="c1">// ✅ 传入 Derived*</span>
+<span class="n">bar</span><span class="p">(</span><span class="n">d</span><span class="p">);</span><span class="w">             </span><span class="c1">// ✅ 传入 Derived</span>
+</code></pre></div>
+</li>
 </ul>
-<p>```cpp
-  void foo(Base* p);
-  void bar(Base&amp; r);</p>
-<p>foo(&amp;d);            // ✅ 传入 Derived*
-  bar(d);             // ✅ 传入 Derived
-  ```</p>
 <p><strong>必须是公有继承</strong>：类型兼容规则<strong>仅适用于公有继承（<code>public</code>）</strong>。如果是私有继承（<code>private</code>）或保护继承（<code>protected</code>），派生类对象不能在外部被当作基类对象使用。</p>
 <p><strong>兼容是单向的</strong>：派生类兼容基类，基类不兼容派生类。</p>
 <h2 id="_2">对象的类型转换</h2>
@@ -1238,10 +1244,10 @@
 <p>派生类 → 基类
 - <strong>public 继承下可以隐式转换，不用强制 cast</strong>
 - 就是前面说的<strong>类型兼容性</strong></p>
-<pre><code class="language-cpp">Derived d;
-Base *p = &amp;d;      // 隐式向上转型，不用cast
-Base &amp;r = d;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">Derived</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<span class="n">Base</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="p">;</span><span class="w">      </span><span class="c1">// 隐式向上转型，不用cast</span>
+<span class="n">Base</span><span class="w"> </span><span class="o">&amp;</span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+</code></pre></div>
 <h3 id="2-downcast">2. 向下转型（Downcast）</h3>
 <p>基类 → 派生类
 - <strong>不安全，不能隐式转，必须用 cast 强制转换</strong>
@@ -1278,89 +1284,89 @@ Base &amp;r = d;
 </tbody>
 </table>
 <h3 id="1-static_cast">1. <code>static_cast</code> — 最常用</h3>
-<pre><code class="language-cpp">double d = 3.14;
-int i = static_cast&lt;int&gt;(d);    // 截断小数，i = 3
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">d</span><span class="p">);</span><span class="w">    </span><span class="c1">// 截断小数，i = 3</span>
 
-// 继承链中的转换
-Base* pb = new Derived();
-Derived* pd = static_cast&lt;Derived*&gt;(pb);  // ✅ 向下转型，程序员担保安全
-</code></pre>
+<span class="c1">// 继承链中的转换</span>
+<span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Derived</span><span class="p">();</span>
+<span class="n">Derived</span><span class="o">*</span><span class="w"> </span><span class="n">pd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pb</span><span class="p">);</span><span class="w">  </span><span class="c1">// ✅ 向下转型，程序员担保安全</span>
+</code></pre></div>
 <h3 id="2-dynamic_cast">2. <code>dynamic_cast</code> — 安全向下转型</h3>
-<pre><code class="language-cpp">Base* pb = new Derived();
-Derived* pd = dynamic_cast&lt;Derived*&gt;(pb);  // ✅ 运行时检查，确实能转
-if (pd) {
-    pd-&gt;derivedOnlyMethod();  // 安全使用
-}
+<div class="highlight"><pre><span></span><code><span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Derived</span><span class="p">();</span>
+<span class="n">Derived</span><span class="o">*</span><span class="w"> </span><span class="n">pd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pb</span><span class="p">);</span><span class="w">  </span><span class="c1">// ✅ 运行时检查，确实能转</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pd</span><span class="o">-&gt;</span><span class="n">derivedOnlyMethod</span><span class="p">();</span><span class="w">  </span><span class="c1">// 安全使用</span>
+<span class="p">}</span>
 
-Base* pb2 = new Base();
-Derived* pd2 = dynamic_cast&lt;Derived*&gt;(pb2); // ✅ 返回 nullptr，转换失败
-</code></pre>
+<span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">pb2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Base</span><span class="p">();</span>
+<span class="n">Derived</span><span class="o">*</span><span class="w"> </span><span class="n">pd2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">pb2</span><span class="p">);</span><span class="w"> </span><span class="c1">// ✅ 返回 nullptr，转换失败</span>
+</code></pre></div>
 <p><strong>前提</strong>：基类必须有<strong>虚函数</strong>（需要有虚表来支持运行时类型识别 RTTI）。</p>
 <p><strong>注意</strong>：dynamic_cast 可以转指针，也可以转引用，不能转普通值对象。<code>dynamic_cast&lt;Derived&gt;(b)</code>非法。</p>
 <h3 id="3-const_cast-const">3. <code>const_cast</code> — 改 const 属性</h3>
-<pre><code class="language-cpp">const int x = 10;
-int* p = const_cast&lt;int*&gt;(&amp;x);
-*p = 20;  // ⚠️ 未定义行为！x 原本是 const，修改它后果自负
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span>
+<span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">  </span><span class="c1">// ⚠️ 未定义行为！x 原本是 const，修改它后果自负</span>
 
-// 合法用途：调用旧 API 时去掉 const
-void legacy_func(char* s);
-const char* str = &quot;hello&quot;;
-legacy_func(const_cast&lt;char*&gt;(str));  // 如果 legacy_func 不修改内容，是安全的
-</code></pre>
+<span class="c1">// 合法用途：调用旧 API 时去掉 const</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">legacy_func</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">;</span>
+<span class="n">legacy_func</span><span class="p">(</span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">));</span><span class="w">  </span><span class="c1">// 如果 legacy_func 不修改内容，是安全的</span>
+</code></pre></div>
 <h3 id="4-reinterpret_cast">4. <code>reinterpret_cast</code> — 最暴力</h3>
-<pre><code class="language-cpp">int x = 65;
-char* p = reinterpret_cast&lt;char*&gt;(&amp;x);  // 把 int* 当成 char* 来解释
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span>
+<span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">);</span><span class="w">  </span><span class="c1">// 把 int* 当成 char* 来解释</span>
 
-// 指针 ↔ 整数（用于底层操作）
-uintptr_t addr = reinterpret_cast&lt;uintptr_t&gt;(p);
-</code></pre>
+<span class="c1">// 指针 ↔ 整数（用于底层操作）</span>
+<span class="kt">uintptr_t</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uintptr_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</code></pre></div>
 <p>注意 C 与 C++区别：
 - C语言 void * 可以隐式转型任何类型指针
 - C++的 void * 需要显式转型其他类型指针</p>
 <h3 id="c-cast">C 风格 Cast（不推荐）</h3>
-<pre><code class="language-cpp">int i = (int)d;           // C 风格
-int i = int(d);           // 函数风格
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">d</span><span class="p">;</span><span class="w">           </span><span class="c1">// C 风格</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">d</span><span class="p">);</span><span class="w">           </span><span class="c1">// 函数风格</span>
+</code></pre></div>
 <p><strong>问题</strong>：一个语法能做所有事情（<code>static</code> + <code>const</code> + <code>reinterpret</code>），编译器不会告诉你用了哪种，隐藏了危险。</p>
 <h3 id="const_cast">const_cast的注意事项</h3>
-<pre><code class="language-cpp">const int i = 100;    // ①
-const int *p = &amp;i;    // ②
-int *q = const_cast&lt;int*&gt;(p);  // ③
-int j = i;            // ④
-*q = 10;              // ⑤
+<div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">    </span><span class="c1">// ①</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">i</span><span class="p">;</span><span class="w">    </span><span class="c1">// ②</span>
+<span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w">  </span><span class="c1">// ③</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">            </span><span class="c1">// ④</span>
+<span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">              </span><span class="c1">// ⑤</span>
 
-cout &lt;&lt; i &lt;&lt; endl     // 输出1
-     &lt;&lt; j &lt;&lt; endl     // 输出2
-     &lt;&lt; *p &lt;&lt; endl    // 输出3
-     &lt;&lt; *q &lt;&lt; endl;   // 输出4
-</code></pre>
-<pre><code class="language-cpp">const int i = 100;        // 1
-const int &amp;p = i;         // 2
-int &amp;q = const_cast&lt;int&amp;&gt;(p); // 3
-int j = i;                // 4
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">     </span><span class="c1">// 输出1</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">     </span><span class="c1">// 输出2</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">    </span><span class="c1">// 输出3</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="c1">// 输出4</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">        </span><span class="c1">// 1</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">         </span><span class="c1">// 2</span>
+<span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">                </span><span class="c1">// 4</span>
 
-q = 10;                   // 5
+<span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                   </span><span class="c1">// 5</span>
 
-cout &lt;&lt; i &lt;&lt; endl         // 输出1
-     &lt;&lt; j &lt;&lt; endl         // 输出2
-     &lt;&lt; p &lt;&lt; endl         // 输出3
-     &lt;&lt; q &lt;&lt; endl;        // 输出4
-</code></pre>
-<p>两个例子的输出结果都是：</p>
-<pre><code>100
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">         </span><span class="c1">// 输出1</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">         </span><span class="c1">// 输出2</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w">         </span><span class="c1">// 输出3</span>
+<span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">        </span><span class="c1">// 输出4</span>
+</code></pre></div>
+两个例子的输出结果都是：
+<div class="highlight"><pre><span></span><code>100
 100
 10
 10
-</code></pre>
+</code></pre></div></p>
 <p><code>const int i = 100;</code>定义了一个编译期 const 常量，编译器会把所有用到 i 的地方直接替换成 100，通过地址可以改变这块内存上的值，但是 i 本身已经被替换成了 100 ，是无法改变的。</p>
 <h2 id="_3">多重继承</h2>
 <p><img alt="" src="https://raw.githubusercontent.com/Seanoll/imagebed/main/20260518154736333.png" /></p>
 <p>不允许重复继承同一个类BaseA</p>
-<pre><code class="language-cpp">class 派生类名：继承访问控制1 基类名1，继承访问控制2 基类名2，...
-{
-成员声明；
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">派生类名</span><span class="err">：</span><span class="n">继承访问控制1</span><span class="w"> </span><span class="n">基类名1</span><span class="err">，</span><span class="n">继承访问控制2</span><span class="w"> </span><span class="n">基类名2</span><span class="err">，</span><span class="p">...</span>
+<span class="p">{</span>
+<span class="n">成员声明</span><span class="err">；</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="_4">虚基类</h3>
 <p>继承基类时，在继承访问控制前添加保留字“virtual”。 那么这个基类就是一个虚拟基类。<strong>普通基类与虚基类之间的唯一区别只有在派生类重复继承了某一基类时才表现出来。</strong></p>
 <ul>
@@ -1384,39 +1390,39 @@ cout &lt;&lt; i &lt;&lt; endl         // 输出1
 <h3 id="_5">虚函数</h3>
 <p><strong>虚函数</strong>（Virtual Function）是 C++ 中实现<strong>多态性</strong>的核心机制，允许子类重写父类的方法，并通过基类指针或引用调用子类的实现。用 <code>virtual</code> 关键字声明的成员函数，可以在子类中被<strong>重写（override）</strong>，实现运行时多态。</p>
 <h4 id="_6">基本语法</h4>
-<pre><code class="language-cpp">class Animal {
-public:
-    virtual void speak() {  // 虚函数
-        cout &lt;&lt; &quot;Some sound&quot; &lt;&lt; endl;
-    }
-};
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 虚函数</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Some sound&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-class Dog : public Animal {
-public:
-    void speak() override {  // 重写父类虚函数
-        cout &lt;&lt; &quot;Wang Wang&quot; &lt;&lt; endl;
-    }
-};
+<span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 重写父类虚函数</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Wang Wang&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-class Cat : public Animal {
-public:
-    void speak() override {  // 重写父类虚函数
-        cout &lt;&lt; &quot;Miao Miao&quot; &lt;&lt; endl;
-    }
-};
-</code></pre>
-<pre><code class="language-cpp">Animal* animal1 = new Dog();
-Animal* animal2 = new Cat();
+<span class="k">class</span><span class="w"> </span><span class="nc">Cat</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">speak</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 重写父类虚函数</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Miao Miao&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">Animal</span><span class="o">*</span><span class="w"> </span><span class="n">animal1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">();</span>
+<span class="n">Animal</span><span class="o">*</span><span class="w"> </span><span class="n">animal2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Cat</span><span class="p">();</span>
 
-animal1-&gt;speak();  // 输出: &quot;Wang Wang&quot;
-animal2-&gt;speak();  // 输出: &quot;Miao Miao&quot;
+<span class="n">animal1</span><span class="o">-&gt;</span><span class="n">speak</span><span class="p">();</span><span class="w">  </span><span class="c1">// 输出: &quot;Wang Wang&quot;</span>
+<span class="n">animal2</span><span class="o">-&gt;</span><span class="n">speak</span><span class="p">();</span><span class="w">  </span><span class="c1">// 输出: &quot;Miao Miao&quot;</span>
 
-delete animal1;
-delete animal2;
-</code></pre>
+<span class="k">delete</span><span class="w"> </span><span class="n">animal1</span><span class="p">;</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">animal2</span><span class="p">;</span>
+</code></pre></div>
 <h4 id="1-vtable">1. 虚函数表（vtable）</h4>
 <p>每个包含虚函数的类都有一个<strong>虚函数表</strong>，存储类中所有虚函数的地址。</p>
-<pre><code>Animal 的 vtable:
+<div class="highlight"><pre><span></span><code>Animal 的 vtable:
   [0] -&gt; Animal::speak()
 
 Dog 的 vtable:
@@ -1424,15 +1430,15 @@ Dog 的 vtable:
 
 Cat 的 vtable:
   [0] -&gt; Cat::speak()
-</code></pre>
+</code></pre></div>
 <h4 id="2-vptr">2. 虚函数指针（vptr）</h4>
 <p>每个对象都有一个隐藏的<strong>虚函数指针</strong>，指向其类的 vtable：</p>
-<pre><code>animal1 (Dog对象)
+<div class="highlight"><pre><span></span><code>animal1 (Dog对象)
   [vptr] ---&gt; Dog::vtable ---&gt; Dog::speak()
 
 animal2 (Cat对象)
   [vptr] ---&gt; Cat::vtable ---&gt; Cat::speak()
-</code></pre>
+</code></pre></div>
 <h4 id="3">3. 动态绑定</h4>
 <p>调用虚函数时，通过对象的 vptr 找到对应的 vtable，<strong>在运行时决定调用哪个函数</strong>。</p>
 <h4 id="_7">虚函数规则</h4>
@@ -1472,35 +1478,35 @@ animal2 (Cat对象)
 </table>
 <h4 id="_8">虚析构函数</h4>
 <p><strong>重要规则</strong>：基类析构函数应声明为虚函数，确保通过基类指针删除子类对象时正确调用子类析构函数。</p>
-<pre><code class="language-cpp">class Base {
-public:
-    virtual ~Base() {  // 虚析构函数
-        cout &lt;&lt; &quot;Base destroyed\n&quot;;
-    }
-};
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">Base</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 虚析构函数</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Base destroyed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-class Derived : public Base {
-public:
-    ~Derived() {
-        cout &lt;&lt; &quot;Derived destroyed\n&quot;;
-    }
-};
+<span class="k">class</span><span class="w"> </span><span class="nc">Derived</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="o">~</span><span class="n">Derived</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Derived destroyed</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-Base* ptr = new Derived();
-delete ptr;  // ✅ 正确调用 Derived 和 Base 的析构函数
-</code></pre>
+<span class="n">Base</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Derived</span><span class="p">();</span>
+<span class="k">delete</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w">  </span><span class="c1">// ✅ 正确调用 Derived 和 Base 的析构函数</span>
+</code></pre></div>
 <h4 id="_9">纯虚函数与抽象类</h4>
 <p>使用 <code>= 0</code> 声明<strong>纯虚函数</strong>，包含纯虚函数的类是<strong>抽象类</strong>，不能实例化：</p>
-<pre><code class="language-cpp">class Shape {
-public:
-    virtual double area() const = 0;  // 纯虚函数
-};
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 纯虚函数</span>
+<span class="p">};</span>
 
-class Circle : public Shape {
-public:
-    double area() const override { return 3.14 * m_radius * m_radius; }
-};
-</code></pre>
+<span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mf">3.14</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m_radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m_radius</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
 
 
 

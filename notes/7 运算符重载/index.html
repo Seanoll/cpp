@@ -1084,17 +1084,17 @@
 </table>
 <ul>
 <li>部分情况下，需要返回左值对象，可使用 T&amp; 作为返回值。例如 operator&lt;&lt; 和 operator&gt;&gt; 作为流插入和流提取的重载所返回的是 T&amp;</li>
-<li>T2 可以是包括 T 在内的任何类型</li>
+<li>T2 可以是包括 T 在内的任何类型
+<div class="highlight"><pre><span></span><code><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">Int</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 不报错，因为4可以被转换成const Integer&amp;</span>
+<span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// 报错，4 + 不会调用重载的运算符</span>
+<span class="c1">//若重载函数的参数改成Integer&amp; Int，则第一个会报错，因为4是右值（见上一课的笔记）</span>
+<span class="c1">//若改成Integer，则第一个不报错，因为按值传递，可以转换</span>
+</code></pre></div></li>
 </ul>
-<pre><code class="language-cpp">Integer operator + (const Integer&amp; Int) {   
-    return Integer(x+Int.x);
-}
-</code></pre>
-<pre><code class="language-cpp">d = a + 4; // 不报错，因为4可以被转换成const Integer&amp;
-e = 4 + a; // 报错，4 + 不会调用重载的运算符
-//若重载函数的参数改成Integer&amp; Int，则第一个会报错，因为4是右值（见上一课的笔记）
-//若改成Integer，则第一个不报错，因为按值传递，可以转换
-</code></pre>
 <h3 id="_7">自增运算符</h3>
 <ul>
 <li>若为前缀自增运算符，直接重载。</li>
@@ -1138,28 +1138,26 @@ e = 4 + a; // 报错，4 + 不会调用重载的运算符
 </table>
 <ul>
 <li>内建运算符的前置版本返回引用，后置版本返回值，用户重载要和原生 int 的行为保持一致。</li>
-<li>后缀的int参数在调用时，编译器会自动传递 0 给它。虽然用户也可以手动调用（例如 <code>a.operator++(2)</code>），但这通常没有实际意义，只是为了语法上的可行性。</li>
-</ul>
-<pre><code class="language-cpp">class Integer {
-    int x;
-public:
-    Integer(int x=0):x(x)   {
-    }
-    Integer&amp; operator ++ () {
-        cerr&lt;&lt;&quot;prefix is invoked&quot;&lt;&lt;endl;
-        ++x;
-        return *this;
-    }
-    Integer operator ++ (int)  {
-        cerr&lt;&lt;&quot;suffix is invoked&quot;&lt;&lt;endl;
-        return Integer(x++);
-        // 另一种方式：
-        // Integer temp = *this; x++;
-        // return temp; 
-    }
-};
-</code></pre>
-<ul>
+<li>后缀的int参数在调用时，编译器会自动传递 0 给它。虽然用户也可以手动调用（例如 <code>a.operator++(2)</code>），但这通常没有实际意义，只是为了语法上的可行性。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Integer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">   </span><span class="p">{</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cerr</span><span class="o">&lt;&lt;</span><span class="s">&quot;prefix is invoked&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="o">++</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">++</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w">  </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cerr</span><span class="o">&lt;&lt;</span><span class="s">&quot;suffix is invoked&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="n">x</span><span class="o">++</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 另一种方式：</span>
+<span class="w">        </span><span class="c1">// Integer temp = *this; x++;</span>
+<span class="w">        </span><span class="c1">// return temp; </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></li>
 <li>前缀运算符，先增后用，一般返回增后的对象的引用（左值）</li>
 <li>后缀运算符，先用后增，先建立原始对象的副本再自增，一般
 返回副本对象（右值）</li>
@@ -1247,54 +1245,54 @@ public:
 <ul>
 <li>浅拷贝赋值</li>
 <li>深拷贝赋值</li>
-<li>移动赋值：这是C++11引入的的新特性，通过自定义 operator=(T&amp;&amp;) 来重载，专门处理右值。直接转移资源所有权到新对象，源对象指针置空。</li>
+<li>移动赋值：这是C++11引入的的新特性，通过自定义 operator=(T&amp;&amp;) 来重载，专门处理右值。直接转移资源所有权到新对象，源对象指针置空。
+<div class="highlight"><pre><span></span><code><span class="c1">// 深拷贝赋值运算符 官方标准完整实现</span>
+<span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 自赋值检查</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="p">{</span><span class="w">   </span>
+<span class="w">        </span><span class="c1">// 地址不相等才执行赋值</span>
+
+<span class="w">        </span><span class="c1">// 2. 内存大小不匹配时，先销毁旧内存、重新开辟新空间</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">mArray</span><span class="p">;</span><span class="w">        </span><span class="c1">// 释放当前对象旧的堆数组内存</span>
+<span class="w">            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">               </span><span class="c1">// 长度置0</span>
+<span class="w">            </span><span class="n">mArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w">       </span><span class="c1">// 指针置空，防止野指针（异常安全保证）</span>
+<span class="w">            </span><span class="n">mArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">[</span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">];</span><span class="w">   </span><span class="c1">// 按照源对象大小，开辟全新堆内存</span>
+<span class="w">            </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">;</span><span class="w">      </span><span class="c1">// 更新数组长度</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 3. 数据完整深拷贝：把源对象数组的所有元素，全部复制到新内存</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">mArray</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">mArray</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">mArray</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 含义：从源数组起始地址 ~ 末尾地址，全部拷贝到当前对象的新数组空间</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 4. 最后返回当前对象自身引用，支持连续赋值</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// 移动赋值运算符</span>
+<span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 防止自赋值</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 2. 释放自己原有的资源</span>
+<span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">mArray</span><span class="p">;</span><span class="w"> </span>
+
+<span class="w">        </span><span class="c1">// 3. 直接窃取资源，而不是 new + copy</span>
+<span class="w">        </span><span class="n">mArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">mArray</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指针直接指过去</span>
+<span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+
+<span class="w">        </span><span class="c1">// 4. 将源对象置空，防止其析构时释放资源</span>
+<span class="w">        </span><span class="n">other</span><span class="p">.</span><span class="n">mArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span>
+<span class="w">        </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<code>std::move</code>本身并不执行任何移动操作，它只是将一个对象无条件地转换为“右值引用”。如果你有一个左值（比如 <code>MyClass a</code>;），默认情况下它只能调用拷贝构造函数。如果你想让它调用移动构造函数（以节省性能），你就必须把它强制转换成右值引用。</li>
 </ul>
-<pre><code class="language-cpp">// 深拷贝赋值运算符 官方标准完整实现
-T&amp; operator=(const T&amp; other)
-{
-    // 1. 自赋值检查
-    if (this != &amp;other) 
-    {   
-        // 地址不相等才执行赋值
-
-        // 2. 内存大小不匹配时，先销毁旧内存、重新开辟新空间
-        if (other.size != size) 
-        {
-            delete[] mArray;        // 释放当前对象旧的堆数组内存
-            size = 0;               // 长度置0
-            mArray = nullptr;       // 指针置空，防止野指针（异常安全保证）
-            mArray = new int[other.size];   // 按照源对象大小，开辟全新堆内存
-            size = other.size;      // 更新数组长度
-        }
-
-        // 3. 数据完整深拷贝：把源对象数组的所有元素，全部复制到新内存
-        std::copy(other.mArray, other.mArray + other.size, mArray);
-        // 含义：从源数组起始地址 ~ 末尾地址，全部拷贝到当前对象的新数组空间
-    }
-
-    // 4. 最后返回当前对象自身引用，支持连续赋值
-    return *this;
-}
-</code></pre>
-<pre><code class="language-cpp">// 移动赋值运算符
-T&amp; operator=(T&amp;&amp; other) noexcept {
-    // 1. 防止自赋值
-    if (this != &amp;other) {
-        // 2. 释放自己原有的资源
-        delete[] mArray; 
-
-        // 3. 直接窃取资源，而不是 new + copy
-        mArray = other.mArray; // 指针直接指过去
-        size = other.size;
-
-        // 4. 将源对象置空，防止其析构时释放资源
-        other.mArray = nullptr; 
-        other.size = 0;
-    }
-    return *this;
-}
-</code></pre>
-<p><code>std::move</code>本身并不执行任何移动操作，它只是将一个对象无条件地转换为“右值引用”。如果你有一个左值（比如 <code>MyClass a</code>;），默认情况下它只能调用拷贝构造函数。如果你想让它调用移动构造函数（以节省性能），你就必须把它强制转换成右值引用。</p>
 <p>C++ 依靠参数类型来区分重载函数。
 - 如果你写 <code>operator=(const T&amp; other)</code>，这是<strong>拷贝赋值</strong>。它适用于所有对象，但它会进行深拷贝。
 - 如果你写 <code>operator=(T&amp;&amp; other)</code>，这是<strong>移动赋值</strong>。它<strong>只</strong>匹配右值（临时对象）。

@@ -1372,21 +1372,19 @@
 </ul>
 <h3 id="_5">基本语法</h3>
 <ul>
-<li>定义命名空间</li>
-</ul>
-<pre><code class="language-cpp">namespace MySpace {
-    int value = 10;
+<li>定义命名空间
+<div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">MySpace</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 
-    void show() {
-        // 实现代码
-    }
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 实现代码</span>
+<span class="w">    </span><span class="p">}</span>
 
-    class Data {
-        // 类定义
-    };
-}
-</code></pre>
-<ul>
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Data</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 类定义</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></li>
 <li>使用方式</li>
 </ul>
 <table>
@@ -1424,28 +1422,28 @@
 <li><strong>定义</strong>：在已有的命名空间内部再定义新的命名空间，形成层级结构。</li>
 <li><strong>类比</strong>：文件系统目录结构（如 <code>/home/user/docs</code>），通过层级路径唯一标识资源。</li>
 <li>C++14及以前
-    <code>cpp
-    namespace Company {
-      namespace Product {
-          namespace Module {
-              void init() {
-                  // 实现
-              }
-          }
-      }
-    }</code></li>
-<li>
-<p>C++17及以后
-    ```cpp
-    // C++17 新语法：等价于上面的三层嵌套
-    namespace Company::Product::Module {
-        void init() {
-            // ...
-        }
-    }</p>
-<p>// 调用方式不变
-Company::Product::Module::init();
-```</p>
+    <div class="highlight"><pre><span></span><code><span class="k">namespace</span><span class="w"> </span><span class="nn">Company</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">Product</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">namespace</span><span class="w"> </span><span class="nn">Module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="c1">// 实现</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+<li>C++17及以后
+    <div class="highlight"><pre><span></span><code><span class="c1">// C++17 新语法：等价于上面的三层嵌套</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">Company</span><span class="o">::</span><span class="nn">Product</span><span class="o">::</span><span class="nn">Module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 调用方式不变</span>
+<span class="n">Company</span><span class="o">::</span><span class="n">Product</span><span class="o">::</span><span class="n">Module</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
+</code></pre></div></li>
+</ul>
 <h2 id="_6">引用</h2>
 <h3 id="_7">基本概念</h3>
 <ul>
@@ -1472,39 +1470,37 @@ Company::Product::Module::init();
 面试经常涉及，后面课程可能并不讲解！</li>
 </ul>
 <h3 id="_9">基本用法</h3>
-<p>type &amp;别名 =<strong>左值表达式</strong></p>
-</li>
-</ul>
-<pre><code class="language-cpp">int a = 10;
-int &amp;ref = a; // ref 是 a 的引用（别名）
+<p>type &amp;别名 =<strong>左值表达式</strong>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// ref 是 a 的引用（别名）</span>
 
-ref = 20;     // 修改 ref，实际上修改了 a
-// 此时 a 的值也变成了 20
+<span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w">     </span><span class="c1">// 修改 ref，实际上修改了 a</span>
+<span class="c1">// 此时 a 的值也变成了 20</span>
 
-int b = 30;
-// ref = b;   // 错误理解！这不是让 ref 指向 b，而是把 b 的值赋给 a（因为 ref 就是 a）
-</code></pre>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span>
+<span class="c1">// ref = b;   // 错误理解！这不是让 ref 指向 b，而是把 b 的值赋给 a（因为 ref 就是 a）</span>
+</code></pre></div></p>
 <h3 id="_10">作为函数返回值</h3>
-<pre><code class="language-cpp">int arr[10];
+<p><div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
 
-// 返回数组中某个元素的引用
-int&amp; getElement(int index) {
-    return arr[index];
-}
+<span class="c1">// 返回数组中某个元素的引用</span>
+<span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">getElement</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="p">}</span>
 
-int main() {
-    getElement(0) = 100; // 合法！直接修改 arr[0]
-    return 0;
-}
-</code></pre>
-<p>注意：返回函数内部的值的引用需要<strong>静态变量</strong></p>
-<pre><code class="language-cpp">double&amp; f( double x )     
-{
-  static double y;
-  y = sin(x);
-  return y;
-}
-</code></pre>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">getElement</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 合法！直接修改 arr[0]</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+注意：返回函数内部的值的引用需要<strong>静态变量</strong>
+<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w">     </span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 
 
 

@@ -1145,26 +1145,24 @@
 <li>参数可以是任意个、任意类型（0 个、1 个、多个都可以，支持重载多个版本）。返回值类型也可以自定义，根据需求返回结果。</li>
 <li>当一个类重载了<code>operator()</code>，它的对象就可以像函数一样被调用，这种类叫可调用（callable）类，它的对象叫函数对象。</li>
 <li>可以持有状态（比如计数器、配置参数），普通函数只能靠全局 / 静态变量实现，不安全且不灵活。</li>
-<li>函数对象在 C++ 标准模板库（STL）中扮演着核心角色。STL 的算法（如 <code>sort</code>, <code>for_each</code>）经常接受函数对象作为参数，以实现自定义的比较逻辑或操作。</li>
-</ul>
-<pre><code class="language-cpp">//函数对象
-class GreaterThan {
-    int baseline;
-    public:
-        GreaterThan(int x):baseline(x) {}
-        bool operator () (const int&amp; x) {
-            return x&gt;baseline;
-        }
-};
-//普通函数
-bool GreaterThan10(const int&amp; x)   {
-    return x&gt;10;
-}
-bool GreaterThan20(const int&amp; x)   {
-    return x&gt;20;
-}
-</code></pre>
-<ul>
+<li>函数对象在 C++ 标准模板库（STL）中扮演着核心角色。STL 的算法（如 <code>sort</code>, <code>for_each</code>）经常接受函数对象作为参数，以实现自定义的比较逻辑或操作。
+<div class="highlight"><pre><span></span><code><span class="c1">//函数对象</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GreaterThan</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">baseline</span><span class="p">;</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="n">GreaterThan</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="o">:</span><span class="n">baseline</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">&gt;</span><span class="n">baseline</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">//普通函数</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">GreaterThan10</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">   </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">&gt;</span><span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">GreaterThan20</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">   </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="o">&gt;</span><span class="mi">20</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></li>
 <li>C++ 标准库（STL）中许多算法（如 find_if）需要传入“谓词函数”作为参数，这种参数既支持普通函数，也支持函数对象以及 lambda 函数</li>
 </ul>
 <h4 id="_5">逗号运算符</h4>
@@ -1178,127 +1176,127 @@ bool GreaterThan20(const int&amp; x)   {
 <p>在某些特定场景下，我们需要让外部的某个函数直接访问这些私有数据，这时就需要用到友元。它允许一个非成员函数访问该类的私有（private）和保护（protected）成员。</p>
 <p>要在一个类中声明友元函数，只需在函数声明前加上关键字 <code>friend</code>。
 *   <strong>声明位置</strong>：友元函数的声明可以放在类的 <code>public</code>、<code>private</code> 或 <code>protected</code> 区域，其效果是相同的，因为它不属于类的成员。<br />
-<em>   </em><em>定义方式</em>*：友元函数本身是一个全局函数，它的定义不需要使用 <code>类名::</code> 的作用域解析符。</p>
-<pre><code class="language-cpp">class Integer {
-    int x;
-    friend istream&amp; operator &gt;&gt; (istream&amp; is,Integer&amp; Int);
-    friend ostream&amp; operator &lt;&lt; (ostream&amp; os,const Integer&amp; Int);
-};
+<em>   </em><em>定义方式</em>*：友元函数本身是一个全局函数，它的定义不需要使用 <code>类名::</code> 的作用域解析符。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">);</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">);</span>
+<span class="p">};</span>
 
-istream&amp; operator &gt;&gt; (istream&amp; is,Integer&amp; Int) {
-    is&gt;&gt;Int.x;
-    return is;
-}
+<span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">istream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">is</span><span class="p">,</span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">is</span><span class="o">&gt;&gt;</span><span class="n">Int</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">is</span><span class="p">;</span>
+<span class="p">}</span>
 
-ostream&amp; operator &lt;&lt; (ostream&amp; os,const Integer&amp; Int) {
-    os&lt;&lt;Int.x;
-    return os;
-}
-</code></pre>
+<span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">os</span><span class="p">,</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">os</span><span class="o">&lt;&lt;</span><span class="n">Int</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 <h3 id="_8">友元类</h3>
 <p>有些时候，其他类的成员函数可能会很多，一个一个的声明为友元函数会比较麻烦。所以我们就可以直接声明友元类。</p>
-<pre><code class="language-cpp">class Integer {
-    int x;
-    friend class IntegerFriend;
-};
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">IntegerFriend</span><span class="p">;</span>
+<span class="p">};</span>
 
-class IntegerFriend {
-    public:
-        int getX() const {return x;}
-};
-</code></pre>
+<span class="k">class</span><span class="w"> </span><span class="nc">IntegerFriend</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">public</span><span class="o">:</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">getX</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;}</span>
+<span class="p">};</span>
+</code></pre></div>
 <h2 id="_9">隐式类型转换</h2>
 <h3 id="_10">重载协议</h3>
-<p>如果重载的函数参数一样，可以通过转换到某个重载函数，编译会如何哪个版本的选择？</p>
-<pre><code class="language-cpp">class Integer {
-    int x;
-public:
-    Integer(int x = 0) : x(x) {}
-    friend ostream&amp; operator&lt;&lt;(ostream&amp; o, const Integer&amp; hs) {
-        o &lt;&lt; &quot;const &quot; &lt;&lt; hs.x;
-        return o;
-    }
-    friend ostream&amp; operator&lt;&lt;(ostream&amp; o, Integer&amp; hs) {
-        o &lt;&lt; &quot;no_const &quot; &lt;&lt; hs.x;
-        return o;
-    }
-};
+<p>如果重载的函数参数一样，可以通过转换到某个重载函数，编译会如何哪个版本的选择？
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Integer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">o</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;const &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hs</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">o</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;no_const &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hs</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
 
-int main() {
-    Integer i1(1);
-    const Integer i2(2);
-    cout &lt;&lt; i1 &lt;&lt; &quot;,&quot; &lt;&lt; 3 &lt;&lt; &quot;,&quot; &lt;&lt; i2 &lt;&lt; endl;
-}
-</code></pre>
-<p>匹配规则：
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">i1</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">i2</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+匹配规则：
 1.  <strong>类型直接匹配优先</strong>：实参的<code>const</code>属性和形参完全一致的版本，优先级最高。
 2.  <strong><code>const</code>实参的限制</strong>：<code>const</code>类型的实参，只能匹配<code>const</code>版本的重载函数。
 3.  <strong>非<code>const</code>实参的降级匹配</strong>：非<code>const</code>类型的实参，优先匹配非<code>const</code>版本；如果没有非<code>const</code>版本，会<strong>隐式转换为<code>const</code></strong>，匹配<code>const</code>版本的重载。</p>
 <p>非<code>const</code>实参优先找非<code>const</code>版本，找不到就降级转<code>const</code>；<code>const</code>实参只能找<code>const</code>版本，找不到直接报错。</p>
 <h3 id="_11">空指针</h3>
-<pre><code class="language-cpp">class Integer {
-    int x;
-public:
-    Integer(int x=0):x(x) {}
-    friend Integer operator+(const Integer &amp;lhs, Integer rhs){
-        return lhs.x + rhs.x;
-    } 
-    friend Integer operator+(const Integer &amp;lhs, Integer *rhs){
-        if (rhs) return lhs.x + rhs-&gt;x + 2000;
-        else return lhs.x + 1000;
-    }
-    friend ostream&amp; operator&lt;&lt;(ostream&amp; o, const Integer &amp;hs) {
-        o &lt;&lt; hs.x; return o;
-    } 
-};
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Integer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">rhs</span><span class="p">){</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="o">*</span><span class="n">rhs</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs</span><span class="o">-&gt;</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">o</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hs</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">o</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="p">};</span>
 
-class Girlfriend {/* ... */};
-void kissGirlfriend(Girlfriend* gf) {cout &lt;&lt; &quot;pointer&quot;&lt;&lt;endl;};
-void kissGirlfriend(int gfID){cout &lt;&lt; &quot;int&quot;&lt;&lt;endl;};
+<span class="k">class</span><span class="w"> </span><span class="nc">Girlfriend</span><span class="w"> </span><span class="p">{</span><span class="cm">/* ... */</span><span class="p">};</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">kissGirlfriend</span><span class="p">(</span><span class="n">Girlfriend</span><span class="o">*</span><span class="w"> </span><span class="n">gf</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;pointer&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;};</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">kissGirlfriend</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">gfID</span><span class="p">){</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;int&quot;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;};</span>
 
-int main() {   
-    kissGirlfriend(nullptr);  // 指针类型字面量（void *）0 
-    kissGirlfriend(0); // 尝试 NULL 取代 0 
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+<span class="w">    </span><span class="n">kissGirlfriend</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span><span class="w">  </span><span class="c1">// 指针类型字面量（void *）0 </span>
+<span class="w">    </span><span class="n">kissGirlfriend</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 尝试 NULL 取代 0 </span>
 
-    Integer i1(1), i2;
-    i2 = i1 + 0;  // 尝试 1,nullptr,NULL,&amp;i1 取代 0 
-    cout &lt;&lt; i2 &lt;&lt; endl;
-}
-</code></pre>
-<p>在运行<code>i2 = i1 + 0;</code>时，会调用<code>operator+(const Integer &amp;lhs, Integer *rhs)</code>，因为0 做 标准转换：可以直接变成 空指针 Integer*（C++ 天生支持整数 0 转任何指针类型）→ 这是编译器自带的标准转换，速度最快、优先级最高。0 做 自定义转换：需要调用构造函数 Integer(0) 才能变成 Integer 这是用户写的转换，优先级更低。</p>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">i1</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">i2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">i2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 尝试 1,nullptr,NULL,&amp;i1 取代 0 </span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+在运行<code>i2 = i1 + 0;</code>时，会调用<code>operator+(const Integer &amp;lhs, Integer *rhs)</code>，因为0 做 标准转换：可以直接变成 空指针 Integer*（C++ 天生支持整数 0 转任何指针类型）→ 这是编译器自带的标准转换，速度最快、优先级最高。0 做 自定义转换：需要调用构造函数 Integer(0) 才能变成 Integer 这是用户写的转换，优先级更低。</p>
 <h3 id="explicit">explicit 关键字</h3>
 <p>为了避免这种情况，我们可以使用<code>explicit</code>关键字。用于关闭这种自动类型转化的特性。<br />
-即被 explicit 关键字修饰的类构造函数，不能进行自动地隐式类型转换，只能显式地进行类型转换。</p>
-<pre><code class="language-cpp">class Integer;
-struct Cmp {
-    bool operator () (const Integer&amp; a, const Integer&amp; b);
-};
+即被 explicit 关键字修饰的类构造函数，不能进行自动地隐式类型转换，只能显式地进行类型转换。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Cmp</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">operator</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="p">};</span>
 
-class Integer {
-    int x;
-public:
-    // atoi is a stl function that convert a c-string to int
-    explicit Integer(const char* s):x(atoi(s))   {}
-    Integer(int x=0):x(x)   {}
-    friend Cmp;
-};
+<span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// atoi is a stl function that convert a c-string to int</span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="o">:</span><span class="n">x</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="w">   </span><span class="p">{}</span>
+<span class="w">    </span><span class="n">Integer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span><span class="n">x</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">   </span><span class="p">{}</span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="n">Cmp</span><span class="p">;</span>
+<span class="p">};</span>
 
-bool Cmp::operator () (const Integer&amp; a, const Integer&amp; b)   {
-    return a.x&lt;b.x;
-}
+<span class="kt">bool</span><span class="w"> </span><span class="nf">Cmp::operator</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w">   </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="o">&lt;</span><span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
 
-int main()  {
-    Integer a(&quot;3&quot;), b(&quot;4&quot;);
-    Cmp compare;
-    cout&lt;&lt;compare(a,b)&lt;&lt;endl; // of course ok
-    // some codes
-    cout&lt;&lt;compare(Integer(&quot;1&quot;),Integer(&quot;2&quot;))&lt;&lt;endl; // explicit construction, ok
-    cout&lt;&lt;compare((Integer)&quot;1&quot;,(Integer)&quot;2&quot;)&lt;&lt;endl; // explicit conversion, ok
-    cout&lt;&lt;compare(&quot;1&quot;,&quot;2&quot;)&lt;&lt;endl; // error
-    cout&lt;&lt;compare(&quot;a&quot;,&quot;b&quot;)&lt;&lt;endl; // error
-    return 0;
-}
-</code></pre>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Integer</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cmp</span><span class="w"> </span><span class="n">compare</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// of course ok</span>
+<span class="w">    </span><span class="c1">// some codes</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">compare</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">),</span><span class="n">Integer</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// explicit construction, ok</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">compare</span><span class="p">((</span><span class="n">Integer</span><span class="p">)</span><span class="s">&quot;1&quot;</span><span class="p">,(</span><span class="n">Integer</span><span class="p">)</span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// explicit conversion, ok</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">compare</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// error</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">compare</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="s">&quot;b&quot;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span><span class="w"> </span><span class="c1">// error</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 
 
 

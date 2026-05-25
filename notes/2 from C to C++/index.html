@@ -960,25 +960,21 @@
 <li>数值转换（C++11）：stoi, stod</li>
 </ul>
 <h2 id="_3">补充</h2>
-<pre><code class="language-cpp">for(int i = 0; i &lt; s.length() - 2; i++){
-    cout&lt;&lt; s[i];
-}
-</code></pre>
-<ul>
-<li>如果只输入了一个字符，输出将会出现很长的乱码，因为s.length()返回的是无符号整数，如果在减2之后变成负数，会自动转换成对应的无符号整数（值很大），所以会输出乱码。</li>
-</ul>
-<pre><code class="language-cpp">for (auto c : s) {
-    // 对 c 进行操作
-}
-//等价于
-for (size_t i = 0; i &lt; s.size(); ++i) {
-    char c = s[i];
-    // 使用 c
-}
-</code></pre>
-<ul>
-<li>for (auto c : s)是 C++11 引入的基于范围的 for 循环，用于遍历容器或数组中的所有元素。</li>
-</ul>
+<p><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+- 如果只输入了一个字符，输出将会出现很长的乱码，因为s.length()返回的是无符号整数，如果在减2之后变成负数，会自动转换成对应的无符号整数（值很大），所以会输出乱码。
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 对 c 进行操作</span>
+<span class="p">}</span>
+<span class="c1">//等价于</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">    </span><span class="c1">// 使用 c</span>
+<span class="p">}</span>
+</code></pre></div>
+- for (auto c : s)是 C++11 引入的基于范围的 for 循环，用于遍历容器或数组中的所有元素。</p>
 <h2 id="_4">函数重载</h2>
 <ul>
 <li>在C语言中，一个函数只能定义一个函数名以及相关形参。C++ 则允许<strong>多个函数拥有相同的名字</strong>，只要它们的<strong>参数列表不同</strong>就可以，这就是<strong>函数的重载（Function Overloading）</strong>。借助重载，一个函数名可以有多种用途。</li>
@@ -1005,51 +1001,47 @@ for (size_t i = 0; i &lt; s.size(); ++i) {
 <li>使用 getline 读入字符串到 s：<code>getline(cin,s)</code>可以读入一行，而<code>cin&gt;&gt;s</code>遇到空格就停止了</li>
 </ul>
 <h1 id="constconstexpr">const和constexpr</h1>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;array&gt;
-using namespace std;
-void dis_1(const int x){
-    //错误，x是只读的变量
-    array &lt;int,x&gt; myarr{1,2,3,4,5};
-    cout &lt;&lt; myarr[1] &lt;&lt; endl;
-}
-void dis_2(){
-    const int x = 5;
-    array &lt;int,x&gt; myarr{1,2,3,4,5};
-    cout &lt;&lt; myarr[1] &lt;&lt; endl;
-}
-int main()
-{
-    dis_1(5);
-    dis_2();
-}
-</code></pre>
-<ul>
-<li>C语言中 const 关键字限定类型变量不可修改。在上示例代码中，dis_1() 和 dis_2() 函数中都包含一个 const int x，但 dis_1() 函数中的 x 无法完成初始化 array 容器的任务，而 dis_2() 函数中的 x 却可以。因为 const 语义有两个：</li>
-<li>限定为不可修改（只读）变量</li>
-<li>限定作为常量或字面量</li>
-<li>C++11 标准新添加的关键字 constexpr，声明编译时可以对函数或变量求值。即</li>
-<li>限定为常量表达式</li>
-<li>限定为编译时可优化执行的函数</li>
-<li>C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。</li>
-</ul>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">dis_1</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//错误，x是只读的变量</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myarr</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">dis_2</span><span class="p">(){</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">x</span><span class="o">&gt;</span><span class="w"> </span><span class="n">myarr</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">myarr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">dis_1</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="w">    </span><span class="n">dis_2</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+- C语言中 const 关键字限定类型变量不可修改。在上示例代码中，dis_1() 和 dis_2() 函数中都包含一个 const int x，但 dis_1() 函数中的 x 无法完成初始化 array 容器的任务，而 dis_2() 函数中的 x 却可以。因为 const 语义有两个：
+  - 限定为不可修改（只读）变量
+  - 限定作为常量或字面量
+- C++11 标准新添加的关键字 constexpr，声明编译时可以对函数或变量求值。即
+  - 限定为常量表达式
+  - 限定为编译时可优化执行的函数
+- C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。</p>
 <h1 id="auto">auto</h1>
 <ul>
-<li>auto的原理就是根据初始化的表达式，在编译期间根据表达式类型自动推导出对象的类型。auto的作用就是为了简化变量初始化，如果这个变量有初始化表达式，就可以用auto代替类型声明。例如：</li>
-</ul>
-<pre><code class="language-cpp">auto x1 = 5; //等价于 int x1 = 5;
-</code></pre>
-<ul>
+<li>auto的原理就是根据初始化的表达式，在编译期间根据表达式类型自动推导出对象的类型。auto的作用就是为了简化变量初始化，如果这个变量有初始化表达式，就可以用auto代替类型声明。例如：
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">//等价于 int x1 = 5;</span>
+</code></pre></div></li>
 <li>注意：<ol>
 <li>用auto声明的变量必须初始化</li>
 <li>函数和模板参数不能被声明为auto</li>
 <li>因为auto是一个占位符，并不是一个他自己的类型，因此不能用于类型转换或其他一些操作，如sizeof和typeid</li>
-<li>定义在一个auto序列的变量必须始终推导成同一类型</li>
+<li>定义在一个auto序列的变量必须始终推导成同一类型
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="n">x3</span><span class="o">=</span><span class="sc">&#39;r&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">//这样写是不合法的，因为各个变量类型不同 </span>
+</code></pre></div></li>
 </ol>
 </li>
 </ul>
-<pre><code class="language-cpp">auto x1 = 5,x2 = 5.0,x3='r'; //这样写是不合法的，因为各个变量类型不同 
-</code></pre>
 
 
 

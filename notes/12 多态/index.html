@@ -933,13 +933,13 @@
 </tbody>
 </table>
 <h3 id="_3">析构时机</h3>
-<pre><code class="language-cpp">std::string make() { return std::string(&quot;hello&quot;); }
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">make</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 
-void foo() {
-    std::string&amp;&amp; r = make();  // make() 返回纯右值（临时对象）
-    // ...
-}   // 临时对象在这里析构，寿命被延长到 foo 结束
-</code></pre>
+<span class="kt">void</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">make</span><span class="p">();</span><span class="w">  </span><span class="c1">// make() 返回纯右值（临时对象）</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w">   </span><span class="c1">// 临时对象在这里析构，寿命被延长到 foo 结束</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
@@ -971,26 +971,26 @@ void foo() {
 <li><strong>静态类型</strong>：<strong>编译时</strong>看变量本身声明的类型</li>
 <li><strong>动态类型</strong>：<strong>运行时</strong>指针/引用实际指向的对象真实类型</li>
 </ul>
-<pre><code class="language-cpp">class Fruit{
-public:
-    void say() {
-         printf(&quot;I'm a fruit!\n&quot;); 
-    }
-};
-class Apple : public Fruit {
-public:
-    void say() {
-        printf(&quot;I'm an apple!\n&quot;);
-    }
-};
-int main(){
-    Apple a;
-    Fruit *fPtr = &amp;a;
-    fPtr-&gt;say();
-}
-</code></pre>
-<p>(<em>fPtr) 的静态类型为 Fruit
-(</em>fPtr) 的动态类型为 Apple</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Fruit</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">say</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">         </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m a fruit!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Apple</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Fruit</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">say</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;I&#39;m an apple!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">Apple</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Fruit</span><span class="w"> </span><span class="o">*</span><span class="n">fPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fPtr</span><span class="o">-&gt;</span><span class="n">say</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+(*fPtr) 的静态类型为 Fruit </p>
+<p>(*fPtr) 的动态类型为 Apple</p>
 
 
 

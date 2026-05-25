@@ -949,25 +949,23 @@
 <ul>
 <li><strong>单继承</strong>：一个子类只继承自一个父类</li>
 <li><strong>多重继承</strong>：一个子类同时继承自多个父类</li>
-<li><strong>重复继承（多重继承的一种特殊形式）</strong>：派生类两次或两次以上重复继承某个祖先类（需要通过虚继承解决）</li>
-</ul>
-<pre><code>    A (祖先类)
+<li><strong>重复继承（多重继承的一种特殊形式）</strong>：派生类两次或两次以上重复继承某个祖先类（需要通过虚继承解决）
+<div class="highlight"><pre><span></span><code>    A (祖先类)
    / \
   B   C (两个父类)
    \ /
     D (子类)
-</code></pre>
-<ul>
+</code></pre></div></li>
 <li><strong>直接继承</strong>：子类直接从父类继承</li>
 <li><strong>间接继承</strong>：子类通过中间类继承自祖先类</li>
 </ul>
 <h2 id="_3">语法与访问控制</h2>
-<p>单继承的语法：</p>
-<pre><code class="language-cpp">class 子类名 : 继承访问控制 父类名 
-{
-    // 子类的成员变量和成员函数
-}
-</code></pre>
+<p>单继承的语法：
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">子类名</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">继承访问控制</span><span class="w"> </span><span class="n">父类名</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 子类的成员变量和成员函数</span>
+<span class="p">}</span>
+</code></pre></div></p>
 <h3 id="_4">成员访问控制</h3>
 <ul>
 <li><strong>public</strong>：公共访问，子类可以访问父类的公共成员，可以被继承</li>
@@ -1015,36 +1013,36 @@
 <ul>
 <li>基类的构造函数不被继承，派生类中需要声明自己的构造函数。</li>
 <li>派生类的构造函数中只需要对本类中新增成员进行初始化即可。</li>
-<li>对继承来的基类成员的初始化是通过编译在派生类构造函数初始化器中自动使用无参构造函数（或拷贝构造）完成。如果基类没有默认构造（包括 =delete），则编译错误。</li>
+<li>对继承来的基类成员的初始化是通过编译在派生类构造函数初始化器中自动使用无参构造函数（或拷贝构造）完成。如果基类没有默认构造（包括 =delete），则编译错误。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Animal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 父类默认构造函数</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Animal constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Dog</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Animal</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 也可以不写:Animal()，编译器会自动调用父类无参构造</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Dog constructor&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+派生类的构造函数需要使用基类的有参构造函数，必须显式在初始化器列表中申明。不能在构造函数内调用！</li>
 </ul>
-<pre><code class="language-cpp">class Animal {
-public:
-    Animal() {  // 父类默认构造函数
-        cout &lt;&lt; &quot;Animal constructor&quot; &lt;&lt; endl;
-    }
-};
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">Animal</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+<span class="k">protected</span><span class="o">:</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">m_name</span><span class="p">;</span>
+<span class="p">};</span>
 
-class Dog : public Animal {
-public:
-    Dog() : Animal() {  // 也可以不写:Animal()，编译器会自动调用父类无参构造
-        cout &lt;&lt; &quot;Dog constructor&quot; &lt;&lt; endl;
-    }
-};
-</code></pre>
-<p>派生类的构造函数需要使用基类的有参构造函数，必须显式在初始化器列表中申明。不能在构造函数内调用！</p>
-<pre><code class="language-cpp">class Animal {
-public:
-    Animal(string name) : m_name(name) {}
-protected:
-    string m_name;
-};
-
-class Dog : public Animal {
-public:
-    // 传递参数给父类构造函数
-    Dog(string name) : Animal(name) {}  
-};
-</code></pre>
+<span class="k">class</span><span class="w"> </span><span class="nc">Dog</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Animal</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 传递参数给父类构造函数</span>
+<span class="w">    </span><span class="n">Dog</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Animal</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">  </span>
+<span class="p">};</span>
+</code></pre></div>
 <p>构造函数的调用次序（创建派生类对象时）：
 - 首先调用其基类的构造函数（多重继承：调用顺序按照基类被继承时的
 声明顺序（从左向右）<code>class C : public A, public B</code>）。

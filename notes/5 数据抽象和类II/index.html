@@ -1337,15 +1337,15 @@
 <h2 id="_1">内存布局与对象</h2>
 <h3 id="_2">正文</h3>
 <ul>
-<li>函数实现，库实现，字符串等资源，<strong>不可改</strong></li>
+<li>函数实现，库实现，字符串等资源，<strong>不可改</strong>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;Literal&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">//文字在代码区，仅分配了字符指针</span>
+<span class="c1">// s1[0] = &#39;I&#39; //不能修改</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">s2</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Initial Literal&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">//分配数组空间</span>
+<span class="c1">// s2可以被修改</span>
+<span class="n">Point</span><span class="w"> </span><span class="o">*</span><span class="n">po</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="p">((</span><span class="n">Point</span><span class="p">){</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">});</span><span class="w"> </span><span class="c1">//分配结构空间且指针</span>
+<span class="c1">// 取临时对象的地址给po，语句执行完毕之后临时对象就没了</span>
+</code></pre></div></li>
 </ul>
-<pre><code class="language-cpp">char *s1 - &quot;Literal&quot;; //文字在代码区，仅分配了字符指针
-// s1[0] = 'I' //不能修改
-char s2[] = &quot;Initial Literal&quot;; //分配数组空间
-// s2可以被修改
-Point *po = &amp;((Point){2, 3}); //分配结构空间且指针
-// 取临时对象的地址给po，语句执行完毕之后临时对象就没了
-</code></pre>
 <h3 id="_3">静态变量（对象）</h3>
 <ul>
 <li>main执行前初始化数据</li>
@@ -1371,28 +1371,28 @@ Point *po = &amp;((Point){2, 3}); //分配结构空间且指针
 <ul>
 <li>必须<code>#include&lt;stdlib.h&gt;</code></li>
 <li>申请空间<code>void * malloc(size_t)</code></li>
-<li>释放空间<code>void free(void *)</code></li>
+<li>释放空间<code>void free(void *)</code>
+<div class="highlight"><pre><span></span><code><span class="n">Point</span><span class="w"> </span><span class="o">*</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+
+<span class="n">Point</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p2</span><span class="p">)[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+<span class="c1">//指向2*3数组的指针</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="n">Point</span><span class="w"> </span><span class="o">**</span><span class="n">p3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+<span class="c1">//指针的指针</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="n">p3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">free</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>
+<span class="n">free</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="n">free</span><span class="p">(</span><span class="n">p3</span><span class="p">);</span><span class="c1">//先释放行数组，再释放指针的指针</span>
+</code></pre></div></li>
 </ul>
-<pre><code class="language-c">Point *p1 = malloc(sizeof(Point) * 10);
-
-Point (*p2)[2][3] = malloc(sizeof(Point) * 6);
-//指向2*3数组的指针
-
-int n = 2, m = 3;
-Point **p3 = malloc(sizeof(Point*) * n);
-//指针的指针
-for(size_t i = 0; i &lt; n; i++){
-    p3[i] = malloc(sizeof(Point) * m);
-}
-
-free(p1);
-free(p2);
-
-for(size_t i = 0; i &lt; n; i++){
-    free(p3[i]);
-}
-free(p3);//先释放行数组，再释放指针的指针
-</code></pre>
 <h2 id="c_1">C++</h2>
 <h3 id="new">new运算符的使用</h3>
 <ol>
@@ -1412,31 +1412,31 @@ free(p3);//先释放行数组，再释放指针的指针
 <li>delete对象指针会调用该对象的析构函数</li>
 </ol>
 <h2 id="_5">内存泄漏</h2>
-<p>指new的空间失去了指针或引用永远无法释放，导致资源耗尽。</p>
-<pre><code class="language-cpp">int *p = new int(7);
-p = nullptr; // 内存泄漏
-</code></pre>
-<pre><code class="language-cpp">void f(){
-    int *p = new int(7);
-}
-//离开作用域，指针没有了，内存泄漏
-</code></pre>
+<p>指new的空间失去了指针或引用永远无法释放，导致资源耗尽。
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 内存泄漏</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">//离开作用域，指针没有了，内存泄漏</span>
+</code></pre></div></p>
 <h2 id="_6">显式定义默认函数</h2>
 <p>当我们声明有参构造函数时，编译器不会创建默认构造函数。<code>=default</code>是令编译器为某个类生成特殊成员函数或比较运算符的显式指令（C++11）。特殊成员函数包括：
 - 默认构造函数<code>T()</code>
 - 析构函数<code>~T()</code>
 - 拷贝构造函数<code>T(const T&amp;)</code>
 - 赋值运算<code>operator=(const T&amp;)</code></p>
-<p><code>=default</code>必须在1函数声明后，让编译创建该构造函数。</p>
-<pre><code class="language-cpp">class A
-{
-public:
-    A(int x){
-        cout &lt;&lt; &quot;This is a parameterized constructor&quot;;
-    }
-    A() = default;
-};
-</code></pre>
+<p><code>=default</code>必须在1函数声明后，让编译创建该构造函数。
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="n">A</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;This is a parameterized constructor&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">A</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></p>
 <h2 id="_7">弃置函数</h2>
 <p>在 C++ 中，<code>=delete</code> 是一个用于<strong>显式禁止</strong>某个函数被调用的语法特性。你可以把它理解为给函数贴上一个“<strong>禁止通行</strong>”的标签。一旦某个函数被标记为 <code>=delete</code>，任何尝试调用它的代码都会在<strong>编译期</strong>直接报错，从而有效防止误用。</p>
 <p>请注意，删除的函数是隐式内联的，这一点非常重要。删除的函数定义必须是函数的<strong>首次声明</strong>。</p>
@@ -1444,21 +1444,21 @@ public:
 <p>在 C++ 中，“成员初始化器”通常指的是<strong>构造函数初始化列表</strong>。是一种在构造函数体执行<strong>之前</strong>，直接初始化类成员变量的语法机制。</p>
 <h3 id="_9">语法结构</h3>
 <p>成员初始化器位于构造函数的参数列表之后，构造函数体之前，以冒号 <code>:</code> 开头，后面跟着一系列以逗号分隔的成员初始化项。</p>
-<pre><code class="language-cpp">class MyClass {
-private:
-    int x;
-    int y;
-    std::string name;
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
 
-public:
-    // 构造函数
-    // x(a) 和 name(n) 就是成员初始化器
-    MyClass(int a, const std::string&amp; n) : x(a), name(n) {
-        // 构造函数体
-        y = 0; // 这是在函数体内赋值，不是初始化
-    }
-};
-</code></pre>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 构造函数</span>
+<span class="w">    </span><span class="c1">// x(a) 和 name(n) 就是成员初始化器</span>
+<span class="w">    </span><span class="n">MyClass</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="n">name</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 构造函数体</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 这是在函数体内赋值，不是初始化</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
 <h3 id="_10">为什么要使用成员初始化器</h3>
 <p>使用成员初始化器主要有两大理由：<strong>性能优化</strong>和<strong>强制需求</strong>。</p>
 <h4 id="_11">性能优化</h4>
@@ -1476,20 +1476,20 @@ public:
 <h3 id="_13">关键陷阱：初始化顺序</h3>
 <p>这是一个非常容易被忽视但至关重要的规则：</p>
 <p><strong>成员的初始化顺序，完全取决于它们在类中声明的顺序，而与初始化列表中书写的顺序无关。</strong></p>
-<pre><code class="language-cpp">class Example {
-private:
-    int a;
-    int b;
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Example</span><span class="w"> </span><span class="p">{</span>
+<span class="k">private</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
 
-public:
-    // 看起来是先初始化 b，再初始化 a
-    // 但实际上：a 先被初始化（因为它在类中先声明），b 后被初始化
-    Example(int val) : b(val), a(b) { 
-        // 此时 a 的值是未定义的！因为 b 还没初始化，a 就尝试用 b 的值
-    }
-};
-</code></pre>
-<p>为了保证代码的可读性和避免逻辑错误，<strong>初始化列表中的书写顺序最好与类成员声明的顺序保持一致</strong>。</p>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="c1">// 看起来是先初始化 b，再初始化 a</span>
+<span class="w">    </span><span class="c1">// 但实际上：a 先被初始化（因为它在类中先声明），b 后被初始化</span>
+<span class="w">    </span><span class="n">Example</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">val</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="c1">// 此时 a 的值是未定义的！因为 b 还没初始化，a 就尝试用 b 的值</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+为了保证代码的可读性和避免逻辑错误，<strong>初始化列表中的书写顺序最好与类成员声明的顺序保持一致</strong>。</p>
 <h2 id="_14">对象成员初始化器</h2>
 <p>一句话说清：
 <strong>对象成员初始化器</strong>就是在创建对象时，用 <code>{}</code> 直接给成员变量赋值的语法糖。</p>
@@ -1497,39 +1497,39 @@ public:
 <p><strong>语法糖（Syntactic Sugar）</strong>，又称糖衣语法，是由英国计算机科学家彼得·约翰·兰达提出的术语，指编程语言中添加的简化语法结构。这类语法不改变语言功能，但能提升代码可读性并减少错误率，例如C语言中a[i]等价于指针表达式*(a+i)。</p>
 </blockquote>
 <h3 id="_15">举例</h3>
-<p>假设有个类：</p>
-<pre><code class="language-c++">struct Student {
-    int id;
-    string name;
-};
-</code></pre>
-<p>用<strong>对象成员初始化器</strong>创建对象：</p>
-<pre><code class="language-c++">Student s = {1001, &quot;张三&quot;};
-</code></pre>
-<p>或者：</p>
-<pre><code class="language-c++">Student s{1001, &quot;张三&quot;}; // C++11 统一初始化
-</code></pre>
+<p>假设有个类：
+<div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></p>
+<p>用<strong>对象成员初始化器</strong>创建对象：
+<div class="highlight"><pre><span></span><code><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1001</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;张三&quot;</span><span class="p">};</span>
+</code></pre></div>
+或者：
+<div class="highlight"><pre><span></span><code><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="p">{</span><span class="mi">1001</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;张三&quot;</span><span class="p">};</span><span class="w"> </span><span class="c1">// C++11 统一初始化</span>
+</code></pre></div></p>
 <hr />
 <h3 id="_16">类数组</h3>
-<pre><code class="language-cpp">struct Student {
-    int id;
-    string name;
-};
+<p><div class="highlight"><pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
 
-// 类数组，直接用 {} 初始化每个对象
-Student arr[] = {
-    {101, &quot;小明&quot;},
-    {102, &quot;小红&quot;},
-    {103, &quot;小李&quot;}
-};
-</code></pre>
-<p>或者</p>
-<pre><code class="language-cpp">Student arr[] {
-    {101, &quot;小明&quot;},
-    {102, &quot;小红&quot;},
-    {103, &quot;小李&quot;}
-};
-</code></pre>
+<span class="c1">// 类数组，直接用 {} 初始化每个对象</span>
+<span class="n">Student</span><span class="w"> </span><span class="n">arr</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小明&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小红&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小李&quot;</span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+或者
+<div class="highlight"><pre><span></span><code><span class="n">Student</span><span class="w"> </span><span class="n">arr</span><span class="p">[]</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">101</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小明&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">102</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小红&quot;</span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;小李&quot;</span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></p>
 <p>只要你的类/结构体满足：
 - 没有<strong>自定义构造函数</strong>
 - 没有 <code>private</code> 成员（或成员可访问）
@@ -1537,13 +1537,13 @@ Student arr[] = {
 <p>就可以用 <strong>对象成员初始化器</strong> 初始化数组。</p>
 <hr />
 <h3 id="new_1">与new结合</h3>
-<p>申请数组：<code>new 类型[]{初始化列表}</code></p>
-<pre><code class="language-cpp">int *p;
-int Length, i;
+<p>申请数组：<code>new 类型[]{初始化列表}</code>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">Length</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
 
-cin &gt;&gt; Length;
-p = new int[Length]{1,3,5};
-</code></pre>
+<span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">Length</span><span class="p">;</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">[</span><span class="n">Length</span><span class="p">]{</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</code></pre></div></p>
 <p>用new给类分配内存时：
 - 如果后面没有初始化列表，会调用无参构造（若为默认生成的无参构造，会初始化为不确定值）
 - 常数初始化列表（<code>int[]</code>、<code>double[]</code>），用初始化列表赋值，元素不够时，后边补0。例如上述代码中<code>Length</code>大于3时。

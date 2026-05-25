@@ -887,10 +887,10 @@
 <p>私有成员变量只有类和友元函数可以访问。</p>
 <h2 id="_4">构造函数</h2>
 <p>类的构造函数是类的一种特殊的成员函数，每次创建类的新对象时完成初始化等逻辑。构造函数的名称与类的名称是完全相同的，并且不会返回任何类型，也不会返回void，在定义时前面不能写返回类型。如果用户没有自定义构造函数，则编译会自动生成一个默认构造函数。构造函数不能被直接调用。
-构造函数可以有参数，有参数的时候初始化就需要传初始值。</p>
-<pre><code class="language-cpp">Line line(10.0)//初始值为10.0
-Line line1;//没有默认构造，错误
-</code></pre>
+构造函数可以有参数，有参数的时候初始化就需要传初始值。
+<div class="highlight"><pre><span></span><code><span class="n">Line</span><span class="w"> </span><span class="nf">line</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span><span class="c1">//初始值为10.0</span>
+<span class="n">Line</span><span class="w"> </span><span class="n">line1</span><span class="p">;</span><span class="c1">//没有默认构造，错误</span>
+</code></pre></div></p>
 <h2 id="_5">析构函数</h2>
 <p>析构函数是类的一类特殊成员函数，它会在对象被释放前执行。析构函数的名称与类的名称是完全相同的，只是在前面加了个波浪号（~）作为前缀，它不会返回任何值，也不能带有任何参数。析构函数不能被直接调用。它有利于跳出程序前释放资源。</p>
 <h2 id="this">this指针</h2>
