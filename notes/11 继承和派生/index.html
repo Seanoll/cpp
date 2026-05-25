@@ -14,7 +14,7 @@
         <link rel="prev" href="../10%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/">
       
       
-        <link rel="next" href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/">
+        <link rel="next" href="../12%20%E5%A4%9A%E6%80%81/">
       
       
         
@@ -863,6 +863,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../12%20%E5%A4%9A%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1175,25 +1203,29 @@
 <h2 id="_1">类型兼容性</h2>
 <ul>
 <li>赋值运算的类型兼容性：</li>
-<li>你可以直接将一个派生类的对象赋值给一个基类的对象。
-  <code>cpp
+<li>你可以直接将一个派生类的对象赋值给一个基类的对象。</li>
+</ul>
+<p><code>cpp
   Derived d;
   Base b = d;   // 允许，切片赋值
-  b = d;</code></li>
+  b = d;</code></p>
+<ul>
 <li>这种赋值会发生“截断”，即基类对象 b 只能接收派生类对象 d 中继承自基类的那部分成员，派生类自己新增的成员会被丢弃。</li>
 <li>指针/引用的兼容（向上转型，Upcasting）：</li>
-<li>你可以让一个基类指针，指向一个派生类对象。
-  <code>cpp
+<li>你可以让一个基类指针，指向一个派生类对象。</li>
+</ul>
+<p><code>cpp
   Derived d;
   Base* pb = &amp;d;      // ✅ 派生类指针 → 基类指针
-  Base&amp; rb = d;       // ✅ 派生类引用 → 基类引用</code></li>
+  Base&amp; rb = d;       // ✅ 派生类引用 → 基类引用</code></p>
+<ul>
 <li>派生类对象的内存布局是"基类子对象 + 派生类特有成员"。所以指向派生类对象的指针，其起始地址恰好就是基类子对象的起始地址。</li>
 <li>函数参数的兼容：</li>
-<li>你可以将一个派生类对象作为参数，传递给一个需要基类参数的函数。
-  ```cpp
-  void foo(Base* p);
-  void bar(Base&amp; r);</li>
+<li>你可以将一个派生类对象作为参数，传递给一个需要基类参数的函数。</li>
 </ul>
+<p>```cpp
+  void foo(Base* p);
+  void bar(Base&amp; r);</p>
 <p>foo(&amp;d);            // ✅ 传入 Derived*
   bar(d);             // ✅ 传入 Derived
   ```</p>
@@ -1346,7 +1378,9 @@ cout &lt;&lt; i &lt;&lt; endl         // 输出1
 <li>再次调用对象成员的构造函数，按类声明中对象成员出现的次序调用，而不是初始化列表中的次序</li>
 <li>最后执行派生类的构造函数</li>
 </ul>
+<blockquote>
 <p>在这节课的课后题中，还出现了虚函数的概念，虽然后面的课程中会讲，但是为了更好理解，这里先简单介绍一下。</p>
+</blockquote>
 <h3 id="_5">虚函数</h3>
 <p><strong>虚函数</strong>（Virtual Function）是 C++ 中实现<strong>多态性</strong>的核心机制，允许子类重写父类的方法，并通过基类指针或引用调用子类的实现。用 <code>virtual</code> 关键字声明的成员函数，可以在子类中被<strong>重写（override）</strong>，实现运行时多态。</p>
 <h4 id="_6">基本语法</h4>
