@@ -449,6 +449,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用C标准库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constconstexpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const和constexpr
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auto
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -915,6 +948,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用C标准库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constconstexpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        const和constexpr
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auto
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1022,13 +1088,13 @@
 <li>通过类这个概念分离了开发者和使用者的世界，类是关于事物的外部属性和行为特征接口的描述。</li>
 <li>指的是将数据和操作数据的方法捆绑在一起，并隐藏对象的内部实现细节，仅对外暴露有限的、受控的接口。封装的核心目的是信息隐藏。</li>
 </ul>
-<h1 id="c">使用C标准库</h1>
+<h2 id="c">使用C标准库</h2>
 <ul>
 <li>原本C的库以xxx.h命名的，C++把它们放在std空间里，改名为cxxx</li>
 <li>C 标准库，即不仅可以用 g++ 编译 c 风格的 cpp 程序，也可以使用 C 库函数</li>
 <li>使用 getline 读入字符串到 s：<code>getline(cin,s)</code>可以读入一行，而<code>cin&gt;&gt;s</code>遇到空格就停止了</li>
 </ul>
-<h1 id="constconstexpr">const和constexpr</h1>
+<h2 id="constconstexpr">const和constexpr</h2>
 <p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
@@ -1055,7 +1121,7 @@
   - 限定为常量表达式
   - 限定为编译时可优化执行的函数
 - C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。</p>
-<h1 id="auto">auto</h1>
+<h2 id="auto">auto</h2>
 <ul>
 <li>auto的原理就是根据初始化的表达式，在编译期间根据表达式类型自动推导出对象的类型。auto的作用就是为了简化变量初始化，如果这个变量有初始化表达式，就可以用auto代替类型声明。例如：
 <div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">//等价于 int x1 = 5;</span>
