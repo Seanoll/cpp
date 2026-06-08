@@ -1185,6 +1185,95 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#25ii-15-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周15-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从属依赖类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课堂1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周15-课堂1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制字符串转数值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式实例化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课后2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课后1
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1688,6 +1777,95 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周15-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从属依赖类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课堂1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周15-课堂1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二进制字符串转数值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        显式实例化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课后2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-15-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周15-课后1
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2254,6 +2432,75 @@ cout 输出该指针指向的字符串："0.26"。
 <h3 id="_9">接口风格抽象类</h3>
 <p>接口风格抽象类（类似于 Java 的 <code>interface</code> 在 C++ 中的映射）的核心设计意图是只定义行为规范，不携带状态。通常由纯虚函数组成，可以包含静态成员（静态成员属于类而非对象，不破坏"无状态"的接口语义），<strong>不能有普通成员变量</strong>，一旦有普通数据成员，就不再是 “接口风格”，而是普通抽象类。</p>
 <p>接口风格抽象类因为没有数据成员，可以无歧义地被多重继承，也可以被虚继承。</p>
+<h2 id="25ii-15-">25程设Ⅱ-周15-理论题</h2>
+<h3 id="_10">从属依赖类型</h3>
+<p>在 C++ 模板编程中，<strong>从属依赖类型</strong>（Dependent Type）是指<strong>依赖于某个模板参数的类型</strong>。</p>
+<p>假设我们有一个模板参数 <code>T</code>，我们想使用 <code>T</code> 内部的一个类型 <code>iterator</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">printFirst</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">container</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// T::iterator 就是一个从属依赖类型</span>
+<span class="w">    </span><span class="c1">// 因为 T 可能是 std::vector&lt;int&gt;（此时 T::iterator 是类型）</span>
+<span class="w">    </span><span class="c1">// T 也可能是某个类，而 T::iterator 只是一个普通的静态成员变量</span>
+<span class="w">    </span><span class="n">T</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<p>由于 <code>T</code> 是模板参数，编译器<strong>在模板定义阶段无法确定</strong> <code>T</code> 到底是什么类，因此默认按<strong>变量/值</strong>解析，导致把 <code>iterator</code> 当成静态变量，语法错误。</p>
+<p>为了解决这种二义性，C++ 规定：当你在模板中访问一个从属依赖类型时，<strong>必须在其前面显式加上 <code>typename</code> 关键字</strong>。</p>
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">printFirst</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">container</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">container</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="25ii-15-1">25程设Ⅱ-周15-课堂1</h2>
+<h3 id="_11">二进制字符串转数值</h3>
+<p>输入大端序（最高位先出现）可以采用逐位左移+或的方法：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">bits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>类型双关</strong>：需要将一段内存中的二进制数据，原封不动地解释为另一种类型（例如 uint32_t → float 或 int），而不改变位模式。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">float</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+<span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</code></pre></div>
+<h3 id="_12">显式实例化</h3>
+<p>模板的定义通常需要放在头文件中，否则其他编译单元无法实例化。但有时出于编译速度或隐藏实现的目的，希望将模板定义放在 <code>.cpp</code> 文件中。</p>
+<p><strong>头文件 (<code>utils.hpp</code>)</strong>：
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="w"> </span><span class="n">decode_bits</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bits</span><span class="p">);</span>
+
+<span class="k">extern</span><span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="k">extern</span><span class="w"> </span><span class="k">template</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+</code></pre></div></p>
+<p><strong>源文件 (<code>utils.cpp</code>)</strong>：
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;utils.hpp&quot;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="w"> </span><span class="n">decode_bits</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 实现 */</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// 显式实例化定义</span>
+<span class="k">template</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="k">template</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
+</code></pre></div></p>
+<p>原理：
+- 当 <code>main.cpp</code> 调用 <code>decode_bits&lt;int&gt;(bits)</code> 时，编译器需要看到该函数的代码才能生成对应的机器指令。但由于定义在另一个 <code>.cpp</code> 文件中，<code>main.cpp</code> 编译时并不知道实现。
+- <code>extern template</code> 告诉编译器<strong>不要在此编译单元中隐式实例化</strong>，该实例化在其他地方已存在。
+- 在 <code>.cpp</code> 中提供普通实例化（无 <code>extern</code>），强制生成代码。</p>
+<p>限制：失去对任意类型的自动适配能力，只能实例化<strong>所有可能用到的模板参数组合</strong>，否则链接时会缺少符号。适用于模板参数集合有限的情况（如本题仅 int, float, double）。</p>
+<h2 id="25ii-15-2">25程设Ⅱ-周15-课后2</h2>
+<p>C++ 标准规定，在类模板外部定义成员函数模板时，必须<strong>先列出类模板的参数</strong>，然后再列出函数模板自己的参数：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 正确：类模板参数（用于类） + 函数模板参数（用于成员函数）</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w">          </span><span class="c1">// 对应 RangeFilter&lt;T, N&gt;</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="n">Low</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">High</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Window</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LevelID</span><span class="o">&gt;</span><span class="w">   </span><span class="c1">// 对应 isValid&lt;...&gt;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">RangeFilter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;::</span><span class="n">isValid</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>如果合并写成：
+<div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Low</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">High</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Window</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">LevelID</span><span class="o">&gt;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">RangeFilter</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;::</span><span class="n">isValid</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></p>
+<p>这会被编译器理解为：<strong>这个 <code>isValid</code> 是一个普通函数模板（不属于 <code>RangeFilter</code> 类模板的成员）</strong>，而左侧 <code>RangeFilter&lt;T, N&gt;::</code> 中的 <code>T, N</code> 并没有被定义（因为合并后的 <code>template</code> 中的 <code>T, N</code> 不会自动成为类模板参数），导致编译错误。</p>
+<h2 id="25ii-15-1_1">25程设Ⅱ-周15-课后1</h2>
+<p>在比较器是一个函数模板<code>template&lt;typename T&gt; bool cmp(const T&amp; a, const T&amp; b);</code>使用 <code>sort(data, data+count, cmp)</code> 时，编译器需要知道第三个参数的具体类型。<code>cmp</code> 是一个模板名，代表一组重载的函数（针对不同的 <code>T</code> 实例化）。编译器无法仅从上下文推断出应该实例化 <code>cmp</code> 的哪个版本（是 <code>cmp&lt;int&gt;</code> 还是 <code>cmp&lt;double&gt;</code> 等）时，报错 <code>unresolved overloaded function type</code>（无法解析的重载函数类型）。</p>
+<p>而写成 <code>cmp&lt;T&gt;</code> 则明确告诉编译器：使用模板参数 <code>T</code> 来实例化 <code>cmp</code>，生成一个具体的函数 <code>cmp&lt;T&gt;</code>。总的来说，加上<code>&lt;T&gt;</code>是一个好习惯。</p>
 
 
 

@@ -1076,13 +1076,12 @@
 <li>如果某形参只出现在返回类型或函数体中，则不能从调用处推导，调用时须显式指定或该形参必须有默认值。  </li>
 <li>非类型模板参数同样需要能被推导，否则须显式提供。  </li>
 </ul>
-<p>示例：
-- 不能被推导（调用时需显式指定）：
-  - <code>template&lt;typename T, typename U&gt; void f(T);</code> // <code>U</code> 未出现在参数列表，不能推导 → <code>f&lt;int,double&gt;(42);</code>
-- 有默认值：
-  - <code>template&lt;typename T, typename U = int&gt; void f(T);</code> // 可以写 <code>f(42);</code>，<code>U</code> 默认为 <code>int</code>
-- 只靠返回值无法推导：
-  - <code>template&lt;typename T&gt; T g();</code> // 必须 <code>g&lt;int&gt;()</code></p>
+<p>示例：</p>
+<ul>
+<li>不能被推导（调用时需显式指定）：<code>template&lt;typename T, typename U&gt; void f(T);</code> // <code>U</code> 未出现在参数列表，不能推导 → <code>f&lt;int,double&gt;(42);</code></li>
+<li>有默认值：<code>template&lt;typename T, typename U = int&gt; void f(T);</code> // 可以写 <code>f(42);</code>，<code>U</code> 默认为 <code>int</code></li>
+<li>只靠返回值无法推导：<code>template&lt;typename T&gt; T g();</code> // 必须 <code>g&lt;int&gt;()</code></li>
+</ul>
 <p><strong>经典示例（交换函数）：</strong></p>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">mySwap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1093,19 +1092,17 @@
 </code></pre></div>
 <p><strong>调用方式</strong></p>
 <ol>
-<li><strong>自动类型推导</strong>：编译器根据传入的实参自动推断出 <code>T</code> 的类型。</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<li><strong>自动类型推导</strong>：编译器根据传入的实参自动推断出 <code>T</code> 的类型。
+   <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <span class="n">mySwap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// 编译器自动推导出 T 为 int</span>
-</code></pre></div>
-<ol>
-<li><strong>显式指定类型</strong>：在函数名后的尖括号中明确指定类型。</li>
-</ol>
-<div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.2</span><span class="p">;</span>
+</code></pre></div></li>
+<li><strong>显式指定类型</strong>：在函数名后的尖括号中明确指定类型。
+   <div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.2</span><span class="p">;</span>
 <span class="n">mySwap</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// 明确指定 T 为 double</span>
-</code></pre></div>
+</code></pre></div></li>
+</ol>
 <p><strong>注意</strong>：此过程中不进行常规的隐式类型转换。
-（不能把一个<code>int</code>和一个<code>long long</code>传给<code>mySwap</code>）</p>
+（不能把一个<code>int</code>和一个<code>double</code>传给<code>mySwap</code>）</p>
 <h3 id="_3">模板（全）特化</h3>
 <p><strong>模板特化</strong>（Template Specialization）是指<strong>为特定的类型参数组合，提供一份定制的模板实现</strong>，替代编译器自动生成的通用版本。</p>
 <p>全特化：为<strong>所有模板参数</strong>提供具体类型的定制实现：</p>
@@ -1125,12 +1122,14 @@
 <p>对函数模板进行重载：
 - 定义名字相同而函数形参表不同的函数模板
 - 或者定义与函数模板同名的非模板函数(正常函数)，在其函数体中完成不同的行为</p>
-<p>函数调用的静态绑定规则（重载协议）：
-1.  如果某一同名<strong>非模板函数</strong>(指正常的函数)的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数。否则，进入第2步
-2. 如果能从同名的<strong>函数模板</strong>实例化一个函数实例，而该函数实例的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数模板的实例函数。否则，进入第3步
-    &gt; 在步骤2中：首先匹配函数模板的<strong>特化</strong>，再匹配非指定特殊的函数模板
-3. 对函数调用的实参进行隐式类型转换后与<strong>非模板函数</strong>再次进行匹配，若能找到匹配的函数则调用该函数。否则，进入第4步
-4. 提示编译错误</p>
+<p>函数调用的静态绑定规则（重载协议）：</p>
+<ol>
+<li>如果某一同名<strong>非模板函数</strong>(指正常的函数)的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数。否则，进入第2步</li>
+<li>如果能从同名的<strong>函数模板</strong>实例化一个函数实例，而该函数实例的形参类型正好与函数调用的实参类型匹配(完全一致)，则调用该函数模板的实例函数。否则，进入第3步
+    &gt; 在步骤2中：首先匹配函数模板的<strong>特化</strong>，再匹配非指定特殊的函数模板</li>
+<li>对函数调用的实参进行隐式类型转换后与<strong>非模板函数</strong>再次进行匹配，若能找到匹配的函数则调用该函数。否则，进入第4步</li>
+<li>提示编译错误</li>
+</ol>
 <h2 id="_5">类模板</h2>
 <p><strong>语法格式</strong>：
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="n">模板形参表</span><span class="o">&gt;</span>
@@ -1179,9 +1178,11 @@
 <ol>
 <li><strong>核心要求</strong>
 在模板（函数模板/类模板成员函数）被调用实例化的位置，编译器必须能看到该模板的完整实现代码，才能根据传入的类型生成对应的实体代码。</li>
-<li><strong>两种实现手段</strong></li>
+<li><strong>两种实现手段</strong><ul>
 <li>方案1：把类模板的声明、成员函数实现<strong>全部直接写在头文件（<code>.h</code>/<code>.hpp</code>）</strong>里，包含头文件就能看到全部代码；</li>
 <li>方案2：头文件只写类模板声明，在头文件末尾用<code>#include "模板实现文件.tpp"</code>引入存放成员实现的文件，调用处包含头文件时就会连带引入实现代码。</li>
+</ul>
+</li>
 <li><strong>特点</strong>：所有主流C++编译器都支持，工程里最普遍使用。</li>
 </ol>
 <blockquote>
@@ -1199,7 +1200,7 @@ C++标准虽定义了该模式，但<strong>绝大多数主流编译器（如GCC
 <li>相当于模板内部的常量，形式上类似于普通的函数形参</li>
 <li>对模板进行实例化时，非类型形参由相应模板实参的值代替</li>
 <li>对应的模板实参必须是编译时常量表达式</li>
-<li>C++20以前，非类型模板形参只允许是整型、枚举、指针、引用或指向成员类型的指针。</li>
+<li>C++20以前，非类型模板形参只允许是整型、枚举、指针、引用或指向成员类型的指针。不能是 float、double、string 等。</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="o">&gt;</span><span class="w">    </span><span class="c1">// T 是类型参数，N 是非类型参数</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Array</span><span class="w"> </span><span class="p">{</span>
