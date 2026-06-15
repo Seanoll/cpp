@@ -1330,6 +1330,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#25ii-16-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周16-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周16-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1942,6 +1970,34 @@
     <span class="md-ellipsis">
       
         字符串内部排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-16-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周16-理论题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周16-理论题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15
       
     </span>
   </a>
@@ -2590,6 +2646,12 @@ cout 输出该指针指向的字符串："0.26"。
 <div class="highlight"><pre><span></span><code><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="s">&quot;listen&quot;</span><span class="p">;</span>
 <span class="n">sort</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"> </span><span class="c1">//默认升序</span>
 </code></pre></div>
+<h2 id="25ii-16-">25程设Ⅱ-周16-理论题</h2>
+<p>这一套选择题比较难。</p>
+<h3 id="q15">Q15</h3>
+<p>哪个 STL 容器在插入元素时可能导致迭代器失效？</p>
+<p>正确答案是 <strong>vector</strong>。</p>
+<p><code>vector</code> 在内存中是连续分配的。当向其中插入元素且当前容量不足时，它会触发<strong>扩容机制</strong>（分配一块更大的新内存，将旧数据拷贝过去，然后释放旧内存）。由于底层物理内存地址发生了改变，这会导致 <code>vector</code> 中<strong>所有的迭代器、指针和引用全部失效</strong>。因此，<code>vector</code> 是选项中最容易因插入操作导致迭代器失效的容器。</p>
 
 
 
