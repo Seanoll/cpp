@@ -1302,6 +1302,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#25ii-16-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周16-课后4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周16-课后4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串内部排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1894,6 +1922,34 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25ii-16-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25程设Ⅱ-周16-课后4
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25程设Ⅱ-周16-课后4">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串内部排序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2529,6 +2585,11 @@ cout 输出该指针指向的字符串："0.26"。
 <h2 id="25ii-15-1_1">25程设Ⅱ-周15-课后1</h2>
 <p>在比较器是一个函数模板<code>template&lt;typename T&gt; bool cmp(const T&amp; a, const T&amp; b);</code>使用 <code>sort(data, data+count, cmp)</code> 时，编译器需要知道第三个参数的具体类型。<code>cmp</code> 是一个模板名，代表一组重载的函数（针对不同的 <code>T</code> 实例化）。编译器无法仅从上下文推断出应该实例化 <code>cmp</code> 的哪个版本（是 <code>cmp&lt;int&gt;</code> 还是 <code>cmp&lt;double&gt;</code> 等）时，报错 <code>unresolved overloaded function type</code>（无法解析的重载函数类型）。</p>
 <p>而写成 <code>cmp&lt;T&gt;</code> 则明确告诉编译器：使用模板参数 <code>T</code> 来实例化 <code>cmp</code>，生成一个具体的函数 <code>cmp&lt;T&gt;</code>。总的来说，加上<code>&lt;T&gt;</code>是一个好习惯。</p>
+<h2 id="25ii-16-4">25程设Ⅱ-周16-课后4</h2>
+<h3 id="_13">字符串内部排序</h3>
+<div class="highlight"><pre><span></span><code><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="o">=</span><span class="s">&quot;listen&quot;</span><span class="p">;</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w"> </span><span class="c1">//默认升序</span>
+</code></pre></div>
 
 
 
