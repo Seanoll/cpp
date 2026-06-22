@@ -1,0 +1,1824 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://seanoll.github.io/cpp/notes/16%20STL/">
+      
+      
+        <link rel="prev" href="../15%20STL/">
+      
+      
+        <link rel="next" href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>16 STL - 程序设计II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="程序设计II" class="md-header__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            程序设计II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              16 STL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="程序设计II" class="md-nav__button md-logo" aria-label="程序设计II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    程序设计II
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12%20%E5%A4%9A%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13%20%E5%A4%9A%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14%20%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15%20STL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 STL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 STL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 STL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容器适配器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="容器适配器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority_queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        priority_queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适配器与底层容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器类别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="迭代器类别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各容器对应的迭代器类别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器遍历
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器失效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可调用类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可调用类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        函数指针回调
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类成员函数回调
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdfunction-stdbind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        std::function 和 std::bind
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda 表达式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STL算法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STL算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sort
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count_if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count_if
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accumulate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        accumulate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix错题笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        容器适配器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="容器适配器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#priority_queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        priority_queue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        适配器与底层容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器类别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="迭代器类别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各容器对应的迭代器类别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器遍历
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迭代器失效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可调用类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可调用类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        函数指针回调
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类成员函数回调
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stdfunction-stdbind" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        std::function 和 std::bind
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lambda 表达式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STL算法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STL算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sort
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count_if" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        count_if
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accumulate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        accumulate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编译建议
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>16 STL</h1>
+
+<h2 id="_1">容器适配器</h2>
+<p>容器适配器（Container Adaptor）提供顺序容器之上的不同功能接口（界面），对底层容器的接口进行封装和限制。</p>
+<table>
+<thead>
+<tr>
+<th>适配器</th>
+<th>功能特点</th>
+<th>头文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stack</code></td>
+<td>栈，后进先出（LIFO）</td>
+<td><code>&lt;stack&gt;</code></td>
+</tr>
+<tr>
+<td><code>queue</code></td>
+<td>队列，先进先出（FIFO）</td>
+<td><code>&lt;queue&gt;</code></td>
+</tr>
+<tr>
+<td><code>priority_queue</code></td>
+<td>带优先级管理的队列，堆实现</td>
+<td><code>&lt;queue&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="stack">stack</h3>
+<p>底层容器必须提供 <code>back()</code>、<code>push_back()</code>、<code>pop_back()</code>，标准容器 <code>vector</code>、<code>deque</code> 和 <code>list</code> 满足要求，默认使用 <code>deque</code>。</p>
+<table>
+<thead>
+<tr>
+<th>使用形式</th>
+<th>操作效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s.push(item)</code></td>
+<td>压入栈顶，调用底层容器的 <code>push_back</code></td>
+</tr>
+<tr>
+<td><code>s.pop()</code></td>
+<td>删除栈顶，调用底层容器的 <code>pop_back</code></td>
+</tr>
+<tr>
+<td><code>s.top()</code></td>
+<td>返回栈顶元素，调用底层容器的 <code>back</code></td>
+</tr>
+<tr>
+<td><code>s.empty()</code></td>
+<td>判空</td>
+</tr>
+<tr>
+<td><code>s.size()</code></td>
+<td>返回元素数目</td>
+</tr>
+</tbody>
+</table>
+<p>构造函数示例：</p>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span><span class="w">            </span><span class="c1">// 空栈</span>
+<span class="n">c1</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c2</span><span class="p">(</span><span class="n">c1</span><span class="p">);</span><span class="w">       </span><span class="c1">// 拷贝构造</span>
+<span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deq</span><span class="w"> </span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">c3</span><span class="p">(</span><span class="n">deq</span><span class="p">);</span><span class="w">      </span><span class="c1">// 用底层容器构造</span>
+<span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">cstack</span><span class="p">;</span><span class="w">  </span><span class="c1">// 指定底层容器类型</span>
+</code></pre></div>
+<h3 id="queue">queue</h3>
+<table>
+<thead>
+<tr>
+<th>使用形式</th>
+<th>操作效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>q.push(item)</code></td>
+<td>插入队尾，调用 <code>push_back</code></td>
+</tr>
+<tr>
+<td><code>q.pop()</code></td>
+<td>删除队首，调用 <code>pop_front</code></td>
+</tr>
+<tr>
+<td><code>q.front()</code></td>
+<td>返回队首元素</td>
+</tr>
+<tr>
+<td><code>q.back()</code></td>
+<td>返回队尾元素</td>
+</tr>
+<tr>
+<td><code>q.empty()</code></td>
+<td>判空</td>
+</tr>
+<tr>
+<td><code>q.size()</code></td>
+<td>返回元素数目</td>
+</tr>
+</tbody>
+</table>
+<h3 id="priority_queue">priority_queue</h3>
+<table>
+<thead>
+<tr>
+<th>使用形式</th>
+<th>操作效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pq.push(item)</code></td>
+<td>按优先级插入，先 <code>push_back</code> 再 <code>push_heap</code></td>
+</tr>
+<tr>
+<td><code>pq.pop()</code></td>
+<td>删除队首（优先级最高），先 <code>pop_heap</code> 再 <code>pop_back</code></td>
+</tr>
+<tr>
+<td><code>pq.top()</code></td>
+<td>返回队首元素</td>
+</tr>
+<tr>
+<td><code>pq.empty()</code></td>
+<td>判空</td>
+</tr>
+<tr>
+<td><code>pq.size()</code></td>
+<td>返回元素数目</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">适配器与底层容器</h3>
+<table>
+<thead>
+<tr>
+<th>适配器</th>
+<th>可用底层容器</th>
+<th>默认底层容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stack</code></td>
+<td><code>vector</code>、<code>list</code>、<code>deque</code></td>
+<td><code>deque</code></td>
+</tr>
+<tr>
+<td><code>queue</code></td>
+<td><code>list</code>、<code>deque</code></td>
+<td><code>deque</code></td>
+</tr>
+<tr>
+<td><code>priority_queue</code></td>
+<td><code>vector</code>、<code>deque</code></td>
+<td><code>vector</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>queue</code> 要求底层容器提供 <code>pop_front</code>，因此不能基于 <code>vector</code>。
+<code>priority_queue</code> 需要随机访问能力进行堆操作，因此不能基于 <code>list</code>。</p>
+</blockquote>
+<h2 id="_3">迭代器类别</h2>
+<p>STL 迭代器按功能从弱到强分为五类：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>读写能力</th>
+<th>支持的操作</th>
+<th>典型容器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入迭代器（input iterator）</td>
+<td>只读</td>
+<td><code>*</code>（只读）、<code>-&gt;</code>、<code>++</code>、<code>==</code>、<code>!=</code></td>
+<td><code>istream_iterator</code></td>
+</tr>
+<tr>
+<td>输出迭代器（output iterator）</td>
+<td>只写</td>
+<td><code>*</code>（只写）、<code>-&gt;</code>、<code>++</code></td>
+<td><code>ostream_iterator</code></td>
+</tr>
+<tr>
+<td>正向迭代器（forward iterator）</td>
+<td>读/写</td>
+<td><code>++</code>、<code>==</code>、<code>!=</code></td>
+<td><code>forward_list</code></td>
+</tr>
+<tr>
+<td>双向迭代器（bidirectional iterator）</td>
+<td>读/写</td>
+<td><code>++</code>、<code>--</code>、<code>==</code>、<code>!=</code></td>
+<td><code>list</code>、<code>set</code>、<code>map</code></td>
+</tr>
+<tr>
+<td>随机访问迭代器（random access iterator）</td>
+<td>读/写</td>
+<td><code>++</code>、<code>--</code>、<code>+</code>、<code>-</code>、<code>+=</code>、<code>-=</code>、<code>[]</code>、比较运算</td>
+<td><code>vector</code>、<code>deque</code>、<code>array</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>iter[n]</code> 等价于 <code>*(iter + n)</code></p>
+</blockquote>
+<h3 id="_4">各容器对应的迭代器类别</h3>
+<table>
+<thead>
+<tr>
+<th>容器</th>
+<th>迭代器读写</th>
+<th>迭代器类别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>array</code></td>
+<td>读/写</td>
+<td>随机访问</td>
+</tr>
+<tr>
+<td><code>vector</code></td>
+<td>读/写</td>
+<td>随机访问</td>
+</tr>
+<tr>
+<td><code>deque</code></td>
+<td>读/写</td>
+<td>随机访问</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>读/写</td>
+<td>双向</td>
+</tr>
+<tr>
+<td><code>set</code> / <code>multiset</code></td>
+<td>只读</td>
+<td>双向</td>
+</tr>
+<tr>
+<td><code>map</code> / <code>multimap</code></td>
+<td>只读</td>
+<td>双向</td>
+</tr>
+<tr>
+<td><code>forward_list</code></td>
+<td>读/写</td>
+<td>正向</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>const</code> 容器（如 <code>const vector&lt;int&gt;</code>）的迭代器解引用结果只能作为右值（只读）。
+关联容器（<code>set</code>/<code>map</code>）的迭代器即使对非 <code>const</code> 容器也是只读的，因为修改元素会破坏有序性。</p>
+</blockquote>
+<h3 id="_5">迭代器遍历</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// 传统遍历</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// C++11 range-based for</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 推荐范式：const引用避免拷贝</span>
+<span class="c1">// 需要修改容器元素时需要加引用，不要加const</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_6">迭代器失效</h3>
+<p><strong>只读方法决不非法化迭代器或引用。修改容器内容的方法可能非法化迭代器和/或引用。</strong></p>
+<p>典型错误——删除 <code>vector</code> 中所有值为 3 的元素：</p>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ivv1</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">};</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span><span class="w">   </span><span class="c1">// erase 后 it 失效！</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>正确写法：利用 <code>erase</code> 返回的指向下一元素的迭代器：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="w">        </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ivv1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span><span class="w">   </span><span class="c1">// erase 返回下一元素的迭代器</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="o">++</span><span class="n">it</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_7">可调用类型</h2>
+<p>可调用（Callable）类型是可以像函数一样被调用的对象，包括：</p>
+<ol>
+<li><strong>普通函数</strong>（含类的静态成员函数）及其指针</li>
+<li><strong>类的非静态成员函数</strong>及其指针</li>
+<li><strong>函数对象</strong>（重载了 <code>operator()</code> 的类）</li>
+<li><strong>Lambda 表达式</strong>（匿名函数）</li>
+</ol>
+<h3 id="_8">函数指针回调</h3>
+<p>用函数指针实现回调：</p>
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">FP</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">);</span><span class="w">  </span><span class="c1">// 函数指针类型</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">Add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">Mul</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">callback_client</span><span class="p">(</span><span class="n">FP</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">callback_client</span><span class="p">(</span><span class="n">Add</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// 输出 5</span>
+<span class="w">    </span><span class="n">callback_client</span><span class="p">(</span><span class="n">Mul</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">  </span><span class="c1">// 输出 6</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_9">类成员函数回调</h3>
+<p><strong>静态成员函数</strong>可以像普通函数一样用函数指针回调；<strong>非静态成员函数</strong>需要使用成员函数指针，且必须绑定到具体对象：</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">       </span><span class="c1">// 非静态</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Mul</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// 静态</span>
+<span class="p">};</span>
+
+<span class="c1">// 非静态成员函数指针：需要传入对象</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">callback_client</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="n">Foo</span><span class="o">::*</span><span class="n">f</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">),</span><span class="w"> </span><span class="n">Foo</span><span class="w"> </span><span class="o">&amp;</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">foo</span><span class="p">.</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>成员函数指针语法较为繁琐，且不同类的成员函数指针类型不同，难以统一处理。</p>
+</blockquote>
+<h3 id="stdfunction-stdbind">std::function 和 std::bind</h3>
+<p><code>std::function</code> 是通用的函数包装器，可以包装任何可调用对象。<code>std::bind</code> 可以将成员函数与对象绑定，生成可调用对象。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">FP</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Foo</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">Add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Mul</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">lhs</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rhs</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="k">operator</span><span class="p">()(</span><span class="kt">int</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">Add</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// 函数对象</span>
+<span class="p">};</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">callback_client</span><span class="p">(</span><span class="n">FP</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">placeholders</span><span class="p">;</span><span class="w">  </span><span class="c1">// _1, _2, ...</span>
+
+<span class="w">    </span><span class="n">Foo</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
+<span class="w">    </span><span class="n">callback_client</span><span class="p">(</span><span class="n">Foo</span><span class="o">::</span><span class="n">Mul</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">              </span><span class="c1">// 静态成员：直接用</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">bind</span><span class="p">(</span><span class="o">&amp;</span><span class="n">Foo</span><span class="o">::</span><span class="n">Add</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">_1</span><span class="p">,</span><span class="w"> </span><span class="n">_2</span><span class="p">);</span><span class="w">  </span><span class="c1">// bind 绑定非静态成员</span>
+<span class="w">    </span><span class="n">callback_client</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">callback_client</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c1">// 函数对象，更方便</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="lambda">Lambda 表达式</h3>
+<p>Lambda 表达式（C++11）是一种<strong>匿名函数</strong>，可以在代码中就地定义可调用对象。</p>
+<p><strong>语法格式：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">捕获列表</span><span class="p">](</span><span class="n">参数列表</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">返回类型</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">函数体</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>返回类型</strong>可以省略，由编译器自动推导</li>
+<li><strong>捕获列表</strong>决定如何使用外部变量</li>
+</ul>
+<p><strong>捕获方式：</strong></p>
+<table>
+<thead>
+<tr>
+<th>捕获方式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[]</code></td>
+<td>不捕获任何外部变量</td>
+</tr>
+<tr>
+<td><code>[=]</code></td>
+<td>按值捕获所有外部变量</td>
+</tr>
+<tr>
+<td><code>[&amp;]</code></td>
+<td>按引用捕获所有外部变量</td>
+</tr>
+<tr>
+<td><code>[x]</code></td>
+<td>按值捕获变量 <code>x</code></td>
+</tr>
+<tr>
+<td><code>[&amp;x]</code></td>
+<td>按引用捕获变量 <code>x</code></td>
+</tr>
+<tr>
+<td><code>[=, &amp;x]</code></td>
+<td>按值捕获所有，但 <code>x</code> 按引用</td>
+</tr>
+<tr>
+<td><code>[&amp;, x]</code></td>
+<td>按引用捕获所有，但 <code>x</code> 按值</td>
+</tr>
+</tbody>
+</table>
+<p>示例：</p>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;hello lambda!&quot;</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">i</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 按引用捕获 i</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f2</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w">   </span><span class="c1">// 3-9（i 变为 4）</span>
+</code></pre></div>
+<blockquote>
+<p>按引用捕获时，Lambda 内部可以修改外部变量；按值捕获时，Lambda 内部修改的是副本，不影响外部变量。</p>
+</blockquote>
+<h2 id="stl">STL算法</h2>
+<p>STL 算法定义在 <code>&lt;algorithm&gt;</code> 和 <code>&lt;numeric&gt;</code> 头文件中，通过迭代器对容器元素进行操作，与容器类型解耦。</p>
+<h3 id="sort">sort</h3>
+<p>对区间 <code>[first, last)</code> 内的元素排序，默认升序。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">13219</span><span class="p">,</span><span class="w"> </span><span class="mi">1203</span><span class="p">,</span><span class="w"> </span><span class="mi">3213</span><span class="p">,</span><span class="w"> </span><span class="mi">4132</span><span class="p">};</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span><span class="w">  </span><span class="c1">// 升序</span>
+</code></pre></div>
+<p>自定义排序规则：传入比较函数（可调用对象），返回 <code>true</code> 表示第一个参数应排在前面。</p>
+<div class="highlight"><pre><span></span><code><span class="n">sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// 降序</span>
+</code></pre></div>
+<h3 id="count_if">count_if</h3>
+<p>统计区间 <code>[first, last)</code> 中满足谓词的元素个数。</p>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">};</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">greater_than_20</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// 1</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">greater_than_15</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">15</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// 2</span>
+</code></pre></div>
+<h3 id="accumulate">accumulate</h3>
+<p>对区间 <code>[first, last)</code> 中的元素进行累积操作，初始值为 <code>init</code>。</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;numeric&gt;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
+<span class="c1">// 默认累加</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// 0 + 1 + 2 + 3 + 4 = 10</span>
+
+<span class="c1">// 自定义累积操作：累乘</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">product</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">[](</span><span class="k">decltype</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="k">decltype</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"> </span><span class="p">});</span><span class="w">  </span><span class="c1">// 1*2*3*4 = 24</span>
+</code></pre></div>
+<blockquote>
+<p><code>accumulate</code> 的第三个参数（初始值）决定了运算的返回类型和初始状态。累乘时初始值应为 <code>1</code> 而非 <code>0</code>。
+<code>decltype(v[0])</code> 用于推导元素类型，确保 Lambda 参数类型与容器元素类型一致。</p>
+</blockquote>
+<h2 id="_10">编译建议</h2>
+<p>STL 基于模板实现，以头文件方式分发，<code>#include</code> 会导致大量代码展开。</p>
+<ul>
+<li><strong>绝对不要在工程项目中使用 <code>#include &lt;bits/stdc++.h&gt;</code></strong>（这是非标准的 GCC 扩展）</li>
+<li>只引入需要的头文件，减少编译时间</li>
+<li>C++20 引入了 Module 系统（<code>import std.core;</code>），可解决头文件编译速度问题，目前 MSVC 已率先支持</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
