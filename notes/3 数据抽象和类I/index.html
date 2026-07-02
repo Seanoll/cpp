@@ -893,6 +893,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1093,9 +1149,11 @@
   <h1>3 数据抽象和类I</h1>
 
 <h2 id="_1">抽象数据类型</h2>
-<p>抽象数据类型（Abstract Data Type，简称 ADT）是计算机科学中一个非常核心的概念。它的核心思想是<strong>封装</strong>和<strong>信息隐藏</strong>。描述内容包括：
-- 属性（property） - 关于事物数据特征
-- 方法（method）- 关于事物的行为与操作特征</p>
+<p>抽象数据类型（Abstract Data Type，简称 ADT）是计算机科学中一个非常核心的概念。它的核心思想是<strong>封装</strong>和<strong>信息隐藏</strong>。描述内容包括：</p>
+<ul>
+<li>属性（property） - 关于事物数据特征</li>
+<li>方法（method）- 关于事物的行为与操作特征</li>
+</ul>
 <h3 id="adt">ADT 的两个关键层面</h3>
 <p>一个 ADT 由两个部分组成，这体现了“接口”与“实现”的分离：</p>
 <ol>
@@ -1123,21 +1181,33 @@
 <p>同一个 ADT（如“栈”），可以用不同的数据结构（如“数组”或“链表”）来实现。选择哪种数据结构，取决于你对性能（时间/空间复杂度）的具体需求。</p>
 <h2 id="_2">类的声明</h2>
 <h3 id="_3">语法</h3>
-<p><div class="highlight"><pre><span></span><code><span class="n">类关键词</span><span class="w">  </span><span class="n">类标识符</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">类关键词</span><span class="w">  </span><span class="n">类标识符</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nl">访问说明符</span><span class="p">:</span><span class="err">（</span><span class="n">可选</span><span class="err">）</span>
 <span class="w">        </span><span class="n">数据成员声明序列</span><span class="p">;</span>
 <span class="w">        </span><span class="n">函数成员声明序列</span><span class="p">;</span>
 <span class="p">};</span>
 </code></pre></div>
-- 类关键词：class或struct或union之一
-- 访问说明符：
-  - public 公有，表示后续成员是对象使用者可访问
-  - private 私有，表示后续成员仅对象内部可访问
-  - protected 受保护，本类内部和派生类（子类）内部可以访问
-  - 不写的时候默认是private
-- 类成员：
-  - 数据成员，按声明顺序存储，对齐规则同C。一般设计中，数据成员需要隐藏保护。需要通过函数成员访问。
-  - 函数成员，公有成员可以被外部使用者访问；私有成员仅内部访问；const 函数成员不能修改数据成员。
+<ul>
+<li>
+<p>类关键词：class或struct或union之一</p>
+</li>
+<li>
+<p>访问说明符：</p>
+<ul>
+<li>public 公有，表示后续成员是对象使用者可访问</li>
+<li>private 私有，表示后续成员仅对象内部可访问</li>
+<li>protected 受保护，本类内部和派生类（子类）内部可以访问</li>
+<li>不写的时候默认是private</li>
+</ul>
+</li>
+<li>
+<p>类成员：</p>
+<ul>
+<li>数据成员，按声明顺序存储，对齐规则同C。一般设计中，数据成员需要隐藏保护。需要通过函数成员访问。</li>
+<li>函数成员，公有成员可以被外部使用者访问；私有成员仅内部访问；const 函数成员不能修改数据成员。</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DATE</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">public</span><span class="o">:</span>
 <span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="n">Set</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">);</span>
@@ -1152,7 +1222,7 @@
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="p">;</span>
 <span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">year</span><span class="p">;</span>
 <span class="p">};</span>
-</code></pre></div></p>
+</code></pre></div>
 <blockquote>
 <p>const成员函数：表示该函数不会修改对象的任何成员变量（除了被声明为 mutable的变量）。const是函数签名的一部分。带 const和不带 const被视为两个不同的函数。头文件（.h）中的函数声明带有 const修饰符，在源文件（.cpp）中的函数定义也必须有 const。</p>
 </blockquote>
@@ -1162,7 +1232,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <blockquote>
-<p>在C++中，如果类的成员函数的参数名与类的成员变量名相同，需要使用 this指针​ 或 成员初始化列表​ 来区分和正确赋值。
+<p>在C++中，如果类的成员函数的参数名与类的成员变量名相同，需要使用 this指针​ 或 成员初始化列表​ 来区分和正确赋值。</p>
+</blockquote>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 成员变量</span>
@@ -1175,32 +1246,45 @@
 <span class="w">        </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// 赋值给成员变量</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></p>
-</blockquote>
+</code></pre></div>
 <h3 id="structclass">struct和class关键字</h3>
-<p>C 语言：
-- 在纯粹的C89/C99标准C语言中，struct只能包含成员变量（数据），不能直接包含成员函数（操作）的定义。导致数据与操作的函数分离。
-- 结构体类型名称是 struct identifer</p>
-<p>C++：
-- 类关键包括 class，struct，union，除了可以包含成员变量，还可以包含成员函数
-- 类型名称就是标识符，是 xxx 不是 struct xxx
-- struct 定义的类成员默认是公有的
-- class 定义的类成员默认是私有的。除此之外，class 和 struct 语法和语义没有区别</p>
+<p>C 语言：</p>
+<ul>
+<li>在纯粹的C89/C99标准C语言中，struct只能包含成员变量（数据），不能直接包含成员函数（操作）的定义。导致数据与操作的函数分离。</li>
+<li>结构体类型名称是 struct identifer</li>
+</ul>
+<p>C++：</p>
+<ul>
+<li>类关键包括 class，struct，union，除了可以包含成员变量，还可以包含成员函数</li>
+<li>类型名称就是标识符，是 xxx 不是 struct xxx</li>
+<li>struct 定义的类成员默认是公有的</li>
+<li>class 定义的类成员默认是私有的。除此之外，class 和 struct 语法和语义没有区别</li>
+</ul>
 <h3 id="_4">内联</h3>
-<p>内联是C/C++中的一种优化机制，建议编译器将函数调用处直接替换为函数体代码，以避免函数调用的额外开销（压栈、跳转、返回等）。
-- 目的：用空间换时间。牺牲代码体积（可能膨胀），换取执行速度（消除调用开销）。
-- 方式：在函数声明前加关键字 inline。
-- 本质：对编译器的建议。编译器有权拒绝，最终是否内联由编译器优化策略决定。</p>
+<p>内联是C/C++中的一种优化机制，建议编译器将函数调用处直接替换为函数体代码，以避免函数调用的额外开销（压栈、跳转、返回等）。</p>
+<ul>
+<li>目的：用空间换时间。牺牲代码体积（可能膨胀），换取执行速度（消除调用开销）。</li>
+<li>方式：在函数声明前加关键字 inline。</li>
+<li>本质：对编译器的建议。编译器有权拒绝，最终是否内联由编译器优化策略决定。</li>
+</ul>
 <p>在类定义内直接实现的成员函数自动视为inline建议。</p>
 <h2 id="_5">类与对象</h2>
 <ul>
 <li>类</li>
 <li>是用户定义的数据类型，它表示一个 ADT。在 C++中，它有属性（数据成员）和能操作数据成员的行为（函数成员）</li>
-<li>本质上是定义一个数据类型的蓝图，或者是一个模板。并没有实际数据</li>
-<li>对象</li>
+<li>
+<p>本质上是定义一个数据类型的蓝图，或者是一个模板。并没有实际数据</p>
+</li>
+<li>
+<p>对象</p>
+</li>
 <li>类定义的变量称为对象（objects）或者类的实例（instances）</li>
-<li>自动对象或动态申请的对象的默认初始化值为不确定。</li>
-<li>客户端</li>
+<li>
+<p>自动对象或动态申请的对象的默认初始化值为不确定。</p>
+</li>
+<li>
+<p>客户端</p>
+</li>
 <li>使用类的软件称为客户端代码。</li>
 <li>客户端代码使用对象的公有方法去处理对象的数据。</li>
 </ul>

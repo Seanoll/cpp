@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://seanoll.github.io/cpp/notes/Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/">
       
       
-        <link rel="prev" href="../16%20STL/">
+        <link rel="prev" href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
       
       
       
@@ -717,6 +717,62 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1185,17 +1241,6 @@
   
     <nav class="md-nav" aria-label="25程设II-周14-课堂3">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        vector
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#to_stringc11" class="md-nav__link">
@@ -1838,17 +1883,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#vector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        vector
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#to_stringc11" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2105,21 +2139,19 @@
 </li>
 <li>
 <p>语言分类</p>
-</li>
-<li>
-<p><strong>主要面向过程</strong>：<code>C</code>, <code>Assembly</code>, <code>Fortran</code>, <code>Go</code> (偏过程)</p>
-</li>
+<ul>
+<li><strong>主要面向过程</strong>：<code>C</code>, <code>Assembly</code>, <code>Fortran</code>, <code>Go</code> (偏过程)</li>
 <li><strong>主要面向对象</strong>：<code>Java</code>, <code>C#</code>, <code>Smalltalk</code>, <code>Ruby</code></li>
-<li>
-<p><strong>多范式 (混合)</strong>：<code>C++</code>, <code>Python</code>, <code>JavaScript</code>, <code>Swift</code>, <code>Kotlin</code></p>
+<li><strong>多范式 (混合)</strong>：<code>C++</code>, <code>Python</code>, <code>JavaScript</code>, <code>Swift</code>, <code>Kotlin</code></li>
+</ul>
 </li>
 <li>
 <p>代码直觉</p>
-</li>
-<li>
-<p><strong>POP</strong>: <code>data</code> -&gt; <code>function(data)</code> -&gt; <code>result</code> (流水线)</p>
-</li>
+<ul>
+<li><strong>POP</strong>: <code>data</code> -&gt; <code>function(data)</code> -&gt; <code>result</code> (流水线)</li>
 <li><strong>OOP</strong>: <code>object.method()</code> (团队协作)</li>
+</ul>
+</li>
 </ol>
 <h3 id="vs_1">定点数表示法 浮点 vs 定点</h3>
 <ol>
@@ -2187,23 +2219,25 @@
 </li>
 <li>
 <p>关键规则</p>
-</li>
-<li>
-<p><strong>自动切换</strong>：默认模式下，数值过大/过小会自动转为科学计数法 (<code>e+</code>)。</p>
-</li>
+<ol>
+<li><strong>自动切换</strong>：默认模式下，数值过大/过小会自动转为科学计数法 (<code>e+</code>)。</li>
 <li><strong>强制定点</strong>：使用 <code>fixed</code> 可禁止科学计数法，强制显示所有小数位。</li>
 <li><strong>默认位数</strong>：在 C++ 默认状态下（未使用 setprecision 修改），fixed 模式下的默认精度是 6 位小数。</li>
+</ol>
+</li>
 </ol>
 <h3 id="q19">Q19</h3>
 <p>下述语句的输出是：
 <div class="highlight"><pre><span></span><code><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;20.26&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">20.26</span><span class="p">;</span>
-</code></pre></div>
-- 陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。<br />
-- "20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。<br />
-cout 输出该指针指向的字符串："0.26"。
+</code></pre></div></p>
+<ul>
+<li>陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。  </li>
+<li>"20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。<br />
+cout 输出该指针指向的字符串："0.26"。</li>
+</ul>
 <div class="highlight"><pre><span></span><code>0.26
 21.26
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="_1">命名冲突 变量隐蔽</h3>
 <p>下面代码在输入2以后，输出为？
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span>
@@ -2213,10 +2247,12 @@ cout 输出该指针指向的字符串："0.26"。
 <span class="w">    </span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">cout</span><span class="p">;</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">cout</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div>
-- 规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。
-- 如果你直接写 cout &lt;&lt; ... 会报错，因为整数没有 &lt;&lt; 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。
-- 输出为8</p>
+</code></pre></div></p>
+<ul>
+<li>规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。</li>
+<li>如果你直接写 cout &lt;&lt; ... 会报错，因为整数没有 &lt;&lt; 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。</li>
+<li>输出为8</li>
+</ul>
 <h2 id="25ii-2-">25程设Ⅱ-周2-理论题</h2>
 <h3 id="_2">布尔类型</h3>
 <ul>
@@ -2226,11 +2262,13 @@ cout 输出该指针指向的字符串："0.26"。
 <h3 id="q8">Q8</h3>
 <p>string::length()返回类型为 size_t，而不是 int。</p>
 <h3 id="q5">Q5</h3>
-<p>find的所有重载：
-1. find (const string&amp; str, size_t pos = 0)
-2. find (const char<em> s, size_t pos = 0)
-3. find (const char</em> s, size_t pos, size_t n)
-4. find (char c, size_t pos = 0)</p>
+<p>find的所有重载：</p>
+<ol>
+<li>find (const string&amp; str, size_t pos = 0)</li>
+<li>find (const char* s, size_t pos = 0)</li>
+<li>find (const char* s, size_t pos, size_t n)</li>
+<li>find (char c, size_t pos = 0)</li>
+</ol>
 <h2 id="25ii-4-">25程设Ⅱ-周4-理论题</h2>
 <h3 id="_3">构造析构函数个数</h3>
 <p>一个类可以拥有任意数量的构造函数，只要它们满足函数重载（Function Overloading）的规则。<br />
@@ -2307,7 +2345,7 @@ cout 输出该指针指向的字符串："0.26"。
 </ul>
 <h2 id="25ii-7-">25程设Ⅱ-周7-理论题</h2>
 <h3 id="q12_1">Q12</h3>
-<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
@@ -2321,9 +2359,11 @@ cout 输出该指针指向的字符串："0.26"。
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-- 在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。
-- 但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。
-- 因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。</p>
+<ul>
+<li>在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。</li>
+<li>但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。</li>
+<li>因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。</li>
+</ul>
 <h2 id="25ii-8-">25程设Ⅱ-周8-理论题</h2>
 <h3 id="_5">重载<code>&lt;&lt;</code>运算符</h3>
 <p>在 C++ 中，我们希望自定义对象能像内置类型一样被输出，例如 <code>cout &lt;&lt; obj</code>。</p>
@@ -2379,12 +2419,15 @@ cout 输出该指针指向的字符串："0.26"。
 </ol>
 <p>A 项：const T&amp; 确实可以绑定右值，但这只是该语法的一个附带特性，并非主要目的。</p>
 <h3 id="q18">Q18</h3>
-<p>用户自定义的赋值运算符通常会将赋值运算符（<code>operator=</code>）的返回值设计为当前类的引用（<code>T&amp;</code>）并返回 <code>*this</code>，这样设计的原因是
-1. 支持链式赋值<code>a = b = c;</code> 根据右结合性，等价于 <code>a = (b = c);</code>。
-2. 返回引用可以避免生成临时对象，从而提升性能。</p>
+<p>用户自定义的赋值运算符通常会将赋值运算符（<code>operator=</code>）的返回值设计为当前类的引用（<code>T&amp;</code>）并返回 <code>*this</code>，这样设计的原因是</p>
+<ol>
+<li>支持链式赋值<code>a = b = c;</code> 根据右结合性，等价于 <code>a = (b = c);</code>。</li>
+<li>返回引用可以避免生成临时对象，从而提升性能。</li>
+</ol>
 <h2 id="25ii-9-">25程设Ⅱ-周9-理论题</h2>
 <ul>
-<li>不仅全局函数可以做友元，别的类的成员函数也能声明为本类的友元。
+<li>
+<p>不仅全局函数可以做友元，别的类的成员函数也能声明为本类的友元。
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
 <span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">accessB</span><span class="p">(</span><span class="n">B</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
@@ -2395,17 +2438,22 @@ cout 输出该指针指向的字符串："0.26"。
 <span class="w">    </span><span class="c1">// 将 A 类的 accessB 成员函数声明为友元</span>
 <span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">A</span><span class="o">::</span><span class="n">accessB</span><span class="p">(</span><span class="n">B</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span>
 <span class="p">};</span>
-</code></pre></div></li>
-<li>任何类型都可以作为运算符重载的返回类型，建议返回类型与内建运算符提供的返回类型相匹配。但<code>operator-&gt;</code>比较特殊，C++规定它必须返回指针 或 自带<code>operator-&gt;</code>的类对象。</li>
-<li>重载 operator-&gt; 时，不能带参数。因为编译器对 <code>-&gt;</code> 有<strong>固定语法解析规则</strong>：</li>
+</code></pre></div></p>
+</li>
+<li>
+<p>任何类型都可以作为运算符重载的返回类型，建议返回类型与内建运算符提供的返回类型相匹配。但<code>operator-&gt;</code>比较特殊，C++规定它必须返回指针 或 自带<code>operator-&gt;</code>的类对象。</p>
+</li>
+<li>重载 operator-&gt; 时，不能带参数。因为编译器对 <code>-&gt;</code> 有<strong>固定语法解析规则</strong>：<ul>
 <li>如果obj是指针，直接解引用并访问member</li>
 <li>如果obj是类对象且重载了operator-&gt;，则执行obj.operator-&gt;()，然后递归应用该规则
-    <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
+  <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
 </code></pre></div>
-    会被自动翻译成：
-    <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="p">.</span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
+  会被自动翻译成：
+  <div class="highlight"><pre><span></span><code><span class="n">obj</span><span class="p">.</span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">;</span>
 </code></pre></div></li>
-<li>友元函数可以在类内部实现也可以在类外部实现</li>
+</ul>
+</li>
+<li>友元函数可以在类内部实现也可以在类外部实现，但它的本质依然是全局函数，而不是类的成员函数。</li>
 </ul>
 <h2 id="25ii-12-">25程设Ⅱ-周12-理论题</h2>
 <h3 id="q5_1">Q5</h3>
@@ -2510,85 +2558,6 @@ cout 输出该指针指向的字符串："0.26"。
 <li>getinstance返回引用的时候如果是nullptr返回new instance，返回指针返回instance（应该无所谓）</li>
 </ul>
 <h2 id="25ii-14-3">25程设II-周14-课堂3</h2>
-<h3 id="vector">vector</h3>
-<p>课内没有系统学习vector的用法，在此补充一下。</p>
-<p>使用时需要包含头文件<code>&lt;vector&gt;</code></p>
-<p><strong>创建vector</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 1. 空 vector</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v1</span><span class="p">;</span><span class="w">  </span>
-
-<span class="c1">// 2. 指定初始容量，元素默认是 0</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v2</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w">  </span>
-
-<span class="c1">// 3. 指定容量 + 初始值</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v3</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w">  </span><span class="c1">// 5 个 10</span>
-
-<span class="c1">// 4. 直接初始化元素</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
-
-<span class="c1">// 5. 用另一个 vector 初始化</span>
-<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">v5</span><span class="p">(</span><span class="n">v4</span><span class="p">);</span>
-</code></pre></div>
-<p><strong>添加元素</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 尾部添加</span>
-<span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
-
-<span class="c1">// 任意位置插入，第一个参数是迭代器</span>
-<span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w">    </span><span class="c1">// 开头插入 5</span>
-<span class="n">v</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span><span class="w">   </span><span class="c1">//在v的第1个元素（从第0个算起）的位置插入数值5，如a为1,2,3,4，插入元素后为1,5,2,3,4</span>
-</code></pre></div>
-<p><strong>访问元素</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 方法1：像数组一样用 []（推荐）</span>
-<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-
-<span class="c1">// 方法2：at() 函数（会检查越界，更安全）</span>
-<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
-
-<span class="c1">// 访问第一个元素</span>
-<span class="n">v</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
-
-<span class="c1">// 访问最后一个元素</span>
-<span class="n">v</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
-</code></pre></div>
-<p><strong>删除元素</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 删除最后一个元素</span>
-<span class="n">v</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-
-<span class="c1">// 删除指定位置元素，参数是迭代器</span>
-<span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 删除下标为 1 的元素</span>
-<span class="n">v</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">//删除v中第1个（从第0个算起）到第2个元素，也就是说删除的元素从v.begin()+1算起（包括它）一直到v.begin()+3（不包括它）</span>
-
-<span class="c1">// 清空所有元素</span>
-<span class="n">v</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-</code></pre></div>
-<p><strong>容量相关</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 获取元素个数</span>
-<span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
-
-<span class="c1">// 判断是否为空（空返回 true）</span>
-<span class="n">v</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span>
-
-<span class="c1">// 重新分配容量</span>
-<span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">//将v的现有元素个数调至10个，多则删，少则补，其值随机</span>
-<span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">//将v的现有元素个数调至10个，多则删，少则补，其值为2</span>
-</code></pre></div>
-<p><strong>遍历vector</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 方法1：普通 for 循环</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// 方法2：范围 for 循环（C++11 推荐）</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">v</span><span class="p">){</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">// 这个方法里的num不是迭代器，是容器里的元素本身！</span>
-
-<span class="c1">// 方法3：迭代器遍历</span>
-<span class="k">for</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="o">++</span><span class="p">){</span>
-<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
 <h3 id="to_stringc11">to_string函数(C++11)</h3>
 <p><code>to_string</code> 函数用于将数字转换为字符串。它可以处理多种数据类型，包括整数和浮点数。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
@@ -2649,10 +2618,12 @@ cout 输出该指针指向的字符串："0.26"。
 <span class="k">template</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
 <span class="k">template</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">decode_bits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">);</span>
 </code></pre></div></p>
-<p>原理：
-- 当 <code>main.cpp</code> 调用 <code>decode_bits&lt;int&gt;(bits)</code> 时，编译器需要看到该函数的代码才能生成对应的机器指令。但由于定义在另一个 <code>.cpp</code> 文件中，<code>main.cpp</code> 编译时并不知道实现。
-- <code>extern template</code> 告诉编译器<strong>不要在此编译单元中隐式实例化</strong>，该实例化在其他地方已存在。
-- 在 <code>.cpp</code> 中提供普通实例化（无 <code>extern</code>），强制生成代码。</p>
+<p>原理：</p>
+<ul>
+<li>当 <code>main.cpp</code> 调用 <code>decode_bits&lt;int&gt;(bits)</code> 时，编译器需要看到该函数的代码才能生成对应的机器指令。但由于定义在另一个 <code>.cpp</code> 文件中，<code>main.cpp</code> 编译时并不知道实现。</li>
+<li><code>extern template</code> 告诉编译器<strong>不要在此编译单元中隐式实例化</strong>，该实例化在其他地方已存在。</li>
+<li>在 <code>.cpp</code> 中提供普通实例化（无 <code>extern</code>），强制生成代码。</li>
+</ul>
 <p>限制：失去对任意类型的自动适配能力，只能实例化<strong>所有可能用到的模板参数组合</strong>，否则链接时会缺少符号。适用于模板参数集合有限的情况（如本题仅 int, float, double）。</p>
 <h2 id="25ii-15-2">25程设Ⅱ-周15-课后2</h2>
 <p>C++ 标准规定，在类模板外部定义成员函数模板时，必须<strong>先列出类模板的参数</strong>，然后再列出函数模板自己的参数：</p>

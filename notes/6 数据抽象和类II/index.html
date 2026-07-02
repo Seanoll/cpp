@@ -904,6 +904,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1118,19 +1174,23 @@
 <p>普通数据成员储存在栈区或者堆区。普通成员函数存储在程序的代码区，而不是对象实例中，所有对象共享同一份函数代码。如果每个对象都存储一遍成员函数，占用内存会增加。</p>
 <p><strong>静态联编</strong>：一种在<strong>编译阶段</strong>就确定函数调用与具体函数实现之间关联的机制，可以提升效率。当程序调用一个对象的方法时，编译器会根据该对象的<strong>声明类型</strong>（即变量定义时的类型），而不是它在运行时的实际类型，来决定调用哪个函数。类的普通成员函数（非虚函数）默认都采用静态联编。</p>
 <h2 id="_2">拷贝构造函数</h2>
-<p>用一个已经存在的对象来初始化一个正在创建的新对象。
+<p>用一个已经存在的对象来初始化一个正在创建的新对象。</p>
 <div class="highlight"><pre><span></span><code><span class="n">类名</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">类名</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
 </code></pre></div>
-*   <strong>为什么要用引用？</strong> 如果不用引用而是传值（不加&amp;），那么在传递参数时又会调用拷贝构造函数，导致无限递归。
-*   <strong>为什么要加 const？</strong> 为了保证在拷贝过程中，源对象的数据不会被意外修改。</p>
-<p><strong>触发时机</strong>：
-1.  <strong>对象初始化</strong>：用一个已有对象初始化新对象。
+<ul>
+<li><strong>为什么要用引用？</strong> 如果不用引用而是传值（不加&amp;），那么在传递参数时又会调用拷贝构造函数，导致无限递归。</li>
+<li><strong>为什么要加 const？</strong> 为了保证在拷贝过程中，源对象的数据不会被意外修改。</li>
+</ul>
+<p><strong>触发时机</strong>：</p>
+<ol>
+<li><strong>对象初始化</strong>：用一个已有对象初始化新对象。
     <div class="highlight"><pre><span></span><code><span class="n">MyClass</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span>
 <span class="n">MyClass</span><span class="w"> </span><span class="n">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span><span class="w"> </span><span class="n">或</span><span class="w"> </span><span class="n">MyClass</span><span class="w"> </span><span class="n">obj2</span><span class="p">(</span><span class="n">obj1</span><span class="p">);</span>
-</code></pre></div>
-2.  <strong>函数传参（按值传递）</strong>：当对象作为参数传递给函数时，会生成一个副本。
-3.  <strong>函数返回值（按值返回）</strong>：当函数返回一个对象时，通常会生成一个临时副本。</p>
-<p>注：现代编译器中，当函数返回一个命名了的局部变量时，编译器会尝试将这个局部变量直接构造在调用者的返回值内存位置上，从而避免后续的拷贝或移动。
+</code></pre></div></li>
+<li><strong>函数传参（按值传递）</strong>：当对象作为参数传递给函数时，会生成一个副本。</li>
+<li><strong>函数返回值（按值返回）</strong>：当函数返回一个对象时，通常会生成一个临时副本。</li>
+</ol>
+<p>注：现代编译器中，当函数返回一个命名了的局部变量时，编译器会尝试将这个局部变量直接构造在调用者的返回值内存位置上，从而避免后续的拷贝或移动。</p>
 <div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Test</span><span class="w"> </span><span class="p">{</span>
@@ -1150,21 +1210,27 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-在这个程序中，只调用一次构造函数和一次析构函数，不调用拷贝构造函数。
+<p>在这个程序中，只调用一次构造函数和一次析构函数，不调用拷贝构造函数。</p>
 <div class="highlight"><pre><span></span><code><span class="n">Test</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span>
 <span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createObject</span><span class="p">();</span>
 </code></pre></div>
-如果这样写，obj 已经存在，只能接受“赋值”，无法享受 NRVO 的就地构造福利。但仍然不调用拷贝构造函数，因为这里会调用赋值运算符 = 。</p>
-<p><strong>含指针成员的类通常应重写以下内容：</strong>
-- 构造函数（及拷贝构造函数）中分配内存,深复制策略
-- = 操作重写，完成对象深复制策略
-- 析构函数中释放内存</p>
-<p><strong>浅拷贝</strong>：
-*   <strong>默认行为</strong>：如果你不写拷贝构造函数，编译器会送你一个默认的。它只会<strong>按字节</strong>复制内存中的数据。
-*   <strong>问题</strong>：如果类中有指针成员（指向堆区内存），浅拷贝只会复制指针的地址。这意味着两个对象会指向<strong>同一块内存</strong>。当这两个对象析构时，同一块内存会被释放两次（Double Free），导致程序崩溃。</p>
-<p><strong>深拷贝</strong>：
-*   <strong>自定义行为</strong>：你需要自己编写拷贝构造函数。
-*   <strong>做法</strong>：不仅复制指针的地址，还要<strong>重新分配一块内存</strong>，并将原内存中的数据复制过去。这样两个对象就完全独立，互不干扰。</p>
+<p>如果这样写，obj 已经存在，只能接受“赋值”，无法享受 NRVO 的就地构造福利。但仍然不调用拷贝构造函数，因为这里会调用赋值运算符 = 。</p>
+<p><strong>含指针成员的类通常应重写以下内容：</strong></p>
+<ul>
+<li>构造函数（及拷贝构造函数）中分配内存,深复制策略</li>
+<li>= 操作重写，完成对象深复制策略</li>
+<li>析构函数中释放内存</li>
+</ul>
+<p><strong>浅拷贝</strong>：</p>
+<ul>
+<li><strong>默认行为</strong>：如果你不写拷贝构造函数，编译器会送你一个默认的。它只会<strong>按字节</strong>复制内存中的数据。</li>
+<li><strong>问题</strong>：如果类中有指针成员（指向堆区内存），浅拷贝只会复制指针的地址。这意味着两个对象会指向<strong>同一块内存</strong>。当这两个对象析构时，同一块内存会被释放两次（Double Free），导致程序崩溃。</li>
+</ul>
+<p><strong>深拷贝</strong>：</p>
+<ul>
+<li><strong>自定义行为</strong>：你需要自己编写拷贝构造函数。</li>
+<li><strong>做法</strong>：不仅复制指针的地址，还要<strong>重新分配一块内存</strong>，并将原内存中的数据复制过去。这样两个对象就完全独立，互不干扰。</li>
+</ul>
 <p><strong>=运算符重载</strong>：
 <div class="highlight"><pre><span></span><code><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
@@ -1192,57 +1258,77 @@
 <li><strong>const 引用遇到类型不匹配时，会生成临时变量绑定</strong></li>
 </ol>
 <h4 id="1-const">1. <code>const</code> 引用延长临时对象的生命周期</h4>
-<p>在 C++ 中，你不能将一个<strong>非常量引用</strong>绑定到一个<strong>右值</strong>上，<code>int&amp;</code> 不能绑字面量 <code>15</code>，因为右值是临时的，不能被修改。当你写 <code>const int &amp;c = 15;</code> 时，编译器会做两件事：
-1.  创建一个临时的匿名变量（例如 <code>temp</code>）来存储 <code>15</code>。
-2.  让引用 <code>c</code> 指向这个临时变量。</p>
+<p>在 C++ 中，你不能将一个<strong>非常量引用</strong>绑定到一个<strong>右值</strong>上，<code>int&amp;</code> 不能绑字面量 <code>15</code>，因为右值是临时的，不能被修改。当你写 <code>const int &amp;c = 15;</code> 时，编译器会做两件事：</p>
+<ol>
+<li>创建一个临时的匿名变量（例如 <code>temp</code>）来存储 <code>15</code>。</li>
+<li>让引用 <code>c</code> 指向这个临时变量。</li>
+</ol>
 <p><code>const</code> 引用会<strong>延长</strong>这个临时变量的生命周期，使其在当前作用域一直有效。</p>
 <h4 id="2-const">2. <code>const</code> 引用的“只读”特性</h4>
-<p><code>const</code> 引用的本质是“只读视图”。
-* <code>const int &amp;a = b;</code> 让 <code>a</code> 成为 <code>b</code> 的别名。
-*   你不能通过 <code>a</code> 去修改 <code>b</code>（<code>a = 12</code> 会报错），因为 <code>a</code> 是 <code>const</code> 的。
-*   但是直接修改 <code>b</code>，<code>a</code> 的值也会跟着变。</p>
+<p><code>const</code> 引用的本质是“只读视图”。</p>
+<ul>
+<li><code>const int &amp;a = b;</code> 让 <code>a</code> 成为 <code>b</code> 的别名。</li>
+<li>你不能通过 <code>a</code> 去修改 <code>b</code>（<code>a = 12</code> 会报错），因为 <code>a</code> 是 <code>const</code> 的。</li>
+<li>但是直接修改 <code>b</code>，<code>a</code> 的值也会跟着变。</li>
+</ul>
 <p><code>const</code> 保护的是<strong>引用本身</strong>，而不是原始数据（原始数据可以通过其他非 const 的途径被修改）。</p>
 <h4 id="3">3. 隐式类型转换与临时对象</h4>
-<p>当引用的类型与初始化值的类型不匹配时（<code>const int &amp;</code> 初始化为 <code>double</code>），编译器会介入。<strong>类型不匹配 → 生成临时变量</strong>
+<p>当引用的类型与初始化值的类型不匹配时（<code>const int &amp;</code> 初始化为 <code>double</code>），编译器会介入。<strong>类型不匹配 → 生成临时变量</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
 <span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span>
 <span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
 </code></pre></div>
-- <code>double</code> → <code>int</code> 要转换
-- 编译器生成<strong>临时 int</strong>
-- <code>a</code> 绑的是<strong>临时变量</strong>，不是 <code>b</code>
-- 所以 <code>b</code> 改成 11，<code>a</code> 还是 3</p>
+<ul>
+<li><code>double</code> → <code>int</code> 要转换</li>
+<li>编译器生成<strong>临时 int</strong></li>
+<li><code>a</code> 绑的是<strong>临时变量</strong>，不是 <code>b</code></li>
+<li>所以 <code>b</code> 改成 11，<code>a</code> 还是 3</li>
+</ul>
 <h4 id="4">4. 函数参数传递的规则</h4>
-<p><code>const</code> 引用作为参数既能接收<strong>左值</strong>（具名变量），也能接收<strong>右值</strong>（字面量、临时对象）。
+<p><code>const</code> 引用作为参数既能接收<strong>左值</strong>（具名变量），也能接收<strong>右值</strong>（字面量、临时对象）。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">const_ref_in_para</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">const_ref_in_para</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-*   <strong>例子</strong>：
-    *   <code>const_ref_in_para("I love c++");</code>：字符串字面量是右值，编译器会构造一个临时 <code>string</code> 对象传给它。
-    *   <code>const_ref_in_para(3.14);</code>：<code>double</code> 转 <code>int</code> 产生了临时对象。
-*   <strong>优势</strong>：通用性强，且避免了拷贝大对象的开销。</p>
-<p>非 <code>const</code> 引用作为参数只能接收<strong>非 const 的左值</strong>。
+<ul>
+<li>
+<p><strong>例子</strong>：</p>
+<ul>
+<li><code>const_ref_in_para("I love c++");</code>：字符串字面量是右值，编译器会构造一个临时 <code>string</code> 对象传给它。</li>
+<li><code>const_ref_in_para(3.14);</code>：<code>double</code> 转 <code>int</code> 产生了临时对象。</li>
+</ul>
+</li>
+<li>
+<p><strong>优势</strong>：通用性强，且避免了拷贝大对象的开销。</p>
+</li>
+</ul>
+<p>非 <code>const</code> 引用作为参数只能接收<strong>非 const 的左值</strong>。</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">no_const_ref_in_para</span><span class="p">(</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 <span class="kt">int</span><span class="w"> </span><span class="nf">no_const_ref_in_para</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
-<code>no_const_ref_in_para("I love c++");</code>和<code>no_const_ref_in_para(3.14);</code> 会报错。因为类型转换产生的也是临时对象（右值）。</p>
+<p><code>no_const_ref_in_para("I love c++");</code>和<code>no_const_ref_in_para(3.14);</code> 会报错。因为类型转换产生的也是临时对象（右值）。</p>
 <h3 id="const_2">const成员</h3>
 <h4 id="const_3">const数据成员</h4>
 <p>用<code>const</code>修饰的类成员变量，不能在构造函数体内赋值，只能通过<strong>成员初始化列表</strong>完成初始化。</p>
 <h4 id="const_4">const成员函数</h4>
-<p><strong>不能修改非静态成员变量</strong>
-- 函数内不能调用非const成员函数（因为非const函数可能修改对象）
+<p><strong>不能修改非静态成员变量</strong></p>
+<ul>
+<li>函数内不能调用非const成员函数（因为非const函数可能修改对象）</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-</code></pre></div></p>
-<p><strong>this指针的本质变化</strong>
-- 普通成员函数的<code>this</code>：<code>A* const</code>（可修改指向的对象）
-- const成员函数的<code>this</code>：<code>const A* const</code>（不可修改指向的对象，只读）</p>
-<p><strong>const对象只能调用const成员函数</strong>
-- 用<code>const</code>修饰的对象，<strong>只能调用const成员函数</strong>，不能调用非const成员函数（因为非const函数可能修改对象，违反const语义）
+</code></pre></div>
+<p><strong>this指针的本质变化</strong></p>
+<ul>
+<li>普通成员函数的<code>this</code>：<code>A* const</code>（可修改指向的对象）</li>
+<li>const成员函数的<code>this</code>：<code>const A* const</code>（不可修改指向的对象，只读）</li>
+</ul>
+<p><strong>const对象只能调用const成员函数</strong></p>
+<ul>
+<li>用<code>const</code>修饰的对象，<strong>只能调用const成员函数</strong>，不能调用非const成员函数（因为非const函数可能修改对象，违反const语义）</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span><span class="w">  </span><span class="c1">// const对象</span>
 <span class="n">obj</span><span class="p">.</span><span class="n">print</span><span class="p">();</span><span class="w">  </span><span class="c1">// 合法：print是const成员函数</span>
 <span class="c1">// obj.set(10);  // 编译报错：set是非const成员函数</span>
-</code></pre></div></p>
+</code></pre></div>
 <p><strong>const成员函数仅可修改<code>mutable</code>修饰的成员变量</strong>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
 <span class="k">private</span><span class="o">:</span>

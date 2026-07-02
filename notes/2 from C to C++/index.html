@@ -890,6 +890,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1091,13 +1147,23 @@
 </ul>
 <h2 id="_2">字符串</h2>
 <ul>
-<li>C++提供了两种类型的字符串表示形式：</li>
+<li>
+<p>C++提供了两种类型的字符串表示形式：</p>
+<ul>
 <li>C风格字符串</li>
 <li>C++的string类 类型</li>
-<li>为什么要引入string类型的对象？</li>
+</ul>
+</li>
+<li>
+<p>为什么要引入string类型的对象？</p>
+<ul>
 <li>C风格字符串定义时，必须事先知道保留多大空间存储字符串</li>
 <li>使用malloc动态空间处理字符串，对一般程序员来说太复杂，非常容易出现bug</li>
-<li>在C++中，<strong>string类</strong>​ 是标准库（\&lt;string&gt;头文件）提供的一个字符串类，用于方便、安全地处理和操作字符串。</li>
+</ul>
+</li>
+<li>
+<p>在C++中，<strong>string类</strong>​ 是标准库（\&lt;string&gt;头文件）提供的一个字符串类，用于方便、安全地处理和操作字符串。</p>
+</li>
 </ul>
 <h2 id="string_1">创建string对象</h2>
 <ul>
@@ -1106,43 +1172,77 @@
 </ul>
 <h2 id="string_2">string对象的运算</h2>
 <ul>
-<li>string类实现了以下运算符的重载：</li>
+<li>string类实现了以下运算符的重载：<ul>
 <li>联接运算：operator+，连接两个字符串或者一个字符串和一个字符</li>
 <li>比较运算：operator==,!=,&lt;,&lt;=,&gt;,&gt;=，以字典序比较两个字符串</li>
 <li>下标运算：operator[]，访问指定字符，返回指定字符引用，即<strong>可作为左值</strong></li>
 <li>赋值运算：operator=,+=，右操作数可以使字符串，字符，C字符串，字符数组</li>
 </ul>
+</li>
+</ul>
 <h2 id="string_3">string对象操作</h2>
 <ul>
-<li>基本操作：length/size, c_str</li>
+<li>
+<p>基本操作：length/size, c_str</p>
+<ul>
 <li><code>length()</code> 返回类型 size_t 的字符串的长度</li>
 <li><code>c_str()</code> 返回类型 const char * 的 C 风格字符串。以null结束</li>
-<li>查找：find, rfind</li>
+</ul>
+</li>
+<li>
+<p>查找：find, rfind</p>
+<ul>
 <li><code>find(string|char*|char s [,int pos=0])</code> 寻找首个等于给定字符序列的子串。搜索始于  pos，返回类型 size_t 的位置。rfind 从右边开始搜索</li>
-<li>添加，插入，删除：append, insert, erase, clear </li>
+</ul>
+</li>
+<li>
+<p>添加，插入，删除：append, insert, erase, clear </p>
+<ul>
 <li><code>append(string)</code> 后附 string str</li>
 <li><code>append(int count, char ch)</code> 后附 count 个字符 ch</li>
 <li><code>insert(int index, int count, char ch)</code> 在 index 位置插入 count 个 ch</li>
 <li><code>insert(int index,  string|char* s)</code> 在 index 位置插入 s</li>
 <li><code>erase(int   index, int   count)</code> 删 除 从 index 开始的 count 个字符</li>
 <li><code>clear()</code> 清空</li>
-<li>提取子字符串：substr</li>
+</ul>
+</li>
+<li>
+<p>提取子字符串：substr</p>
+<ul>
 <li><code>substr(int pos,  int  count)</code> 返回子串对象</li>
-<li>比较：compare</li>
+</ul>
+</li>
+<li>
+<p>比较：compare</p>
+<ul>
 <li><code>compare(string|char* str)</code> 与str比较，返回 1，0，-1之一</li>
-<li>替换：replace</li>
+</ul>
+</li>
+<li>
+<p>替换：replace</p>
+<ul>
 <li><code>replace(int pos, int count, string|char*|char s)</code> 替换指定范围内容，实际操作时发现：如果用的是char来替换，还需要在count后增加一个参数count2，为用来替换的长度</li>
-<li>复制与交换：copy, swap</li>
+</ul>
+</li>
+<li>
+<p>复制与交换：copy, swap</p>
+<ul>
 <li><code>copy(string|char*  dest,  int  pos,  int count)</code> 将子串复制到目标对象</li>
 <li><code>swap(string other)</code> 与 other 交换内容 </li>
-<li>数值转换（C++11）：stoi, stod</li>
+</ul>
+</li>
+<li>
+<p>数值转换（C++11）：stoi, stod</p>
+</li>
 </ul>
 <h2 id="_3">补充</h2>
-<p><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div>
-- 如果只输入了一个字符，输出将会出现很长的乱码，因为s.length()返回的是无符号整数，如果在减2之后变成负数，会自动转换成对应的无符号整数（值很大），所以会输出乱码。
+<ul>
+<li>如果只输入了一个字符，输出将会出现很长的乱码，因为s.length()返回的是无符号整数，如果在减2之后变成负数，会自动转换成对应的无符号整数（值很大），所以会输出乱码。</li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 对 c 进行操作</span>
 <span class="p">}</span>
@@ -1152,15 +1252,23 @@
 <span class="w">    </span><span class="c1">// 使用 c</span>
 <span class="p">}</span>
 </code></pre></div>
-- for (auto c : s)是 C++11 引入的基于范围的 for 循环，用于遍历容器或数组中的所有元素。</p>
+<ul>
+<li>for (auto c : s)是 C++11 引入的基于范围的 for 循环，用于遍历容器或数组中的所有元素。</li>
+</ul>
 <h2 id="_4">函数重载</h2>
 <ul>
-<li>在C语言中，一个函数只能定义一个函数名以及相关形参。C++ 则允许<strong>多个函数拥有相同的名字</strong>，只要它们的<strong>参数列表不同</strong>就可以，这就是<strong>函数的重载（Function Overloading）</strong>。借助重载，一个函数名可以有多种用途。</li>
+<li>
+<p>在C语言中，一个函数只能定义一个函数名以及相关形参。C++ 则允许<strong>多个函数拥有相同的名字</strong>，只要它们的<strong>参数列表不同</strong>就可以，这就是<strong>函数的重载（Function Overloading）</strong>。借助重载，一个函数名可以有多种用途。</p>
+<ol>
 <li>函数名相同。</li>
 <li>参数列表必须不同（这是重载的关键）。</li>
 <li>返回类型可以相同也可以不同，但仅返回类型不同不足以构成重载。</li>
 <li>重载发生在同一作用域（通常是同一个类或同一个命名空间内）。</li>
-<li>参数列表不同的三种情况<ol>
+</ol>
+</li>
+<li>
+<p>参数列表不同的三种情况</p>
+<ol>
 <li>参数类型不同</li>
 <li>参数个数不同</li>
 <li>参数顺序不同（当类型不同时）</li>
@@ -1179,7 +1287,7 @@
 <li>使用 getline 读入字符串到 s：<code>getline(cin,s)</code>可以读入一行，而<code>cin&gt;&gt;s</code>遇到空格就停止了</li>
 </ul>
 <h2 id="constconstexpr">const和constexpr</h2>
-<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;array&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">dis_1</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
@@ -1198,13 +1306,25 @@
 <span class="w">    </span><span class="n">dis_2</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-- C语言中 const 关键字限定类型变量不可修改。在上示例代码中，dis_1() 和 dis_2() 函数中都包含一个 const int x，但 dis_1() 函数中的 x 无法完成初始化 array 容器的任务，而 dis_2() 函数中的 x 却可以。因为 const 语义有两个：
-  - 限定为不可修改（只读）变量
-  - 限定作为常量或字面量
-- C++11 标准新添加的关键字 constexpr，声明编译时可以对函数或变量求值。即
-  - 限定为常量表达式
-  - 限定为编译时可优化执行的函数
-- C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。</p>
+<ul>
+<li>
+<p>C语言中 const 关键字限定类型变量不可修改。在上示例代码中，dis_1() 和 dis_2() 函数中都包含一个 const int x，但 dis_1() 函数中的 x 无法完成初始化 array 容器的任务，而 dis_2() 函数中的 x 却可以。因为 const 语义有两个：</p>
+<ul>
+<li>限定为不可修改（只读）变量</li>
+<li>限定作为常量或字面量</li>
+</ul>
+</li>
+<li>
+<p>C++11 标准新添加的关键字 constexpr，声明编译时可以对函数或变量求值。即</p>
+<ul>
+<li>限定为常量表达式</li>
+<li>限定为编译时可优化执行的函数</li>
+</ul>
+</li>
+<li>
+<p>C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。</p>
+</li>
+</ul>
 <h2 id="auto">auto</h2>
 <ul>
 <li>auto的原理就是根据初始化的表达式，在编译期间根据表达式类型自动推导出对象的类型。auto的作用就是为了简化变量初始化，如果这个变量有初始化表达式，就可以用auto代替类型声明。例如：

@@ -876,6 +876,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1060,9 +1116,11 @@
 
 <h3 id="_1">运算符重载的方式</h3>
 <h4 id="_2">类内定义 (成员函数方式)</h4>
-<p>将运算符重载函数定义在类的内部。
-- 对于二元运算符（如 +, -, *, /），左操作数是通过 this 指针隐式传递的，所以函数只需要显式接收一个参数（右操作数）。
-- 单目运算符（如负号 -、自增 ++）通常都定义为成员函数。</p>
+<p>将运算符重载函数定义在类的内部。</p>
+<ul>
+<li>对于二元运算符（如 +, -, *, /），左操作数是通过 this 指针隐式传递的，所以函数只需要显式接收一个参数（右操作数）。</li>
+<li>单目运算符（如负号 -、自增 ++）通常都定义为成员函数。</li>
+</ul>
 <h4 id="_3">类外定义 (全局/友元函数方式)</h4>
 <ul>
 <li>对于二元运算符，函数必须接收两个参数（左操作数和右操作数）。</li>
@@ -1134,11 +1192,13 @@
 <li><code>sizeof</code>（包括除了<code>new</code>, <code>delete</code>之外的关键字运算符，比如<code>alignof</code>, <code>typeid</code>等）</li>
 <li><code>#</code>（预处理符号）</li>
 </ul>
-<p>注意：
-- 不能创建新运算符，例如 <strong>（C++没有这个幂运算符）、&lt;&gt; 或 &amp;|。
-- 运算符 &amp;&amp; 与 || 的重载失去短路求值。
-- 重载的运算符 -&gt; 必须要么返回裸指针，要么（按引用或值）返回同样重载了运算符 -&gt; 的对象。
-- </strong>不可能更改运算符的优先级、结合方向或操作数的数量**(常考)。</p>
+<p>注意：</p>
+<ul>
+<li>不能创建新运算符，例如 **（C++没有这个幂运算符）、&lt;&gt; 或 &amp;|。</li>
+<li>运算符 &amp;&amp; 与 || 的重载失去短路求值。</li>
+<li>重载的运算符 -&gt; 必须要么返回裸指针，要么（按引用或值）返回同样重载了运算符 -&gt; 的对象。</li>
+<li><strong>不可能更改运算符的优先级、结合方向或操作数的数量</strong>(常考)。</li>
+</ul>
 <h3 id="_6">普通运算符重载</h3>
 <table>
 <thead>
@@ -1196,8 +1256,9 @@
 </table>
 <ul>
 <li>部分情况下，需要返回左值对象，可使用 T&amp; 作为返回值。例如 operator&lt;&lt; 和 operator&gt;&gt; 作为流插入和流提取的重载所返回的是 T&amp;</li>
-<li>T2 可以是包括 T 在内的任何类型
-<div class="highlight"><pre><span></span><code><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
+<li>T2 可以是包括 T 在内的任何类型</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="n">Integer</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Integer</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Integer</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">Int</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1205,8 +1266,7 @@
 <span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// 报错，4 + 不会调用重载的运算符</span>
 <span class="c1">//若重载函数的参数改成Integer&amp; Int，则第一个会报错，因为4是右值（见上一课的笔记）</span>
 <span class="c1">//若改成Integer，则第一个不报错，因为按值传递，可以转换</span>
-</code></pre></div></li>
-</ul>
+</code></pre></div></p>
 <h3 id="_7">自增运算符</h3>
 <ul>
 <li>若为前缀自增运算符，直接重载。</li>
@@ -1250,7 +1310,8 @@
 </table>
 <ul>
 <li>内建运算符的前置版本返回引用，后置版本返回值，用户重载要和原生 int 的行为保持一致。</li>
-<li>后缀的int参数在调用时，编译器会自动传递 0 给它。虽然用户也可以手动调用（例如 <code>a.operator++(2)</code>），但这通常没有实际意义，只是为了语法上的可行性。
+<li>
+<p>后缀的int参数在调用时，编译器会自动传递 0 给它。虽然用户也可以手动调用（例如 <code>a.operator++(2)</code>），但这通常没有实际意义，只是为了语法上的可行性。
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Integer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
 <span class="k">public</span><span class="o">:</span>
@@ -1269,8 +1330,11 @@
 <span class="w">        </span><span class="c1">// return temp; </span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">};</span>
-</code></pre></div></li>
-<li>前缀运算符，先增后用，一般返回增后的对象的引用（左值）</li>
+</code></pre></div></p>
+</li>
+<li>
+<p>前缀运算符，先增后用，一般返回增后的对象的引用（左值）</p>
+</li>
 <li>后缀运算符，先用后增，先建立原始对象的副本再自增，一般
 返回副本对象（右值）</li>
 </ul>
@@ -1357,8 +1421,9 @@
 <ul>
 <li>浅拷贝赋值</li>
 <li>深拷贝赋值</li>
-<li>移动赋值：这是C++11引入的的新特性，通过自定义 operator=(T&amp;&amp;) 来重载，专门处理右值。直接转移资源所有权到新对象，源对象指针置空。
-<div class="highlight"><pre><span></span><code><span class="c1">// 深拷贝赋值运算符 官方标准完整实现</span>
+<li>移动赋值：这是C++11引入的的新特性，通过自定义 operator=(T&amp;&amp;) 来重载，专门处理右值。直接转移资源所有权到新对象，源对象指针置空。</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// 深拷贝赋值运算符 完整实现</span>
 <span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="c1">// 1. 自赋值检查</span>
@@ -1402,14 +1467,15 @@
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<code>std::move</code>本身并不执行任何移动操作，它只是将一个对象无条件地转换为“右值引用”。如果你有一个左值（比如 <code>MyClass a</code>;），默认情况下它只能调用拷贝构造函数。如果你想让它调用移动构造函数（以节省性能），你就必须把它强制转换成右值引用。</li>
+</code></pre></div></p>
+<p><code>std::move</code>本身并不执行任何移动操作，它只是将一个对象无条件地转换为“右值引用”。如果你有一个左值（比如 <code>MyClass a</code>;），默认情况下它只能调用拷贝构造函数。如果你想让它调用移动构造函数（以节省性能），你就必须把它强制转换成右值引用。</p>
+<p>C++ 依靠参数类型来区分重载函数。</p>
+<ul>
+<li>如果你写 <code>operator=(const T&amp; other)</code>，这是<strong>拷贝赋值</strong>。它适用于所有对象，但它会进行深拷贝。</li>
+<li>如果你写 <code>operator=(T&amp;&amp; other)</code>，这是<strong>移动赋值</strong>。它<strong>只</strong>匹配右值（临时对象）。</li>
+<li><strong>如果不加 <code>&amp;&amp;</code>（只用 <code>&amp;</code>）</strong>：编译器会认为这是一个普通变量的引用。你不能把一个临时对象（右值）绑定到一个非常量左值引用上（这是 C++ 的安全机制，防止你意外修改一个临时变量然后发现结果丢失了）。</li>
+<li><strong>加上 <code>&amp;&amp;</code></strong>：编译器就知道“用户专门写了一个函数来处理临时对象”，于是当代码中出现 <code>obj = getObject()</code> 时，编译器会优先调用这个移动赋值版本。</li>
 </ul>
-<p>C++ 依靠参数类型来区分重载函数。
-- 如果你写 <code>operator=(const T&amp; other)</code>，这是<strong>拷贝赋值</strong>。它适用于所有对象，但它会进行深拷贝。
-- 如果你写 <code>operator=(T&amp;&amp; other)</code>，这是<strong>移动赋值</strong>。它<strong>只</strong>匹配右值（临时对象）。
-- <strong>如果不加 <code>&amp;&amp;</code>（只用 <code>&amp;</code>）</strong>：编译器会认为这是一个普通变量的引用。你不能把一个临时对象（右值）绑定到一个非常量左值引用上（这是 C++ 的安全机制，防止你意外修改一个临时变量然后发现结果丢失了）。
-- <strong>加上 <code>&amp;&amp;</code></strong>：编译器就知道“用户专门写了一个函数来处理临时对象”，于是当代码中出现 <code>obj = getObject()</code> 时，编译器会优先调用这个移动赋值版本。</p>
 
 
 

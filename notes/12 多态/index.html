@@ -843,6 +843,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1000,15 +1056,19 @@
 </ul>
 <h3 id="overrideoverwrite">override和overwrite的区别</h3>
 <p><strong>override（覆盖）</strong>
-<strong>必须满足 3 个条件：</strong>
-1. <strong>基类函数必须有 <code>virtual</code></strong>
-2. 子类函数 <strong>和父类完全一样</strong>（名字、参数、返回值、const）
-3. 发生在 <strong>继承 + 虚函数</strong> 中</p>
+<strong>必须满足 3 个条件：</strong></p>
+<ol>
+<li><strong>基类函数必须有 <code>virtual</code></strong></li>
+<li>子类函数 <strong>和父类完全一样</strong>（名字、参数、返回值、const）</li>
+<li>发生在 <strong>继承 + 虚函数</strong> 中</li>
+</ol>
 <p><strong>作用：实现多态</strong></p>
 <p><strong>overwrite（隐藏）</strong>
-<strong>只要满足 1 个条件：</strong>
-1. <strong>子类和父类函数同名</strong>
-（不管参数是否相同，<strong>只要没有 virtual</strong>）</p>
+<strong>只要满足 1 个条件：</strong></p>
+<ul>
+<li><strong>子类和父类函数同名</strong>
+（不管参数是否相同，<strong>只要没有 virtual</strong>）</li>
+</ul>
 <p><strong>作用：子类把父类函数藏起来，不让你调用</strong></p>
 <h2 id="_2">右值引用</h2>
 <p><strong>右值引用</strong>（Rvalue Reference）是 C++11 引入的核心特性，语法是 <code>T&amp;&amp;</code>。它本质上是一种<strong>绑定到临时对象（右值）的引用</strong>，目的是<strong>"偷走"临时对象的资源</strong>而不是拷贝它们。</p>

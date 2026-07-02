@@ -1025,6 +1025,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
         
   
@@ -1381,7 +1437,7 @@
 <ul>
 <li>动态变量（对象），由stdlib.h管理</li>
 </ul>
-<p><img alt="" src="https://raw.githubusercontent.com/Seanoll/imagebed/main/image.png" /></p>
+<p><img alt="" src="https://github.sysumsc.cn/https://raw.githubusercontent.com/Seanoll/imagebed/main/image.png" /></p>
 <h3 id="_4">总结</h3>
 <p>从低地址到高地址：</p>
 <ol>
@@ -1399,7 +1455,8 @@
 <ul>
 <li>必须<code>#include&lt;stdlib.h&gt;</code></li>
 <li>申请空间<code>void * malloc(size_t)</code></li>
-<li>释放空间<code>void free(void *)</code>
+<li>释放空间<code>void free(void *)</code></li>
+</ul>
 <div class="highlight"><pre><span></span><code><span class="n">Point</span><span class="w"> </span><span class="o">*</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
 
 <span class="n">Point</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p2</span><span class="p">)[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
@@ -1419,8 +1476,7 @@
 <span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">p3</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 <span class="p">}</span>
 <span class="n">free</span><span class="p">(</span><span class="n">p3</span><span class="p">);</span><span class="c1">//先释放行数组，再释放指针的指针</span>
-</code></pre></div></li>
-</ul>
+</code></pre></div>
 <h2 id="new">new运算符</h2>
 <ol>
 <li><strong>指针 = new 类型名</strong></li>
