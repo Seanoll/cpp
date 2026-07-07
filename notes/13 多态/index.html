@@ -1110,9 +1110,11 @@
 <p>沿继承层级向上、向下及侧向，安全地转换到其他类的指针和引用。</p>
 <div class="highlight"><pre><span></span><code><span class="k">dynamic_cast</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">新类型</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">表达式</span><span class="w"> </span><span class="p">)</span>
 </code></pre></div>
-<p>若转型失败:
-- 且 新类型 是指针类型，则它返回该类型的空指针。
-- 且 新类型 是引用类型，则它抛出与类型 <code>std::bad_cast</code> 的处理块匹配的异常。</p>
+<p>若转型失败:</p>
+<ul>
+<li>且 新类型 是指针类型，则它返回该类型的空指针。</li>
+<li>且 新类型 是引用类型，则它抛出与类型 <code>std::bad_cast</code> 的处理块匹配的异常。</li>
+</ul>
 <h2 id="final-c11">final说明符 (C++11)</h2>
 <p>指定某个虚函数不能在子类中被覆盖，或者某个类不能被子类继承。</p>
 <ol>
