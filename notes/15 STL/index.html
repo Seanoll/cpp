@@ -1507,7 +1507,7 @@
 </code></pre></div>
 <h3 id="_1">反向迭代器</h3>
 <p>对普通迭代器做封装，实现<strong>从容器尾部向前遍历</strong>的迭代器，遍历方向与正向迭代器相反。</p>
-<p>STL 中通过 <code>reverse_iterator</code> 模板实现，所有标准容器都提供 <code>rbegin()</code>、<code>rend()</code> 两个成员函数获取反向迭代器。</p>
+<p>STL 中通过 <code>reverse_iterator</code> 模板实现，提供 <code>rbegin()</code>、<code>rend()</code> 两个成员函数获取反向迭代器。</p>
 <ul>
 <li><code>rbegin()</code>：指向<strong>最后一个元素</strong></li>
 <li><code>rend()</code>：指向<strong>首元素的前一个位置</strong></li>
@@ -1525,7 +1525,7 @@
 <li>无序关联容器</li>
 <li>容器适配器</li>
 </ol>
-<p><img alt="" src="https://raw.githubusercontent.com/Seanoll/imagebed/main/20260615150331506.png" /></p>
+<p><img alt="" src="https://github.sysumsc.cn/https://raw.githubusercontent.com/Seanoll/imagebed/main/20260615150331506.png" /></p>
 <h2 id="_3">顺序容器</h2>
 <h3 id="_4">简介</h3>
 <p>顺序容器（Sequence Container，序列式容器）是按元素插入的先后顺序线性存储的容器</p>
@@ -1683,6 +1683,7 @@
 </tr>
 </tbody>
 </table>
+<p><code>forward_list</code> 不提供 <code>rbegin()</code> 和 <code>rend()</code></p>
 <h3 id="_8">插入元素</h3>
 <table>
 <thead>
