@@ -14,15 +14,13 @@
     | **场景** | 嵌入式、脚本、底层驱动 | 大型系统、GUI、游戏、企业应用 |
 
 2. 语言分类
-
-- **主要面向过程**：`C`, `Assembly`, `Fortran`, `Go` (偏过程)
-- **主要面向对象**：`Java`, `C#`, `Smalltalk`, `Ruby`
-- **多范式 (混合)**：`C++`, `Python`, `JavaScript`, `Swift`, `Kotlin`
+      - **主要面向过程**：`C`, `Assembly`, `Fortran`, `Go` (偏过程)
+      - **主要面向对象**：`Java`, `C#`, `Smalltalk`, `Ruby`
+      - **多范式 (混合)**：`C++`, `Python`, `JavaScript`, `Swift`, `Kotlin`
 
 3. 代码直觉
-
-- **POP**: `data` -> `function(data)` -> `result` (流水线)
-- **OOP**: `object.method()` (团队协作)
+      - **POP**: `data` -> `function(data)` -> `result` (流水线)
+      - **OOP**: `object.method()` (团队协作)
 
 ### 定点数表示法 浮点 vs 定点
 
@@ -43,18 +41,19 @@
     | **定点** | `cout << fixed << setprecision(6) << val;` | **小数点后位数** | `12.345670` (补零凑齐) |
 
 3. 关键规则
-
-   1.  **自动切换**：默认模式下，数值过大/过小会自动转为科学计数法 (`e+`)。
-   2.  **强制定点**：使用 `fixed` 可禁止科学计数法，强制显示所有小数位。
-   3.  **默认位数**：在 C++ 默认状态下（未使用 setprecision 修改），fixed 模式下的默认精度是 6 位小数。
+      1.  **自动切换**：默认模式下，数值过大/过小会自动转为科学计数法 (`e+`)。
+      2.  **强制定点**：使用 `fixed` 可禁止科学计数法，强制显示所有小数位。
+      3.  **默认位数**：在 C++ 默认状态下（未使用 setprecision 修改），fixed 模式下的默认精度是 6 位小数。
 ### Q19
 下述语句的输出是：
 ```cpp
 cout << 1 + "20.26" << endl << 1 + 20.26;
 ```
+
 - 陷阱：很多人以为 1 + "string" 会报错或进行字符串拼接，但实际上它执行的是指针偏移。  
 - "20.26" 内存布局：['2', '0', '.', '2', '6', '\0']，指针 + 1：指向 '0'。  
 cout 输出该指针指向的字符串："0.26"。
+
 ```text
 0.26
 21.26
@@ -70,6 +69,7 @@ int main(){
         std::cout<<(cout<<cout);
 }
 ```
+
 - 规则：局部变量的优先级高于命名空间中的名称。因此，在 main 函数的大括号 {} 内，标识符 cout 现在代表这个整型变量，而不是输出流对象。
 - 如果你直接写 cout << ... 会报错，因为整数没有 << 重载用于输出。std::cout这里使用了作用域解析运算符 ::，明确指定使用标准库的 cout 输出流对象。这是合法的。
 - 输出为8
@@ -83,6 +83,7 @@ int main(){
 string::length()返回类型为 size_t，而不是 int。
 ### Q5
 find的所有重载：
+
 1. find (const string& str, size_t pos = 0)
 2. find (const char* s, size_t pos = 0)
 3. find (const char* s, size_t pos, size_t n)
@@ -182,6 +183,7 @@ int main() {
     return 0;
 }
 ```
+
 - 在 C++ 中，当你使用 new A[n]（即 new[]）创建一个对象数组时，编译器会为数组中的每个元素调用默认构造函数（即无参构造函数或所有参数都有默认值的构造函数）。
 - 但是，类 A 只定义了一个带参数的构造函数 A(int x)，这会导致编译器不再自动生成默认构造函数。
 - 因此，new A[3] 会尝试调用 A()（默认构造函数），但该类没有默认构造函数，导致编译错误。
@@ -197,14 +199,18 @@ int main() {
 
 所以重载`<<`用于输出自定义对象时，必须使用友元函数（或非成员函数）来重载运算符
 ### 检查自赋值
+
 正确写法✅️
+
 ```cpp
 if(this != &other)
 ```
 不要写❌️
+
 ```cpp
 if(*this != other)
 ```
+
 | 比较方式 | 比较内容 | 性能 | 目的 |
 | :--- | :--- | :--- | :--- |
 | `if (this != &other)` | 对象的内存地址（身份） | 极快 | 检查是否为同一个对象，防止资源管理错误。 |
@@ -230,6 +236,7 @@ A 项：const T& 确实可以绑定右值，但这只是该语法的一个附带
 
 ### Q18
 用户自定义的赋值运算符通常会将赋值运算符（`operator=`）的返回值设计为当前类的引用（`T&`）并返回 `*this`，这样设计的原因是
+
 1. 支持链式赋值`a = b = c;` 根据右结合性，等价于 `a = (b = c);`。
 2. 返回引用可以避免生成临时对象，从而提升性能。
 
@@ -247,18 +254,19 @@ public:
     friend void A::accessB(B& b); 
 };
 ```
+
 - 任何类型都可以作为运算符重载的返回类型，建议返回类型与内建运算符提供的返回类型相匹配。但`operator->`比较特殊，C++规定它必须返回指针 或 自带`operator->`的类对象。
 - 重载 operator-> 时，不能带参数。因为编译器对 `->` 有**固定语法解析规则**：
-  - 如果obj是指针，直接解引用并访问member
-  - 如果obj是类对象且重载了operator->，则执行obj.operator->()，然后递归应用该规则
-    ```cpp
-    obj->member;
-    ```
-    会被自动翻译成：
-    ```cpp
-    obj.operator->()->member;
-    ```
-- 友元函数可以在类内部实现也可以在类外部实现
+    - 如果obj是指针，直接解引用并访问member
+    - 如果obj是类对象且重载了operator->，则执行obj.operator->()，然后递归应用该规则
+      ```cpp
+      obj->member;
+      ```
+      会被自动翻译成：
+      ```cpp
+      obj.operator->()->member;
+      ```
+- 友元函数可以在类内部实现也可以在类外部实现，但它的本质依然是全局函数，而不是类的成员函数。
 
 ## 25程设Ⅱ-周12-理论题
 
@@ -278,14 +286,6 @@ public:
 ### Q10
 
 - 函数覆盖/重写(override)必须函数签名完全一致，函数重载不允许签名一致。编译器不需要区分覆盖和被覆盖的函数。
-
-### Q15
-
-在 C++11 中，引入了 final 关键字，用于防止类被继承或防止虚函数被重写。它主要有两个用途：修饰类和修饰虚函数。
-
-**修饰类**：当 final 关键字用于类时，表示该类不能被其他类继承。这可以保护基类的设计，防止继承带来的复杂性和潜在错误。
-
-**修饰虚函数**：当 final 关键字用于虚函数时，表示该虚函数在派生类中不能被重写。这对于一些基类中实现了关键逻辑的函数非常有用，可以确保这些函数在派生类中不会被意外地修改。
 
 ### Q16
 
@@ -357,3 +357,151 @@ warning: #pragma once in main file
 - 拷贝构造记得用别人的公有函数调私有值
 - 别忘了可以用using改变访问权限
 - getinstance返回引用的时候如果是nullptr返回new instance，返回指针返回instance（应该无所谓）
+
+## 25程设II-周14-课堂3
+
+### to_string函数(C++11)
+
+`to_string` 函数用于将数字转换为字符串。它可以处理多种数据类型，包括整数和浮点数。
+
+```cpp
+int num = 123;
+std::string str = std::to_string(num); // "123"
+double pi = 3.14159;
+std::string str = std::to_string(pi); // "3.141590"
+```
+
+## 25程设Ⅱ-周14-理论题
+
+### 接口风格抽象类
+
+接口风格抽象类（类似于 Java 的 `interface` 在 C++ 中的映射）的核心设计意图是只定义行为规范，不携带状态。通常由纯虚函数组成，可以包含静态成员（静态成员属于类而非对象，不破坏"无状态"的接口语义），**不能有普通成员变量**，一旦有普通数据成员，就不再是 “接口风格”，而是普通抽象类。
+
+接口风格抽象类因为没有数据成员，可以无歧义地被多重继承，也可以被虚继承。
+
+## 25程设Ⅱ-周15-理论题
+
+### 从属依赖类型
+
+在 C++ 模板编程中，**从属依赖类型**（Dependent Type）是指**依赖于某个模板参数的类型**。
+
+假设我们有一个模板参数 `T`，我们想使用 `T` 内部的一个类型 `iterator`：
+
+```cpp
+template <typename T>
+void printFirst(T container) {
+    // T::iterator 就是一个从属依赖类型
+    // 因为 T 可能是 std::vector<int>（此时 T::iterator 是类型）
+    // T 也可能是某个类，而 T::iterator 只是一个普通的静态成员变量
+    T::iterator it = container.begin(); 
+}
+```
+
+由于 `T` 是模板参数，编译器**在模板定义阶段无法确定** `T` 到底是什么类，因此默认按**变量/值**解析，导致把 `iterator` 当成静态变量，语法错误。
+
+为了解决这种二义性，C++ 规定：当你在模板中访问一个从属依赖类型时，**必须在其前面显式加上 `typename` 关键字**。
+
+```cpp
+template <typename T>
+void printFirst(T container) {
+    typename T::iterator it = container.begin(); 
+}
+```
+
+## 25程设Ⅱ-周15-课堂1
+
+### 二进制字符串转数值
+
+输入大端序（最高位先出现）可以采用逐位左移+或的方法：
+
+```cpp
+unsigned int val = 0;
+for (char c : bits) {
+    val = (val << 1) | (c - '0');
+}
+```
+
+**类型双关**：需要将一段内存中的二进制数据，原封不动地解释为另一种类型（例如 uint32_t → float 或 int），而不改变位模式。
+
+```cpp
+float result;
+memcpy(&result, &val, sizeof(result));
+```
+
+### 显式实例化
+
+模板的定义通常需要放在头文件中，否则其他编译单元无法实例化。但有时出于编译速度或隐藏实现的目的，希望将模板定义放在 `.cpp` 文件中。
+
+**头文件 (`utils.hpp`)**：
+```cpp
+template<typename T>
+T decode_bits(const std::string& bits);
+
+extern template int decode_bits<int>(const std::string&);
+extern template float decode_bits<float>(const std::string&);
+```
+
+**源文件 (`utils.cpp`)**：
+```cpp
+#include "utils.hpp"
+template<typename T>
+T decode_bits(const std::string& bits) { /* 实现 */ }
+
+// 显式实例化定义
+template int decode_bits<int>(const std::string&);
+template float decode_bits<float>(const std::string&);
+```
+
+原理：
+
+- 当 `main.cpp` 调用 `decode_bits<int>(bits)` 时，编译器需要看到该函数的代码才能生成对应的机器指令。但由于定义在另一个 `.cpp` 文件中，`main.cpp` 编译时并不知道实现。
+- `extern template` 告诉编译器**不要在此编译单元中隐式实例化**，该实例化在其他地方已存在。
+- 在 `.cpp` 中提供普通实例化（无 `extern`），强制生成代码。
+
+限制：失去对任意类型的自动适配能力，只能实例化**所有可能用到的模板参数组合**，否则链接时会缺少符号。适用于模板参数集合有限的情况（如本题仅 int, float, double）。
+
+## 25程设Ⅱ-周15-课后2
+
+C++ 标准规定，在类模板外部定义成员函数模板时，必须**先列出类模板的参数**，然后再列出函数模板自己的参数：
+
+```cpp
+// 正确：类模板参数（用于类） + 函数模板参数（用于成员函数）
+template<typename T, int N>          // 对应 RangeFilter<T, N>
+template<int Low, int High, int Window, int LevelID>   // 对应 isValid<...>
+bool RangeFilter<T, N>::isValid(T val) { ... }
+```
+
+如果合并写成：
+```cpp
+template<typename T, int N, int Low, int High, int Window, int LevelID>
+bool RangeFilter<T, N>::isValid(T val) { ... }
+```
+
+这会被编译器理解为：**这个 `isValid` 是一个普通函数模板（不属于 `RangeFilter` 类模板的成员）**，而左侧 `RangeFilter<T, N>::` 中的 `T, N` 并没有被定义（因为合并后的 `template` 中的 `T, N` 不会自动成为类模板参数），导致编译错误。
+
+## 25程设Ⅱ-周15-课后1
+
+在比较器是一个函数模板`template<typename T> bool cmp(const T& a, const T& b);`使用 `sort(data, data+count, cmp)` 时，编译器需要知道第三个参数的具体类型。`cmp` 是一个模板名，代表一组重载的函数（针对不同的 `T` 实例化）。编译器无法仅从上下文推断出应该实例化 `cmp` 的哪个版本（是 `cmp<int>` 还是 `cmp<double>` 等）时，报错 `unresolved overloaded function type`（无法解析的重载函数类型）。
+
+而写成 `cmp<T>` 则明确告诉编译器：使用模板参数 `T` 来实例化 `cmp`，生成一个具体的函数 `cmp<T>`。总的来说，加上`<T>`是一个好习惯。
+
+## 25程设Ⅱ-周16-课后4
+
+### 字符串内部排序
+
+```cpp
+string s="listen";
+sort(s.begin(),s.end()); //默认升序
+```
+
+## 25程设Ⅱ-周16-理论题
+
+这一套选择题比较难。
+
+### Q15
+
+哪个 STL 容器在插入元素时可能导致迭代器失效？
+
+正确答案是 **vector**。
+
+`vector` 在内存中是连续分配的。当向其中插入元素且当前容量不足时，它会触发**扩容机制**（分配一块更大的新内存，将旧数据拷贝过去，然后释放旧内存）。由于底层物理内存地址发生了改变，这会导致 `vector` 中**所有的迭代器、指针和引用全部失效**。因此，`vector` 是选项中最容易因插入操作导致迭代器失效的容器。

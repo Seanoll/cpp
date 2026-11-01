@@ -17,7 +17,7 @@
 ### 初识对象
 - 什么是对象
   - 对象是现实世界或抽象世界中事物的一种计算机表示。
-- 定义于\<iostream>中有三个对象
+- 定义于\<iostream\>中有三个对象
   - cin标准输入流，使用stdout输出
   - cout标准输出流，使用stdin输入
   - cerr标准错误流，使用stderr输出
@@ -33,14 +33,14 @@
   - 右操作数必须是左值，任意类型。编译自动根据类型使用合适 fscanf
   - 表达式返回左操作数的引用，是左值
 - [输入输出操纵符](https://en.cppreference.com/w/cpp/io/manip.html)
-  - \<iostream>
+  - \<iostream\>
   - endl输出'\n'并冲洗输出流
   - dec,hex,oct
   - left,right
   - fixed,scientific
   - showpoint,noshowpoint
   - showpos,noshowpos
-  - \<iomanip>
+  - \<iomanip\>
   - setw
   - setprecision
 #### 1. 基础控制 (`<iostream>`)

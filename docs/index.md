@@ -1,6 +1,6 @@
 # 程序设计II
 
-你好👋，这里是中山大学计算机学院2025级程序设计II的课程笔记，由[Seanoll](seanoll.github.io/about)制作。
+你好👋，这里是中山大学计算机学院2025级程序设计II的课程笔记，由[Seanoll](https://seanoll.github.io/about)制作。
 
 这份笔记主要内容是C++，适合已经有C语言基础的同学使用。
 
