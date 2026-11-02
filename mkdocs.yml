@@ -25,6 +25,9 @@ nav:
     - 数组: notes2/数组.md
     - 指针: notes2/指针.md
     - 字符串与字符数组: notes2/字符串与字符数组.md
+    - 结构体、共用体和枚举类型: notes2/结构体、共用体和枚举类型.md
+    - 指针与结构体: notes2/指针与结构体.md
+    - 指针与字符串、函数: notes2/指针与字符串、函数.md
 theme:
   name: material
 markdown_extensions:
