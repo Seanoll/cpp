@@ -1,7 +1,7 @@
-site_name: 程序设计II
+site_name: Notes
 nav: 
   - 首页: index.md
-  - 笔记: 
+  - 程序设计II笔记: 
     - 1 from C to C++: notes/1 from C to C++.md
     - 2 from C to C++: notes/2 from C to C++.md
     - 3 数据抽象和类I: notes/3 数据抽象和类I.md
@@ -21,6 +21,10 @@ nav:
     - 17 异常处理: notes/17 异常处理.md
     - 18 IO文件操作: notes/18 IO文件操作.md
     - Matrix错题笔记: notes/Matrix错题笔记.md
+  - 程序设计I:
+    - 数组: notes2/数组.md
+    - 指针: notes2/指针.md
+    - 字符串与字符数组: notes2/字符串与字符数组.md
 theme:
   name: material
 markdown_extensions:
