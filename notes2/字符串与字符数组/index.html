@@ -1,0 +1,2068 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://seanoll.github.io/cpp/notes2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84/">
+      
+      
+        <link rel="prev" href="../%E6%8C%87%E9%92%88/">
+      
+      
+        <link rel="next" href="../%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%85%B1%E7%94%A8%E4%BD%93%E5%92%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>字符串与字符数组 - Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Notes" class="md-header__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              字符串与字符数组
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Notes" class="md-nav__button md-logo" aria-label="Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    程序设计II笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    程序设计II笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/1%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/2%20from%20C%20to%20C%2B%2B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 from C to C++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/3%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/4%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 数据抽象和类I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/5%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/6%20%E6%95%B0%E6%8D%AE%E6%8A%BD%E8%B1%A1%E5%92%8C%E7%B1%BBII/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6 数据抽象和类II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/8%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 运算符重载
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/9%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/10%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/11%20%E7%BB%A7%E6%89%BF%E5%92%8C%E6%B4%BE%E7%94%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 继承和派生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/12%20%E5%A4%9A%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/13%20%E5%A4%9A%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 多态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/14%20%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/15%20STL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15 STL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/16%20STL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16 STL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/17%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17 异常处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/18%20IO%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 IO文件操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notes/Matrix%E9%94%99%E9%A2%98%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrix错题笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    程序设计I
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    程序设计I
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%95%B0%E7%BB%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数组
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%8C%87%E9%92%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串与字符数组
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串与字符数组
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符类型与字符常量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符类型与字符常量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转义字符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符、字符数组与字符串
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符数组的初始化与修改
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符数组的初始化与修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字面量与字符指针
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        长字符串与换行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中途出现结束符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串输入输出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串输入输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#printf-puts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出：printf 与 puts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scanf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入单词：scanf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gets-fgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入整行：gets 与 fgets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串处理函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串处理函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strlen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        长度：strlen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcat-strncat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连接：strcat 与 strncat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcpy-strncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复制：strcpy 与 strncpy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcmp-strncmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较：strcmp 与 strncmp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strchr-strstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查找：strchr 与 strstr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strlwr-strupr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大小写转换：strlwr 与 strupr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%85%B1%E7%94%A8%E4%BD%93%E5%92%8C%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    结构体、共用体和枚举类型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%8C%87%E9%92%88%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针与结构体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%8C%87%E9%92%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%81%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    指针与字符串、函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符类型与字符常量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符类型与字符常量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转义字符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串的基本概念
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串的基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符、字符数组与字符串
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符数组的初始化与修改
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符数组的初始化与修改">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字面量与字符指针
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        长字符串与换行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        中途出现结束符
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串输入输出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串输入输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#printf-puts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出：printf 与 puts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scanf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入单词：scanf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gets-fgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入整行：gets 与 fgets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        字符串处理函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符串处理函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strlen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        长度：strlen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcat-strncat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        连接：strcat 与 strncat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcpy-strncpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        复制：strcpy 与 strncpy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcmp-strncmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较：strcmp 与 strncmp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strchr-strstr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        查找：strchr 与 strstr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strlwr-strupr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大小写转换：strlwr 与 strupr
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>字符串与字符数组</h1>
+
+<!-- 本笔记直接由AI生成，未经审阅 -->
+
+<h2 id="_1">字符类型与字符常量</h2>
+<ul>
+<li><code>char</code> 是一种整数类型，占 <strong>1 字节</strong>；C 保证每字节至少 8 位，常见平台是 8 位。</li>
+<li>字符以编码值存储，因此可以参与整数运算。常见 ASCII 编码：<code>'A' = 65</code>、<code>'a' = 97</code>、<code>'0' = 48</code>、空格 <code>' ' = 32</code>。</li>
+<li><code>char</code> 是否带符号由实现决定，需要明确时使用 <code>signed char</code> 或 <code>unsigned char</code>。</li>
+<li>在 <strong>C 语言</strong>中，普通字符常量 <code>'A'</code> 的类型是 <code>int</code>，不是 <code>char</code>。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'A'</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w">       </span><span class="c1">// 输出字符 A</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">);</span><span class="w">       </span><span class="c1">// ASCII 环境下输出编码值 65</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%c</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="sc">'A'</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// ASCII 环境下输出 B</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu %zu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="sc">'A'</span><span class="p">));</span><span class="w"> </span><span class="c1">// 1 和 sizeof(int)</span>
+</code></pre></div>
+<h3 id="_2">转义字符</h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\0</code></td>
+<td>编码值为 0 的空字符，用作字符串结束符</td>
+</tr>
+<tr>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>水平制表符</td>
+</tr>
+<tr>
+<td><code>\r</code></td>
+<td>回车</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>反斜杠</td>
+</tr>
+<tr>
+<td><code>\'</code></td>
+<td>单引号</td>
+</tr>
+<tr>
+<td><code>\"</code></td>
+<td>双引号</td>
+</tr>
+<tr>
+<td><code>\?</code></td>
+<td>问号</td>
+</tr>
+<tr>
+<td><code>\a</code></td>
+<td>警报</td>
+</tr>
+<tr>
+<td><code>\b</code></td>
+<td>退格</td>
+</tr>
+<tr>
+<td><code>\f</code></td>
+<td>换页</td>
+</tr>
+<tr>
+<td><code>\v</code></td>
+<td>垂直制表符</td>
+</tr>
+<tr>
+<td><code>\ooo</code></td>
+<td>1～3 位八进制数字表示的字符编码，如 <code>\101</code></td>
+</tr>
+<tr>
+<td><code>\x...</code></td>
+<td>一个或多个十六进制数字表示的字符编码，如 <code>\x41</code></td>
+</tr>
+<tr>
+<td><code>\uXXXX</code>、<code>\UXXXXXXXX</code></td>
+<td>分别用 4 位、8 位十六进制数字表示 Unicode 码点</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ASCII 环境下，<code>'\101'</code>、<code>'\x41'</code> 都表示 <code>'A'</code>。</li>
+<li><strong><code>'\0'</code> 是零值字符，<code>'0'</code> 是数字字符，二者不同。</strong></li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>课件将 <code>\u...</code> 简写为“UTF-16 或 UTF-32 编码”。它们更准确地说是 Unicode 码点的写法，不代表普通 <code>char</code> 数组就采用这两种编码，存储字节仍与字符类型和执行编码有关。</p>
+</blockquote>
+<h2 id="_3">字符串的基本概念</h2>
+<ul>
+<li><strong>字符串</strong>是字符序列。C 风格字符串以第一个 <strong><code>'\0'</code></strong> 作为结束标志。</li>
+<li><strong>字符串长度</strong>不包含结束符；存储时还要为结束符多留 1 字节。</li>
+<li><strong>空串</strong>是 <code>""</code>，长度为 0，但仍要用 1 字节保存 <code>\0</code>；<code>" "</code> 含一个空格，长度为 1。</li>
+<li><strong>字符集</strong>是允许使用的字符集合。若有 <code>k</code> 种字符，长度为 <code>n</code> 的字符序列共有 <code>k^n</code> 种。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>"Hello" 的存储：'H' 'e' 'l' 'l' 'o' '\0'
+字符串长度：5
+所需空间：6 字节
+</code></pre></div>
+<h3 id="_4">字符、字符数组与字符串</h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>'H'</code></td>
+<td>一个字符常量，在 C 中类型为 <code>int</code></td>
+</tr>
+<tr>
+<td><code>"H"</code></td>
+<td>字符串字面量，包含 <code>'H'</code> 和 <code>'\0'</code>，共 2 字节</td>
+</tr>
+<tr>
+<td><code>char c = 'H';</code></td>
+<td>用一个 <code>char</code> 变量保存字符</td>
+</tr>
+<tr>
+<td><code>char a[3] = {'H', 'i', '!'};</code></td>
+<td>字符数组，没有结束符，不能直接作为字符串使用</td>
+</tr>
+<tr>
+<td><code>char s[] = "Hi!";</code></td>
+<td>可作为字符串使用的字符数组，共 4 字节</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>字符数组只说明元素类型是 <code>char</code>，<strong>不保证有结束符</strong>。</li>
+<li>传给 <code>%s</code>、<code>strlen</code> 等字符串操作的内容，必须在可访问范围内存在 <code>\0</code>，否则可能越界读取。</li>
+</ul>
+<h2 id="_5">字符数组的初始化与修改</h2>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">'H'</span><span class="p">,</span><span class="w"> </span><span class="sc">'i'</span><span class="p">,</span><span class="w"> </span><span class="sc">'!'</span><span class="p">,</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">};</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hi!"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hi!"</span><span class="p">;</span><span class="w"> </span><span class="c1">// 自动推导为 4 字节，与前两种内容相同</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hi!"</span><span class="p">;</span><span class="w"> </span><span class="c1">// 后面的元素都补零</span>
+<span class="kt">char</span><span class="w"> </span><span class="n">e</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w">   </span><span class="c1">// 初始为空串</span>
+</code></pre></div>
+<ul>
+<li>字符串字面量通常会自动带上结束符；目标数组必须留出空间。</li>
+<li><strong>容量为 <code>N</code> 的字符数组，最多保存 <code>N-1</code> 字节的字符串内容。</strong></li>
+<li>C 允许 <code>char s[3] = "Hi!";</code> 恰好只存三个可见字符，但它没有空间存 <code>\0</code>，不能作为字符串使用。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="c1">// s = "Hi!"; // 错误：数组定义后不能整体赋值</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'H'</span><span class="p">;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'i'</span><span class="p">;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'!'</span><span class="p">;</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>也可以用后面的 <code>strcpy</code> 复制字符串。</li>
+<li><code>char c = "H";</code> 错误：不能把字符串地址当作一个字符保存，应写 <code>char c = 'H';</code>。</li>
+</ul>
+<h3 id="_6">字面量与字符指针</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span><span class="w">    </span><span class="c1">// 数组里保存一份副本，可以修改元素</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指向字面量，按只读内容使用</span>
+<span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'h'</span><span class="p">;</span>
+</code></pre></div>
+<blockquote>
+<p><strong>课件写法说明：</strong>课件写 <code>char *greeting = "Hello";</code>。C 中可以这样初始化，但不能通过它修改字符串字面量，修改属于未定义行为。建议写 <code>const char *greeting</code>；需要修改内容时用字符数组。</p>
+</blockquote>
+<h3 id="_7">长字符串与换行</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello, "</span>
+<span class="w">           </span><span class="s">"world!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</code></pre></div>
+<ul>
+<li>相邻的字符串字面量在编译时自动拼接，结果是 <code>"Hello, world!\n"</code>，中间不会额外插入结束符。</li>
+<li>源代码行末的反斜杠 <code>\</code> 紧接换行，可把两行接成一行；<strong>不会给字符串插入换行</strong>。</li>
+<li>字符串中需要换行，应写 <code>\n</code>。较长字面量优先用上面的相邻拼接写法。</li>
+</ul>
+<h3 id="_8">中途出现结束符</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hi</span><span class="se">\0</span><span class="s">there"</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w">       </span><span class="c1">// 只输出 Hi</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">));</span><span class="w"> </span><span class="c1">// 2，需要 &lt;string.h&gt;</span>
+</code></pre></div>
+<ul>
+<li>数组里可以在 <code>\0</code> 后继续存数据，但字符串操作只处理<strong>第一个 <code>\0</code> 之前</strong>的部分。</li>
+<li>中文等字符可能由多个字节编码。<code>strlen</code> 数的是<strong>字节数</strong>，不一定是文字个数；例如 UTF-8 下一个常见汉字通常占 3 字节。</li>
+</ul>
+<h2 id="_9">字符串输入输出</h2>
+<p>以下函数需要 <code>#include &lt;stdio.h&gt;</code>。</p>
+<h3 id="printf-puts">输出：printf 与 puts</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="c1">// 按格式输出</span>
+<span class="n">puts</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">           </span><span class="c1">// 输出字符串，并自动补一个换行</span>
+</code></pre></div>
+<ul>
+<li><code>%s</code> 和 <code>puts</code> 都在第一个 <code>\0</code> 处停止，不输出结束符本身。</li>
+<li>没有结束符的字符数组，应按已知长度逐个用 <code>%c</code> 或 <code>putchar</code> 输出。</li>
+<li>数字数组不能用 <code>%s</code> 整体输出，仍要逐个输出元素。</li>
+</ul>
+<h3 id="scanf">输入单词：scanf</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">scanf</span><span class="p">(</span><span class="s">"%9s"</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>%s</code> 跳过开头的空白，读取到下一个空白字符时停止，不能完整读取带空格的一行。</li>
+<li>成功读取后，自动在末尾添加 <code>\0</code>。</li>
+<li><code>%9s</code> 最多读入 9 字节，给第 10 字节留出结束符空间。</li>
+<li>这里写 <code>s</code>，不是 <code>&amp;s</code>；<code>s</code> 会转换为首字符的地址。</li>
+<li><code>%c</code> 读取单个字符时要传地址，例如 <code>scanf("%c", &amp;c)</code>；它不会自动跳过空白，也不追加结束符。</li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>课件使用 <code>scanf("%s", str)</code>。该写法没有长度限制，输入过长会越界；应按数组容量设置字段宽度，如容量为 10 时写 <code>%9s</code>。超出宽度的输入仍留在输入流中。</p>
+</blockquote>
+<h3 id="gets-fgets">输入整行：gets 与 fgets</h3>
+<ul>
+<li>课件中的 <code>gets(str)</code> 可以读取包含空格的一行，去掉换行并补 <code>\0</code>。</li>
+<li><strong><code>gets</code> 无法指定容量，已经从 C11 标准中删除，不应在新程序中使用。</strong></li>
+<li>使用 <code>fgets</code> 指定容量：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="w"> </span><span class="n">stdin</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="p">[</span><span class="n">strcspn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">;</span><span class="w"> </span><span class="c1">// 如果读到了换行，就把它换成结束符</span>
+<span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><code>fgets(s, N, stdin)</code> 最多读入 <code>N-1</code> 个字符，成功时自动补 <code>\0</code>。</li>
+<li>如果容量足够，会连换行一起读入；上面的 <code>strcspn</code> 找到换行位置，没有换行时返回字符串长度。</li>
+<li>一行过长时只能读入前一部分，剩余内容留给后续读取。</li>
+<li>混用 <code>scanf</code> 和 <code>fgets</code> 时，注意 <code>scanf</code> 常把换行留在输入流中，紧接着的 <code>fgets</code> 可能只读到这一个换行。</li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>保留 <code>gets/puts</code> 的整行操作知识点，实际输入改用有容量限制的 <code>fgets</code>。<code>puts</code> 是标准函数，可以继续使用；它与 <code>printf("%s", s)</code> 的区别之一是自动补换行。</p>
+</blockquote>
+<h2 id="_10">字符串处理函数</h2>
+<p>下面的标准字符串函数需要 <code>#include &lt;string.h&gt;</code>。<strong>目标数组必须可写，容量必须足够。</strong></p>
+<h3 id="strlen">长度：strlen</h3>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">));</span><span class="w"> </span><span class="c1">// 5，首个 '\0' 前的字节数</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"%zu</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">));</span><span class="w"> </span><span class="c1">// 20，整个数组的字节数</span>
+</code></pre></div>
+<ul>
+<li><code>strlen</code> 返回 <code>size_t</code>，不计算结束符。</li>
+<li><code>sizeof("Hello")</code> 是 6，因为字符串字面量的数组空间包括末尾 <code>\0</code>。</li>
+<li><code>sizeof(p)</code> 对字符指针求的是指针自身大小，不能代替 <code>strlen(p)</code>。</li>
+</ul>
+<h3 id="strcat-strncat">连接：strcat 与 strncat</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strcat(dst, src)</code></td>
+<td>从 <code>dst</code> 的结束符位置开始追加整个 <code>src</code>，再写入结束符</td>
+<td><code>dst</code></td>
+</tr>
+<tr>
+<td><code>strncat(dst, src, n)</code></td>
+<td>最多追加 <code>src</code> 的前 <code>n</code> 个非零字符，再写入结束符</td>
+<td><code>dst</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span>
+<span class="n">strcat</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">" "</span><span class="p">);</span>
+<span class="n">strncat</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">"world!"</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="c1">// s 为 "Hello world"</span>
+</code></pre></div>
+<ul>
+<li><code>dst</code> 原本就必须是合法字符串，不能把未初始化数组直接传给连接函数。</li>
+<li><code>strcat</code> 要求容量至少是 <code>strlen(dst) + strlen(src) + 1</code>。</li>
+<li><code>strncat</code> 的 <code>n</code> 是<strong>最多追加多少个字符</strong>，不是目标数组容量；所需容量至少为 <code>strlen(dst) + min(n, strlen(src)) + 1</code>。</li>
+<li>两者都不会自动检查目标容量，也不能用于源、目标内容重叠的情况。</li>
+</ul>
+<h3 id="strcpy-strncpy">复制：strcpy 与 strncpy</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strcpy(dst, src)</code></td>
+<td>覆盖目标内容，连同 <code>src</code> 的 <code>\0</code> 一起复制</td>
+<td>容量至少为 <code>strlen(src) + 1</code></td>
+</tr>
+<tr>
+<td><code>strncpy(dst, src, n)</code></td>
+<td>最多从源复制 <code>n</code> 个字符；源不足 <code>n</code> 时把剩余位置补零</td>
+<td>源长度大于等于 <code>n</code> 时不自动补结束符</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">"Hi!"</span><span class="p">);</span>
+
+<span class="n">strncpy</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">"Hello world"</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">s</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">;</span><span class="w"> </span><span class="c1">// 手动保证结束符；结果截断为 "Hello wor"</span>
+</code></pre></div>
+<ul>
+<li><code>strcpy</code> 和 <code>strncpy</code> 返回 <code>dst</code>，源与目标不能重叠。</li>
+<li><code>strncpy</code> 的 <code>n</code> 不能超过目标容量，不能仅凭函数名带 <code>n</code> 就认为安全。</li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>课件说 <code>strncpy</code>“不添加零值字符”，只适用于源长度大于等于 <code>n</code> 的情况；源较短时会补零。另外，课件向 <code>char str1[15]</code> 复制 <code>"You are a student."</code>，该字面量连结束符需要 19 字节，会越界，应扩大数组或明确截断。</p>
+</blockquote>
+<h3 id="strcmp-strncmp">比较：strcmp 与 strncmp</h3>
+<ul>
+<li><strong>比较字符串内容不能用 <code>==</code></strong>；对两个字符串地址使用 <code>==</code> 比较的是地址。</li>
+<li><code>strcmp(a, b)</code> 从头逐字节比较，在第一对不同字符处决定大小，按 <code>unsigned char</code> 值比较。</li>
+<li>如果一个字符串是另一个的完整前缀，较短者更小；不是单纯按长度比较。</li>
+<li><code>strncmp(a, b, n)</code> 最多比较前 <code>n</code> 个字符，遇到结束符也会停止。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt; 0</code></td>
+<td><code>a</code> 小于 <code>b</code></td>
+</tr>
+<tr>
+<td><code>== 0</code></td>
+<td>比较范围内相同</td>
+</tr>
+<tr>
+<td><code>&gt; 0</code></td>
+<td><code>a</code> 大于 <code>b</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">strcmp</span><span class="p">(</span><span class="s">"Hell"</span><span class="p">,</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">);</span><span class="w">    </span><span class="c1">// &lt; 0</span>
+<span class="n">strcmp</span><span class="p">(</span><span class="s">"same"</span><span class="p">,</span><span class="w"> </span><span class="s">"same"</span><span class="p">);</span><span class="w">     </span><span class="c1">// == 0</span>
+<span class="n">strcmp</span><span class="p">(</span><span class="s">"ABcD"</span><span class="p">,</span><span class="w"> </span><span class="s">"ABCD"</span><span class="p">);</span><span class="w">     </span><span class="c1">// ASCII 环境下 &gt; 0</span>
+<span class="n">strncmp</span><span class="p">(</span><span class="s">"abcX"</span><span class="p">,</span><span class="w"> </span><span class="s">"abcY"</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="c1">// == 0，只比较前三个字符</span>
+</code></pre></div>
+<ul>
+<li>返回值只保证正、零、负，<strong>不保证恰好是 <code>1</code> 或 <code>-1</code></strong>。</li>
+</ul>
+<h3 id="strchr-strstr">查找：strchr 与 strstr</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+<th>找不到时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strchr(s, c)</code></td>
+<td>找字符 <code>c</code> 第一次出现的位置</td>
+<td>返回 <code>NULL</code></td>
+</tr>
+<tr>
+<td><code>strstr(s, sub)</code></td>
+<td>找子串 <code>sub</code> 第一次出现的位置</td>
+<td>返回 <code>NULL</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"abcdedcbaf"</span><span class="p">;</span>
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strchr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="sc">'d'</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%td</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3：位置指针减首地址，得到下标</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">);</span><span class="w">     </span><span class="c1">// dedcbaf：从找到的位置输出到结束符</span>
+<span class="p">}</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strstr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">"ded"</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">q</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">"%td</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="c1">// 3</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>找到后返回的指针指向<strong>原字符串内部</strong>，不会自动复制出新字符串。</li>
+<li><code>strchr(s, '\0')</code> 能找到结束符；<code>strstr(s, "")</code> 返回 <code>s</code>。</li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>课件直接计算 <code>strchr(...) - str</code> 或用 <code>%s</code> 输出查找结果。应先判断是否为 <code>NULL</code>，否则“没找到”时会出错。指针差的类型是 <code>ptrdiff_t</code>，对应输出格式为 <code>%td</code>，不是课件中的 <code>%d</code>。</p>
+</blockquote>
+<h3 id="strlwr-strupr">大小写转换：strlwr 与 strupr</h3>
+<ul>
+<li>课件的 <code>strlwr(s)</code>、<code>strupr(s)</code> 分别把字符串中的字母转为小写、大写，但它们<strong>不是标准 C 函数</strong>，部分编译器才提供，也可能使用不同名称。</li>
+<li>标准 C 使用 <code>&lt;ctype.h&gt;</code> 中的 <code>tolower</code>、<code>toupper</code>，逐字符转换：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ctype.h&gt;</span>
+
+<span class="kt">char</span><span class="w"> </span><span class="n">s</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Hello"</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="sc">'\0'</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">tolower</span><span class="p">((</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="p">)</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="c1">// 需要大写时，将 tolower 改为 toupper</span>
+</code></pre></div>
+<ul>
+<li>转成 <code>unsigned char</code> 后再传入，避免负的 <code>char</code> 值导致未定义行为。</li>
+<li>这是逐字节字符处理，不是通用的 Unicode 文字大小写转换。</li>
+</ul>
+<blockquote>
+<p><strong>课件写法说明：</strong>保留 <code>strlwr/strupr</code> 的作用说明，实际编写可移植的 C 程序时采用标准库的逐字符转换方式。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
