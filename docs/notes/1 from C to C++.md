@@ -12,52 +12,38 @@
     - 易于调试和维护
     - 是软件开发的主流
 
-
 - 一些新增内容：
-    - 流式IO操作(std::cin,std::cout)
+    - 流式IO操作(`std::cin`,`std::cout`)
     - 命名空间
     - 引用
-    - const和constexpr
+    - `const`和`constexpr`
 
 ## io流
 
 ### 初识对象
 
-- 什么是对象
-    - 对象是现实世界或抽象世界中事物的一种计算机表示。
+- 对象是现实世界或抽象世界中事物的一种计算机表示。
 
-- 定义于\<iostream\>中有三个对象
+- 定义于`<iostream>`中有三个对象
     - cin标准输入流，使用stdout输出
     - cout标准输出流，使用stdin输入
     - cerr标准错误流，使用stderr输出
 
 ### 运算符重载
 
-- C++的大多数运算符都可以重载：根据操作数不同，自定义运算符的操作。例如"<<"">>"是位移运算符，它左右操作数必须是整数。
+- C++的大多数运算符都可以重载：根据操作数不同，自定义运算符的操作。例如"`<<`""`>>`"是位移运算符，它左右操作数必须是整数。
 
 - C++形象地将位移运算符用于流对象输入输出操作，例如`cout<<"hello"`的含义是将hello字符放入stdout输出管道。`cin>>aInt`是将stdin管道输入按"%d"格式转换后放入变量。
 
-- "<<" 重载为输出运算
+- "`<<`" 重载为输出运算
     - 左操作数必须是输出流对象
-    - 右操作数是任意类型，编译器会根据右操作数类型选择合适的 fprintf 格式化语句的版本。如右操作数是double，输出格式是"%lf"。
+    - 右操作数是任意类型，编译器会根据右操作数类型选择合适的 `fprintf` 格式化语句的版本。如右操作数是`double`，输出格式是`"%lf"`。
     - 表达式返回左操作数的引用，是左值
 
-- ">>" 重载为输入运算
+- "`>>`" 重载为输入运算
     - 左操作数必须是输入流对象
-    - 右操作数必须是左值，任意类型。编译自动根据类型使用合适 fscanf
+    - 右操作数必须是左值，任意类型。编译自动根据类型使用合适 `fscanf`
     - 表达式返回左操作数的引用，是左值
-
-- [输入输出操纵符](https://en.cppreference.com/w/cpp/io/manip.html)
-    - \<iostream\>
-    - endl输出'\n'并冲洗输出流
-    - dec,hex,oct
-    - left,right
-    - fixed,scientific
-    - showpoint,noshowpoint
-    - showpos,noshowpos
-    - \<iomanip\>
-    - setw
-    - setprecision
 
 #### 1. 基础控制 (`<iostream>`)
 
@@ -73,6 +59,7 @@
 | `boolalpha` / `noboolalpha` | 布尔显示 `true/false` 或 `1/0` | ✅ 持久 | 默认 `1/0` |
 | `showpoint` / `noshowpoint` | 强制/隐藏显示小数点及后随零 | ✅ 持久 | 默认 `noshowpoint` |
 | `uppercase` / `nouppercase` | 十六进制/指数大写 (A-F, E) | ✅ 持久 | 默认小写 |
+| `showpos` / `noshowpos` | 显示/隐藏正数符号 | ✅ 持久 | 默认隐藏 |
 
 #### 2. 格式排版 (`<iomanip>`)
 

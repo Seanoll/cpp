@@ -1,13 +1,11 @@
 
-# string类
-
 ## 初识类
 
 - 类是现实世界或抽象世界中概念，是关于同类事物定义的描述
 - 计算机语言中类是模板，它是关于成员对象数据成员和函数成员的描述
 - class是一种数据类型
 
-## 字符串
+## string类
 
 - C++提供了两种类型的字符串表示形式：
     - C风格字符串
@@ -17,14 +15,14 @@
     - C风格字符串定义时，必须事先知道保留多大空间存储字符串
     - 使用malloc动态空间处理字符串，对一般程序员来说太复杂，非常容易出现bug
 
-- 在C++中，**string类**​ 是标准库（\<string\>头文件）提供的一个字符串类，用于方便、安全地处理和操作字符串。
+- 在C++中，**string类**​ 是标准库（`<string>`头文件）提供的一个字符串类，用于方便、安全地处理和操作字符串。
 
-## 创建string对象
+### 创建string对象
 
 - `string s1`是创建对象，不是声明变量。
 - `string s2 = "c++"`**不是赋值运算**，它等价于`string s2("c++")`，它不会自动加`\0`，因为string类里存储了它的长度
 
-## string对象的运算
+### string对象的运算
 
 - string类实现了以下运算符的重载：
     - 联接运算：operator+，连接两个字符串或者一个字符串和一个字符
@@ -32,7 +30,7 @@
     - 下标运算：operator[]，访问指定字符，返回指定字符引用，即**可作为左值**
     - 赋值运算：operator=,+=，右操作数可以使字符串，字符，C字符串，字符数组
 
-## string对象操作
+### string对象操作
 
 - 基本操作：length/size, c_str
     -  `length()` 返回类型 size_t 的字符串的长度
@@ -64,7 +62,7 @@
 
 - 数值转换（C++11）：stoi, stod
 
-## 补充
+### 补充
 
 ```cpp
 for(int i = 0; i < s.length() - 2; i++){
@@ -144,15 +142,52 @@ int main()
 - C++ 11标准中，为了解决 const 关键字的双重语义问题，保留了 const 表示“只读”的语义，而将“常量”的语义划分给了新添加的 constexpr 关键字。因此 C++11 标准中，建议将 const 和 constexpr 的功能区分开，即凡是表达“只读”语义的场景都使用 const，表达“常量”语义的场景都使用 constexpr。
 
 ## auto
+
 - auto的原理就是根据初始化的表达式，在编译期间根据表达式类型自动推导出对象的类型。auto的作用就是为了简化变量初始化，如果这个变量有初始化表达式，就可以用auto代替类型声明。例如：
+
 ```cpp
 auto x1 = 5; //等价于 int x1 = 5;
 ```
+
 - 注意：
     1. 用auto声明的变量必须初始化
     2. 函数和模板参数不能被声明为auto
     3. 因为auto是一个占位符，并不是一个他自己的类型，因此不能用于类型转换或其他一些操作，如sizeof和typeid
     4. 定义在一个auto序列的变量必须始终推导成同一类型
+
 ```cpp
 auto x1 = 5,x2 = 5.0,x3='r'; //这样写是不合法的，因为各个变量类型不同 
 ```
+
+## enum class
+
+C++11 中，枚举的关键字为 enum class，即在 enum 后加 class，与 C++98 的 "plain" enum 区别如下：
+
+```cpp
+enum class Color { red, green, blue };　　 
+
+enum Color { red, green, blue };
+```
+
+优点：
+1. 防止命名空间污染
+    ```cpp
+    enum class Color { Red, Green, Blue };
+    enum class Fruit { Apple, Orange, Banana };
+
+    Color c = Color::Red;   // 正确
+    // Color c = Red;        // 编译错误！Red 不在外部作用域
+    // Fruit f = Color::Red; // 编译错误！类型不匹配
+    ```
+2. 强类型枚举
+    ```cpp
+    enum class Color { yellow, green, blue };
+    
+    Color c = Color::blue;
+    
+    if (c < 14.5) // error! can't compare Color and double
+    ```
+3. 支持前置声明
+    ```cpp
+    enum class Color;
+    ```
