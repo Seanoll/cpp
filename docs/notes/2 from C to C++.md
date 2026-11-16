@@ -191,3 +191,31 @@ enum Color { red, green, blue };
     ```cpp
     enum class Color;
     ```
+## 声明与定义
+
+- 声明是向编译器说明某个变量、函数或类型存在，并提供其类型和名称，但不分配内存或提供具体实现。
+- 定义是在声明的基础上为标识符分配内存并提供具体值或实现。
+
+声明可以多次，定义只能一次。
+
+```c
+// 声明
+extern int a;          // 仅声明变量a存在
+int sum(int x, int y); // 函数声明
+// 定义
+int a = 10;            // 变量定义并初始化
+int sum(int x, int y) { // 函数定义
+    return x + y;
+}
+```
+
+## using别名
+
+给类型、函数指针、模板取别名
+
+```cpp
+using Int = int;
+using Func = int (*)(int, int);
+```
+
+https://blog.csdn.net/crossoverpptx/article/details/131540570
